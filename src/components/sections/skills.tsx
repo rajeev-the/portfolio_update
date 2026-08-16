@@ -191,8 +191,8 @@ export const SkillsSection = () => {
               key={card.id}
               className={cn(
                 card.colSpan,
-                "group relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden",
-                "bg-zinc-950/80 border border-violet-500/20 backdrop-blur-2xl",
+                "group relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col justify-between overflow-hidden",
+                "bg-zinc-950/80 border border-violet-500/20 backdrop-blur-2xl w-full",
                 "transition-all duration-500 hover:-translate-y-1",
                 card.borderGlow
               )}
@@ -206,22 +206,22 @@ export const SkillsSection = () => {
               />
 
               {/* Card Header */}
-              <div className="relative z-10 mb-6">
-                <div className="flex items-center justify-between gap-3 mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="size-11 rounded-2xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner shrink-0">
+              <div className="relative z-10 mb-5 sm:mb-6">
+                <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <div className="size-9 sm:size-11 rounded-xl sm:rounded-2xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner shrink-0">
                       {card.icon}
                     </div>
-                    <div>
-                      <h3 className="font-bold text-base sm:text-xl text-foreground tracking-tight group-hover:text-cyan-400 transition-colors">
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-base sm:text-xl text-foreground tracking-tight group-hover:text-cyan-400 transition-colors truncate">
                         {card.title}
                       </h3>
-                      <span className="text-[11px] font-mono text-violet-400">
+                      <span className="text-[10px] sm:text-[11px] font-mono text-violet-400 truncate block">
                         {card.badge}
                       </span>
                     </div>
                   </div>
-                  <span className="shrink-0 text-xs font-mono text-zinc-400 bg-zinc-900/80 px-3 py-1 rounded-full border border-zinc-800">
+                  <span className="shrink-0 text-[10px] sm:text-xs font-mono text-zinc-400 bg-zinc-900/80 px-2 sm:px-3 py-1 rounded-full border border-zinc-800">
                     {card.skills.length} skills
                   </span>
                 </div>
@@ -233,9 +233,9 @@ export const SkillsSection = () => {
               {/* Skills Interactive Badges Grid */}
               <div
                 className={cn(
-                  "relative z-10 grid gap-3",
+                  "relative z-10 grid gap-2.5 sm:gap-3",
                   card.id === "languages"
-                    ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+                    ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
                     : "grid-cols-1 sm:grid-cols-2"
                 )}
               >

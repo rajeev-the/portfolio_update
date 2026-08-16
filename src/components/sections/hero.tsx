@@ -26,23 +26,22 @@ const HeroSection = () => {
         <div
           className={cn(
             "h-auto md:h-[calc(100dvh-4rem)] z-[2]",
-            "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-24 pb-8 sm:pb-12 md:p-16 lg:p-20 xl:p-24"
+            "col-span-1 w-full",
+            "flex flex-col justify-start md:justify-center items-start",
+            "px-4 pt-20 pb-6 sm:px-8 sm:pb-12 md:p-16 lg:p-20 xl:p-24"
           )}
         >
           {!isLoading && (
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full max-w-full">
               <div>
                 <BlurIn delay={0.7}>
                   <p
                     className={cn(
-                      "md:self-start mt-4 font-medium text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "mt-2 sm:mt-4 font-medium text-sm sm:text-lg md:text-xl text-slate-500 dark:text-zinc-400",
+                      "cursor-default whitespace-nowrap bg-clip-text"
                     )}
                   >
                     Hi, I am
-                    <br className="md:hidden" />
                   </p>
                 </BlurIn>
 
@@ -51,13 +50,13 @@ const HeroSection = () => {
                     <TooltipTrigger asChild>
                       <h1
                         className={cn(
-                          "-ml-[6px] leading-none text-transparent text-slate-800 text-left",
-                          "font-bold text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
-                          "cursor-default text-edge-outline font-display "
+                          "leading-none text-transparent text-slate-800 text-left",
+                          "font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+                          "cursor-default text-edge-outline font-display tracking-tight break-words mt-2"
                         )}
                       >
                         {config.author.split(" ")[0]}
-                        <br className="md:block hidden" />
+                        <br />
                         {config.author.split(" ")[1]}
                       </h1>
                     </TooltipTrigger>

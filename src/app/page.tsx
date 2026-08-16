@@ -15,7 +15,7 @@ function MainPage() {
   return (
     <SmoothScroll>
       <AnimatedBackground />
-      <main className={cn("bg-slate-100 dark:bg-transparent canvas-overlay-mode")}>
+      <main className={cn("bg-slate-100 dark:bg-transparent canvas-overlay-mode w-full max-w-full overflow-x-hidden")}>
         <HeroSection />
         <SkillsSection />
         <LeetcodeSection />

@@ -98,21 +98,21 @@ export const HeroTerminal = () => {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto lg:max-w-none flex flex-col justify-center items-center">
+    <div className="w-full max-w-full sm:max-w-lg mx-auto flex flex-col justify-center items-center">
       {/* Terminal Window Container */}
-      <div className="w-full rounded-3xl overflow-hidden bg-zinc-950/90 border border-violet-500/30 backdrop-blur-2xl shadow-[0_0_50px_-15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:border-violet-500/50 hover:shadow-[0_0_60px_-15px_rgba(6,182,212,0.35)]">
+      <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-950/90 border border-violet-500/30 backdrop-blur-2xl shadow-[0_0_50px_-15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:border-violet-500/50 hover:shadow-[0_0_60px_-15px_rgba(6,182,212,0.35)]">
         
         {/* Top Window Bar */}
-        <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/90 border-b border-zinc-800">
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 bg-zinc-900/90 border-b border-zinc-800">
           {/* MacOS Window Dots */}
-          <div className="flex items-center gap-2">
-            <span className="size-3 rounded-full bg-rose-500/80 inline-block shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
-            <span className="size-3 rounded-full bg-amber-500/80 inline-block shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
-            <span className="size-3 rounded-full bg-emerald-500/80 inline-block shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <span className="size-2.5 sm:size-3 rounded-full bg-rose-500/80 inline-block shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
+            <span className="size-2.5 sm:size-3 rounded-full bg-amber-500/80 inline-block shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+            <span className="size-2.5 sm:size-3 rounded-full bg-emerald-500/80 inline-block shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
           </div>
 
           {/* File Tabs */}
-          <div className="flex items-center gap-1 bg-zinc-950/80 p-1 rounded-xl border border-zinc-800/80">
+          <div className="flex items-center gap-1 bg-zinc-950/80 p-0.5 sm:p-1 rounded-xl border border-zinc-800/80 max-w-[200px] sm:max-w-none overflow-hidden">
             {SNIPPETS.map((tab, idx) => (
               <button
                 key={tab.id}
@@ -121,23 +121,23 @@ export const HeroTerminal = () => {
                   setActiveLine(0);
                 }}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all",
+                  "flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all",
                   activeTab === idx
                     ? "bg-zinc-800 text-white border border-zinc-700 shadow-sm"
                     : "text-zinc-400 hover:text-white"
                 )}
               >
                 {tab.icon}
-                <span className="truncate max-w-[130px]">{tab.filename}</span>
+                <span className="truncate max-w-[65px] sm:max-w-[130px]">{tab.filename}</span>
               </button>
             ))}
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleCopy}
-              className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+              className="p-1 sm:p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
               title="Copy snippet"
             >
               {copied ? <Check className="size-3.5 text-emerald-400" /> : <Copy className="size-3.5" />}
