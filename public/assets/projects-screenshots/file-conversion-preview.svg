@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="eventBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea2d2e" />
+      <stop offset="50%" stop-color="#ff6600" />
+      <stop offset="100%" stop-color="#6db33f" />
+    </linearGradient>
+    <filter id="shadowBox" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#eventBg)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="600" cy="200" r="300" fill="#ea2d2e" opacity="0.1" filter="blur(90px)" />
+  <circle cx="900" cy="500" r="250" fill="#6db33f" opacity="0.1" filter="blur(90px)" />
+
+  <!-- Navbar -->
+  <rect x="40" y="30" width="1120" height="70" rx="16" fill="#111827" stroke="#1f2937" stroke-width="1" filter="url(#shadowBox)" />
+  <circle cx="75" cy="65" r="14" fill="#ff6600" />
+  <text x="100" y="71" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" letter-spacing="1">EVENT-DRIVEN ENGINE</text>
+  
+  <rect x="360" y="48" width="150" height="34" rx="8" fill="#1f2937" />
+  <text x="375" y="70" fill="#34d399" font-family="monospace" font-size="12">● 4,850 req/min</text>
+
+  <rect x="525" y="48" width="150" height="34" rx="8" fill="#1f2937" />
+  <text x="540" y="70" fill="#60a5fa" font-family="monospace" font-size="12">● RabbitMQ Broker</text>
+
+  <rect x="990" y="48" width="145" height="36" rx="10" fill="#ea2d2e" />
+  <text x="1015" y="71" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">Upload Task</text>
+
+  <!-- Architecture Flow Pipeline (Center Banner) -->
+  <rect x="40" y="125" width="1120" height="230" rx="20" fill="#111827" stroke="#1f2937" stroke-width="1" filter="url(#shadowBox)" />
+  <text x="70" y="165" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="bold">Microservice Event Queue Architecture</text>
+  <text x="70" y="190" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="13">Asynchronous worker scaling with Spring Boot, RabbitMQ &amp; ImageMagick container clusters</text>
+
+  <!-- Pipeline Step Boxes -->
+  <!-- Step 1: REST API -->
+  <g transform="translate(70, 215)">
+    <rect width="200" height="110" rx="14" fill="#1f2937" stroke="#374151" stroke-width="1" />
+    <text x="20" y="40" fill="#ea2d2e" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">1. REST Client</text>
+    <text x="20" y="65" fill="#e5e7eb" font-family="monospace" font-size="12">POST /api/convert</text>
+    <text x="20" y="88" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="11">Metadata &amp; S3 Upload</text>
+  </g>
+  <path d="M 285 270 L 325 270" stroke="#ff6600" stroke-width="3" stroke-dasharray="6,4" />
+
+  <!-- Step 2: Spring Boot Dispatcher -->
+  <g transform="translate(340, 215)">
+    <rect width="210" height="110" rx="14" fill="#1f2937" stroke="#6db33f" stroke-width="1.5" />
+    <text x="20" y="40" fill="#6db33f" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">2. Spring Boot 3</text>
+    <text x="20" y="65" fill="#e5e7eb" font-family="monospace" font-size="12">RabbitTemplate.send()</text>
+    <text x="20" y="88" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="11">Exchange: image.direct</text>
+  </g>
+  <path d="M 565 270 L 605 270" stroke="#ff6600" stroke-width="3" stroke-dasharray="6,4" />
+
+  <!-- Step 3: RabbitMQ Queue -->
+  <g transform="translate(620, 215)">
+    <rect width="220" height="110" rx="14" fill="#1f2937" stroke="#ff6600" stroke-width="1.5" />
+    <text x="20" y="40" fill="#ff6600" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">3. RabbitMQ Queue</text>
+    <text x="20" y="65" fill="#e5e7eb" font-family="monospace" font-size="12">Queue: convert.tasks</text>
+    <text x="20" y="88" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="11">Buffered &amp; Fault-Tolerant</text>
+  </g>
+  <path d="M 855 270 L 895 270" stroke="#6db33f" stroke-width="3" stroke-dasharray="6,4" />
+
+  <!-- Step 4: Worker Cluster -->
+  <g transform="translate(910, 215)">
+    <rect width="210" height="110" rx="14" fill="#1f2937" stroke="#2496ed" stroke-width="1.5" />
+    <text x="20" y="40" fill="#2496ed" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">4. Docker Pods</text>
+    <text x="20" y="65" fill="#e5e7eb" font-family="monospace" font-size="12">ImageMagick Engine</text>
+    <text x="20" y="88" fill="#10b981" font-family="system-ui, sans-serif" font-size="11">MySQL JPA Saved (12ms)</text>
+  </g>
+
+  <!-- Live Telemetry Grid (Bottom Area) -->
+  <g transform="translate(40, 380)">
+    <!-- Metrics Card 1 -->
+    <rect width="350" height="380" rx="20" fill="#111827" stroke="#1f2937" stroke-width="1" filter="url(#shadowBox)" />
+    <text x="25" y="45" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Queue Telemetry</text>
+    
+    <g transform="translate(25, 75)">
+      <rect width="300" height="60" rx="10" fill="#1f2937" />
+      <text x="15" y="25" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Messages Ingested</text>
+      <text x="15" y="48" fill="#ffffff" font-family="monospace" font-size="16" font-weight="bold">1,240,892 <tspan fill="#10b981" font-size="12">(+14%)</tspan></text>
+    </g>
+
+    <g transform="translate(25, 150)">
+      <rect width="300" height="60" rx="10" fill="#1f2937" />
+      <text x="15" y="25" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Average Worker Latency</text>
+      <text x="15" y="48" fill="#38bdf8" font-family="monospace" font-size="16" font-weight="bold">14.2 ms / job</text>
+    </g>
+
+    <g transform="translate(25, 225)">
+      <rect width="300" height="60" rx="10" fill="#1f2937" />
+      <text x="15" y="25" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Persistence Storage</text>
+      <text x="15" y="48" fill="#6db33f" font-family="monospace" font-size="16" font-weight="bold">MySQL + JPA Active</text>
+    </g>
+
+    <g transform="translate(25, 300)">
+      <rect width="300" height="50" rx="10" fill="#1f2937" />
+      <text x="15" y="30" fill="#ff6600" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">● Docker Cluster: 8 Worker Pods</text>
+    </g>
+  </g>
+
+  <!-- Live Real-Time Console Stream -->
+  <g transform="translate(420, 380)">
+    <rect width="740" height="380" rx="20" fill="#030712" stroke="#1f2937" stroke-width="1" filter="url(#shadowBox)" />
+    <text x="30" y="45" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Real-Time Worker Cluster Logs</text>
+    
+    <g transform="translate(30, 75)" font-family="monospace" font-size="12" fill="#9ca3af" xml:space="preserve">
+      <text y="20" fill="#6db33f">[INFO] [SpringApplication] FileConversionService started on port 8080 (JVM 21)</text>
+      <text y="50" fill="#60a5fa">[INFO] [RabbitListener] Connection established: exchange=image.direct, queue=convert.tasks</text>
+      <text y="80" fill="#ffffff">[TASK #9102] Consuming payload: user_id=9831, format=WEBP, quality=85</text>
+      <text y="110" fill="#34d399">[SUCCESS] ImageMagick converted asset in 18ms -> Saved to Spring Data JPA / MySQL</text>
+      <text y="140" fill="#ffffff">[TASK #9103] Consuming payload: user_id=4412, format=AVIF, quality=90</text>
+      <text y="170" fill="#34d399">[SUCCESS] ImageMagick converted asset in 22ms -> S3 CDN URL dispatched</text>
+      <text y="200" fill="#ff6600">[METRICS] Queue throughput buffered: 0 dropped messages (Fault-tolerant)</text>
+      <text y="230" fill="#ffffff">[TASK #9104] Consuming payload: user_id=1290, format=PNG, compression=max</text>
+      <text y="260" fill="#34d399">[SUCCESS] Worker pod #4 completed job in 14ms -> Status: 200 OK</text>
+    </g>
+  </g>
+</svg>

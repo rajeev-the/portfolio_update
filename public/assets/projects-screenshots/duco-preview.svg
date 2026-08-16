@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="50%" stop-color="#18181b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#27272a" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.1" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#bgGrad)" />
+  
+  <!-- Subtle Grid Lines -->
+  <g opacity="0.08" stroke="#8b5cf6" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="500" x2="1200" y2="500" />
+    <line x1="0" y1="600" x2="1200" y2="600" />
+    <line x1="0" y1="700" x2="1200" y2="700" />
+    <line x1="200" y1="0" x2="200" y2="800" />
+    <line x1="400" y1="0" x2="400" y2="800" />
+    <line x1="600" y1="0" x2="600" y2="800" />
+    <line x1="800" y1="0" x2="800" y2="800" />
+    <line x1="1000" y1="0" x2="1000" y2="800" />
+  </g>
+
+  <!-- Top Ambient Glow -->
+  <circle cx="600" cy="200" r="300" fill="url(#glowGrad)" filter="blur(60px)" opacity="0.5" />
+
+  <!-- Navbar -->
+  <rect x="40" y="30" width="1120" height="70" rx="16" fill="#18181b" stroke="#27272a" stroke-width="1" filter="url(#cardShadow)" />
+  <circle cx="75" cy="65" r="14" fill="url(#primaryGrad)" />
+  <text x="100" y="70" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" letter-spacing="1">DUCO STUDIO</text>
+  
+  <rect x="270" y="48" width="110" height="34" rx="8" fill="#27272a" />
+  <text x="290" y="70" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="13">3D Designer</text>
+  
+  <rect x="390" y="48" width="100" height="34" rx="8" fill="#27272a" />
+  <text x="410" y="70" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="13">Bulk Orders</text>
+
+  <rect x="500" y="48" width="90" height="34" rx="8" fill="#27272a" />
+  <text x="520" y="70" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="13">Analytics</text>
+
+  <rect x="970" y="48" width="160" height="36" rx="10" fill="url(#primaryGrad)" />
+  <text x="1000" y="71" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Save &amp; Checkout</text>
+
+  <!-- Left Sidebar (Toolbox) -->
+  <rect x="40" y="120" width="220" height="640" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1" filter="url(#cardShadow)" />
+  <text x="65" y="160" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Custom Tools</text>
+  
+  <rect x="60" y="180" width="180" height="44" rx="10" fill="#27272a" stroke="#8b5cf6" stroke-width="1" />
+  <text x="90" y="208" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14">🎨 Color Palette</text>
+
+  <rect x="60" y="235" width="180" height="44" rx="10" fill="#27272a" />
+  <text x="90" y="263" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="14">✨ Upload Artwork</text>
+
+  <rect x="60" y="290" width="180" height="44" rx="10" fill="#27272a" />
+  <text x="90" y="318" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="14">🔤 Typography</text>
+
+  <rect x="60" y="345" width="180" height="44" rx="10" fill="#27272a" />
+  <text x="90" y="373" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="14">📐 3D Perspective</text>
+
+  <text x="65" y="440" fill="#71717a" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" letter-spacing="1">COLOR PRESETS</text>
+  <circle cx="75" cy="475" r="14" fill="#000000" stroke="#3f3f46" stroke-width="2" />
+  <circle cx="110" cy="475" r="14" fill="#ffffff" />
+  <circle cx="145" cy="475" r="14" fill="#8b5cf6" />
+  <circle cx="180" cy="475" r="14" fill="#06b6d4" />
+  <circle cx="215" cy="475" r="14" fill="#ea2d2e" />
+
+  <!-- Center Canvas: 3D Custom T-Shirt Studio -->
+  <rect x="280" y="120" width="600" height="640" rx="24" fill="#121215" stroke="#27272a" stroke-width="1" filter="url(#cardShadow)" />
+  
+  <text x="310" y="160" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Interactive 3D Canvas Preview</text>
+  <rect x="740" y="140" width="120" height="30" rx="15" fill="#27272a" />
+  <text x="755" y="160" fill="#22d3ee" font-family="monospace" font-size="12">● LIVE 3D RENDER</text>
+
+  <!-- T-Shirt Silhouette Outline -->
+  <path d="M 460 250 L 520 280 L 580 280 L 640 250 L 710 320 L 660 360 L 630 330 L 630 580 L 470 580 L 470 330 L 440 360 L 390 320 Z" 
+        fill="url(#shirtGrad)" stroke="#3f3f46" stroke-width="2" filter="url(#cardShadow)" />
+  
+  <!-- Graphic Stamp on Shirt -->
+  <rect x="510" y="370" width="80" height="80" rx="12" fill="url(#primaryGrad)" opacity="0.85" />
+  <text x="525" y="415" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="18">DUCO</text>
+  <text x="522" y="433" fill="#ffffff" font-family="system-ui, sans-serif" font-size="10">URBAN WEAR</text>
+
+  <!-- Canvas Control Floating Dock -->
+  <rect x="460" y="660" width="240" height="48" rx="24" fill="#18181b" stroke="#3f3f46" stroke-width="1" filter="url(#cardShadow)" />
+  <text x="485" y="690" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13">🔄 Rotate</text>
+  <text x="560" y="690" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13">🔍 Zoom</text>
+  <text x="635" y="690" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13">✨ Reset</text>
+
+  <!-- Right Sidebar (Order & Analytics Panel) -->
+  <rect x="900" y="120" width="260" height="640" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1" filter="url(#cardShadow)" />
+  
+  <text x="925" y="160" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Product Details</text>
+  
+  <text x="925" y="195" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="13">Premium Heavyweight Tee</text>
+  <text x="925" y="225" fill="#06b6d4" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">$28.00 <tspan fill="#71717a" font-size="13">/ unit</tspan></text>
+
+  <text x="925" y="270" fill="#71717a" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" letter-spacing="1">SIZE SELECTOR</text>
+  <g fill="#27272a" stroke="#3f3f46" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">
+    <rect x="925" y="285" width="45" height="36" rx="8" />
+    <text x="947" y="308" fill="#a1a1aa">S</text>
+    <rect x="980" y="285" width="45" height="36" rx="8" fill="#8b5cf6" stroke="#8b5cf6" />
+    <text x="1002" y="308" fill="#ffffff">M</text>
+    <rect x="1035" y="285" width="45" height="36" rx="8" />
+    <text x="1057" y="308" fill="#a1a1aa">L</text>
+    <rect x="1090" y="285" width="45" height="36" rx="8" />
+    <text x="1112" y="308" fill="#a1a1aa">XL</text>
+  </g>
+
+  <!-- Real-time Admin Analytics Box -->
+  <rect x="920" y="370" width="220" height="150" rx="14" fill="#121215" stroke="#27272a" stroke-width="1" />
+  <text x="935" y="400" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">Order Pipeline</text>
+  <text x="935" y="430" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="12">Bulk Orders Active: <tspan fill="#10b981" font-weight="bold">142</tspan></text>
+  <text x="935" y="455" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="12">Payment Auth: <tspan fill="#10b981" font-weight="bold">OTP Secure</tspan></text>
+  <text x="935" y="480" fill="#a1a1aa" font-family="system-ui, sans-serif" font-size="12">Admin Control: <tspan fill="#8b5cf6" font-weight="bold">80% Centralized</tspan></text>
+
+  <!-- Add to Cart CTA -->
+  <rect x="920" y="670" width="220" height="50" rx="14" fill="url(#primaryGrad)" />
+  <text x="965" y="702" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="bold">Order Design</text>
+</svg>

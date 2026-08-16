@@ -11,10 +11,11 @@ import {
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
 import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiLeetcode, SiX } from "react-icons/si";
 import { config } from "@/data/config";
 
 import SectionWrapper from "../ui/section-wrapper";
+import HeroTerminal from "../hero-terminal";
 
 const HeroSection = () => {
   const { isLoading } = usePreloader();
@@ -76,7 +77,7 @@ const HeroSection = () => {
                       "cursor-default sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    A Full Stack Web Developer
+                    Software Developer
                   </p>
                 </BlurIn>
               </div>
@@ -112,39 +113,57 @@ const HeroSection = () => {
                     </TooltipContent>
                   </Tooltip>
                   <div className="flex items-center h-full gap-2">
-                    <Link
-                      href={config.social.twitter}
-                      target="_blank"
-                    >
-                      <Button variant={"outline"}>
-                        <SiX size={24} />
-                      </Button>
-                    </Link>
-                    <Link
-                      href={config.social.github}
-                      target="_blank"
-                      className="cursor-can-hover"
-                    >
-                      <Button variant={"outline"}>
-                        <SiGithub size={24} />
-                      </Button>
-                    </Link>
-                    <Link
-                      href={config.social.linkedin}
-                      target="_blank"
-                      className="cursor-can-hover"
-                    >
-                      <Button variant={"outline"}>
-                        <SiLinkedin size={24} />
-                      </Button>
-                    </Link>
+                    {config.social.leetcode && (
+                      <Link
+                        href={config.social.leetcode}
+                        target="_blank"
+                        className="cursor-can-hover"
+                        aria-label="LeetCode Profile"
+                      >
+                        <Button variant={"outline"} size="icon" className="size-10 text-amber-500 hover:text-amber-400">
+                          <SiLeetcode size={20} />
+                        </Button>
+                      </Link>
+                    )}
+                    {config.social.github && (
+                      <Link
+                        href={config.social.github}
+                        target="_blank"
+                        className="cursor-can-hover"
+                        aria-label="GitHub Profile"
+                      >
+                        <Button variant={"outline"} size="icon" className="size-10">
+                          <SiGithub size={20} />
+                        </Button>
+                      </Link>
+                    )}
+                    {config.social.linkedin && (
+                      <Link
+                        href={config.social.linkedin}
+                        target="_blank"
+                        className="cursor-can-hover"
+                        aria-label="LinkedIn Profile"
+                      >
+                        <Button variant={"outline"} size="icon" className="size-10">
+                          <SiLinkedin size={20} />
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           )}
         </div>
-        <div className="grid col-span-1"></div>
+
+        {/* Right Column: Interactive Hero Terminal */}
+        <div className="hidden md:flex col-span-1 items-center justify-center p-6 lg:p-12 z-[2]">
+          {!isLoading && (
+            <BlurIn delay={1.4}>
+              <HeroTerminal />
+            </BlurIn>
+          )}
+        </div>
       </div>
       <div className="absolute bottom-10 left-[50%] translate-x-[-50%]">
         <ScrollDownIcon />

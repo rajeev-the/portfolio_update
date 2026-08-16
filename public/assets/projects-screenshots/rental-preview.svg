@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="rentalBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="cyanViolet" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#rentalBg)" />
+
+  <!-- Ambient Light Orbs -->
+  <circle cx="200" cy="150" r="220" fill="#06b6d4" opacity="0.12" filter="blur(80px)" />
+  <circle cx="1000" cy="650" r="260" fill="#8b5cf6" opacity="0.15" filter="blur(90px)" />
+
+  <!-- Navbar -->
+  <rect x="40" y="30" width="1120" height="70" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" filter="url(#shadow)" />
+  <circle cx="75" cy="65" r="14" fill="url(#cyanViolet)" />
+  <text x="100" y="71" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" letter-spacing="1">RENTAL HUB</text>
+  
+  <rect x="280" y="48" width="400" height="36" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+  <text x="300" y="71" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13">🔍 Search properties, camera gear, vehicles...</text>
+
+  <rect x="1000" y="48" width="135" height="36" rx="10" fill="url(#cyanViolet)" />
+  <text x="1025" y="71" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">+ Post Rental</text>
+
+  <!-- Hero Banner Strip -->
+  <rect x="40" y="120" width="1120" height="130" rx="20" fill="#0f172a" stroke="#1e293b" stroke-width="1" filter="url(#shadow)" />
+  <text x="70" y="165" fill="#ffffff" font-family="system-ui, sans-serif" font-size="24" font-weight="bold">Full-Stack Cross-Platform Rental Marketplace</text>
+  <text x="70" y="195" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14">Built with Flutter, Node.js, MongoDB, AWS S3 Media &amp; Redis Queue Workers</text>
+
+  <g transform="translate(780, 150)">
+    <rect x="0" y="0" width="150" height="60" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="15" y="25" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">AWS S3 Media</text>
+    <text x="15" y="48" fill="#10b981" font-family="monospace" font-size="14" font-weight="bold">99.9% Uptime</text>
+
+    <rect x="170" y="0" width="150" height="60" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="15" y="25" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Redis Queue</text>
+    <text x="15" y="48" fill="#06b6d4" font-family="monospace" font-size="14" font-weight="bold">Async Workers</text>
+  </g>
+
+  <!-- Product / Rental Cards Grid -->
+  <!-- Card 1: Modern Villa -->
+  <g transform="translate(40, 275)" filter="url(#shadow)">
+    <rect width="350" height="480" rx="20" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" />
+    <rect x="15" y="15" width="320" height="230" rx="16" fill="#334155" />
+    <!-- Illustrated Villa Graphic -->
+    <path d="M 50 200 L 175 100 L 300 200 Z" fill="#06b6d4" opacity="0.4" />
+    <rect x="90" y="170" width="170" height="75" rx="4" fill="#0f172a" opacity="0.8" />
+    <rect x="140" y="190" width="30" height="55" fill="#06b6d4" />
+    
+    <rect x="25" y="25" width="90" height="26" rx="8" fill="#06b6d4" />
+    <text x="35" y="42" fill="#042f2e" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">● AVAILABLE</text>
+
+    <text x="20" y="280" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">Luxury Penthouse Studio</text>
+    <text x="20" y="305" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13">📍 Downtown Metro District</text>
+
+    <text x="20" y="360" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">$240 <tspan fill="#64748b" font-size="13">/ night</tspan></text>
+    <text x="20" y="390" fill="#10b981" font-family="system-ui, sans-serif" font-size="12">✓ Instant Booking &bull; OTP Verified</text>
+
+    <rect x="20" y="415" width="310" height="44" rx="12" fill="url(#cyanViolet)" />
+    <text x="120" y="443" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Book Studio</text>
+  </g>
+
+  <!-- Card 2: Pro Camera Gear -->
+  <g transform="translate(425, 275)" filter="url(#shadow)">
+    <rect width="350" height="480" rx="20" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" />
+    <rect x="15" y="15" width="320" height="230" rx="16" fill="#334155" />
+    <!-- Camera Graphic -->
+    <circle cx="175" cy="130" r="50" fill="#0f172a" stroke="#8b5cf6" stroke-width="4" />
+    <circle cx="175" cy="130" r="30" fill="#8b5cf6" opacity="0.6" />
+    
+    <rect x="25" y="25" width="90" height="26" rx="8" fill="#8b5cf6" />
+    <text x="35" y="42" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">● HIGH DEMAND</text>
+
+    <text x="20" y="280" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">Sony FX3 Cinema Rig + Lens</text>
+    <text x="20" y="305" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13">🎬 Media Production Hub</text>
+
+    <text x="20" y="360" fill="#a855f7" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">$85 <tspan fill="#64748b" font-size="13">/ day</tspan></text>
+    <text x="20" y="390" fill="#10b981" font-family="system-ui, sans-serif" font-size="12">✓ Redis Async Queued &bull; S3 Media</text>
+
+    <rect x="20" y="415" width="310" height="44" rx="12" fill="url(#cyanViolet)" />
+    <text x="120" y="443" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Rent Camera</text>
+  </g>
+
+  <!-- Card 3: Urban Vehicle -->
+  <g transform="translate(810, 275)" filter="url(#shadow)">
+    <rect width="350" height="480" rx="20" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1" />
+    <rect x="15" y="15" width="320" height="230" rx="16" fill="#334155" />
+    <!-- Electric Car Graphic -->
+    <rect x="75" y="110" width="200" height="70" rx="20" fill="#0f172a" stroke="#06b6d4" stroke-width="2" />
+    <circle cx="115" cy="180" r="20" fill="#06b6d4" />
+    <circle cx="235" cy="180" r="20" fill="#06b6d4" />
+
+    <rect x="25" y="25" width="90" height="26" rx="8" fill="#06b6d4" />
+    <text x="35" y="42" fill="#042f2e" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">● POPULAR</text>
+
+    <text x="20" y="280" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">Tesla Model 3 Long Range</text>
+    <text x="20" y="305" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13">⚡ Real-time GPS Tracking</text>
+
+    <text x="20" y="360" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">$110 <tspan fill="#64748b" font-size="13">/ day</tspan></text>
+    <text x="20" y="390" fill="#10b981" font-family="system-ui, sans-serif" font-size="12">✓ Realtime Availability API</text>
+
+    <rect x="20" y="415" width="310" height="44" rx="12" fill="url(#cyanViolet)" />
+    <text x="120" y="443" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Reserve Drive</text>
+  </g>
+</svg>
