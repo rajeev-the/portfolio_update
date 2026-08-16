@@ -187,7 +187,7 @@ const projects: Project[] = [
       ],
     },
     live: "https://duco-frontend-git-main-rajeev-thes-projects.vercel.app/",
-    github: "https://github.com/rajeevranjan-dev",
+    github: "https://github.com/rajeev-the",
     get content() {
       return (
         <div>
@@ -230,7 +230,7 @@ const projects: Project[] = [
       ],
     },
     live: "http://yachin-deploy.vercel.app/",
-    github: "https://github.com/rajeevranjan-dev",
+    github: "https://github.com/rajeev-the",
     get content() {
       return (
         <div>
@@ -276,7 +276,7 @@ const projects: Project[] = [
       ],
     },
     live: "#",
-    github: "https://github.com/rajeevranjan-dev",
+    github: "https://github.com/rajeev-the",
     get content() {
       return (
         <div>

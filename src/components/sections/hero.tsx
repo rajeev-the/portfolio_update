@@ -21,14 +21,14 @@ const HeroSection = () => {
   const { isLoading } = usePreloader();
 
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full h-screen")}>
-      <div className="grid md:grid-cols-2">
+    <SectionWrapper id="hero" className={cn("relative w-full min-h-screen pb-16 md:pb-0")}>
+      <div className="grid md:grid-cols-2 items-center">
         <div
           className={cn(
-            "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
+            "h-auto md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
             "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
+            "pt-24 pb-8 sm:pb-12 md:p-16 lg:p-20 xl:p-24"
           )}
         >
           {!isLoading && (
@@ -52,12 +52,12 @@ const HeroSection = () => {
                       <h1
                         className={cn(
                           "-ml-[6px] leading-none text-transparent text-slate-800 text-left",
-                          "font-bold text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
+                          "font-bold text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
                           "cursor-default text-edge-outline font-display "
                         )}
                       >
                         {config.author.split(" ")[0]}
-                        <br className="md:block hiidden" />
+                        <br className="md:block hidden" />
                         {config.author.split(" ")[1]}
                       </h1>
                     </TooltipTrigger>
@@ -83,9 +83,7 @@ const HeroSection = () => {
               </div>
               <div className="mt-8 flex flex-col gap-3 w-fit">
                 <Link
-                  href={
-                    "https://drive.google.com/file/d/1MTSsUA8V7Po2AsNXT8kZ5sLOpzC8l7qm/view?usp=sharing"
-                  }
+                  href="/rajeev_sdd.pdf"
                   target="_blank"
                   className="flex-1"
                 >
@@ -156,16 +154,16 @@ const HeroSection = () => {
           )}
         </div>
 
-        {/* Right Column: Interactive Hero Terminal */}
-        <div className="hidden md:flex col-span-1 items-center justify-center p-6 lg:p-12 z-[2]">
+        {/* Right Column: Interactive Hero Terminal (Visible on Mobile & Desktop) */}
+        <div className="flex col-span-1 items-center justify-center px-4 pb-12 sm:px-6 md:p-8 lg:p-12 z-[2] w-full">
           {!isLoading && (
-            <BlurIn delay={1.4}>
+            <BlurIn delay={1.4} className="w-full max-w-lg">
               <HeroTerminal />
             </BlurIn>
           )}
         </div>
       </div>
-      <div className="absolute bottom-10 left-[50%] translate-x-[-50%]">
+      <div className="absolute bottom-6 md:bottom-10 left-[50%] translate-x-[-50%] hidden sm:block">
         <ScrollDownIcon />
       </div>
     </SectionWrapper>

@@ -28,7 +28,7 @@ const config = {
   site: "https://rajeevranjan.dev",
 
   // for github stars button & leetcode stats
-  githubUsername: "rajeevranjan-dev",
+  githubUsername: "rajeev-the",
   githubRepo: "portfolio",
   leetcodeUsername: "rajeevranjan_8860",
 
@@ -37,8 +37,8 @@ const config = {
   },
   social: {
     twitter: "https://x.com/",
-    linkedin: "https://www.linkedin.com/in/",
-    github: "https://github.com/rajeevranjan-dev",
+    linkedin: "https://www.linkedin.com/in/rajeev-ranjan-97b51923b/",
+    github: "https://github.com/rajeev-the",
     leetcode: "https://leetcode.com/u/rajeevranjan_8860/",
     geeksforgeeks: "https://www.geeksforgeeks.org/",
   },
