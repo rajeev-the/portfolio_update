@@ -146,7 +146,7 @@ export const ChatMessageList = ({
   const scrollToMessage = (msgId: string) => {
     const el = document.getElementById(`msg-${msgId}`);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.scrollIntoView({ behavior: "auto", block: "center" });
       el.classList.add("bg-[#5865f2]/10");
       setTimeout(() => el.classList.remove("bg-[#5865f2]/10"), 1500);
     }

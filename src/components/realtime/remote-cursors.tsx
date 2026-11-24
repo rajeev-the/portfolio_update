@@ -64,9 +64,9 @@ const RemoteCursors = () => {
     const top = Math.max(0, pos.y - window.innerHeight / 2);
     if (lenis) {
       // force: true so it still scrolls while Lenis is stopped (see effect below).
-      lenis.scrollTo(top, { duration: 1, force: true });
+      lenis.scrollTo(top, { duration: 0, force: true });
     } else {
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top });
     }
   }, [followingId, cursorPositions, isMobile, lenis]);
 

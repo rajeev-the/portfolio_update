@@ -31,7 +31,7 @@ export const useChatScroll = (isOpen: boolean, msgsLength: number, currentUserId
     prevFirstMsgId.current = firstMsgId;
   }, [firstMsgId]);
 
-  const scrollToBottom = (smooth = true) => {
+  const scrollToBottom = (smooth = false) => {
     if (!chatContainer.current) return;
     const viewport = chatContainer.current.querySelector('[data-radix-scroll-area-viewport]') as HTMLElement;
     if (viewport) {
