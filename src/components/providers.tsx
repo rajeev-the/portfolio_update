@@ -1,25 +1,14 @@
-import SocketContextProvider from "@/contexts/socketio";
-import Preloader from "./preloader";
-import { ThemeProvider } from "./theme-provider";
+"use client";
+
+import React from "react";
+import { TooltipProvider } from "./ui/tooltip";
 import { Toaster } from "./ui/toaster";
 
-import { TooltipProvider } from "./ui/tooltip";
-
 export const Providers = ({ children }: { children: React.ReactNode }) => {
-  return <ThemeProvider
-    attribute="class"
-    defaultTheme="dark"
-    enableSystem={false}
-    storageKey="portfolio-theme-v3"
-    disableTransitionOnChange
-  >
-    <Preloader disabled>
-      <SocketContextProvider>
-        <TooltipProvider>
-          {children}
-        </TooltipProvider>
-        <Toaster />
-      </SocketContextProvider>
-    </Preloader>
-  </ThemeProvider>;
+  return (
+    <TooltipProvider>
+      {children}
+      <Toaster />
+    </TooltipProvider>
+  );
 };
