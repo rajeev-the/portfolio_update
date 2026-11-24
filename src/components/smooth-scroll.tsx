@@ -34,7 +34,7 @@ function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
   return (
     <ReactLenis
       root
-      autoRaf={true}
+      autoRaf={false}
       options={{
         duration: 1.2,
         prevent: (node) => {

@@ -77,6 +77,7 @@ export default function RootLayout({
         inter.variable,
         jetBrainsMono.variable,
         "font-sans",
+        "dark",
       ].join(" ")}
       suppressHydrationWarning
     >

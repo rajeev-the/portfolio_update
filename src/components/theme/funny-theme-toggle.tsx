@@ -15,9 +15,18 @@ export default function FunnyThemeToggle({
   className?: string;
 }) {
   const { setTheme, theme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
   const [counter, setCounter] = React.useState({ dark: 0, light: 0 });
   const { toast } = useToast();
   const ref = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className={cn("w-5 h-5", className)} />;
+  }
 
   const toggleTheme = async (newTheme: string, event?: React.MouseEvent) => {
     // @ts-ignore

@@ -51,11 +51,12 @@ const Header = () => {
         <div className="flex items-center gap-3">
           <FunnyThemeToggle className="w-5 h-5 hidden sm:flex text-[#574141] hover:text-[#8b1e2b] transition-colors" />
 
-          <Link href="#contact" className="hidden sm:inline-flex">
-            <button className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-[4px] border border-[#8b1e2b]/30 hover:border-[#8b1e2b] bg-transparent hover:bg-[#f3e8e8] dark:hover:bg-[#2a0e13] text-[#8b1e2b] dark:text-[#ff9d9f] text-xs font-mono font-semibold tracking-wide transition-all shadow-xs">
-              <span>CONTACT / CV</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
+          <Link
+            href="#contact"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[4px] border border-[#8b1e2b]/30 hover:border-[#8b1e2b] bg-transparent hover:bg-[#f3e8e8] dark:hover:bg-[#2a0e13] text-[#8b1e2b] dark:text-[#ff9d9f] text-xs font-mono font-semibold tracking-wide transition-all shadow-xs"
+          >
+            <span>CONTACT / CV</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
 
           {/* Mobile menu trigger */}
