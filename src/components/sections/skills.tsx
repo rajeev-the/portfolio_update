@@ -57,7 +57,7 @@ export const SkillsSection = () => {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <SectionHeader
           id="skills"
-          eyebrow="03 // TECHNICAL COMPETENCIES"
+          eyebrow="01 // TECHNICAL COMPETENCIES"
           title="Skills"
           desc="Core languages, backend microservices, mobile systems, databases & cloud infrastructure."
         />

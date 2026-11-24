@@ -8,11 +8,11 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import FunnyThemeToggle from "../theme/funny-theme-toggle";
 
 const NAV_ITEMS = [
-  { label: "Highlights", href: "#spotlight" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "DSA & Metrics", href: "#competitive-programming" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Competitive Programming", href: "#competitive-programming" },
+  { label: "Certifications & Achievements", href: "#certifications" },
 ];
 
 const Header = () => {
@@ -55,13 +55,12 @@ const Header = () => {
             href="#contact"
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[4px] border border-[#8b1e2b]/30 hover:border-[#8b1e2b] bg-transparent hover:bg-[#2a0e13] text-[#ff9d9f] text-xs font-mono font-semibold tracking-wide transition-all shadow-xs"
           >
-            <span>{"CONTACT / CV"}</span>
+            <span>CONTACT / CV</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
 
           {/* Mobile menu trigger */}
           <button
-            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 rounded-[4px] text-white hover:bg-zinc-800 transition-colors"
             aria-label="Toggle menu"
@@ -90,7 +89,7 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="text-xs font-mono font-semibold text-[#ff9d9f]"
             >
-              {"CONTACT / CV →"}
+              CONTACT / CV →
             </Link>
             <FunnyThemeToggle className="w-5 h-5 text-zinc-400" />
           </div>

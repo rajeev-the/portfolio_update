@@ -15,24 +15,24 @@ import SectionWrapper from "../ui/section-wrapper";
 
 const PROJECT_META: Record<string, { tag: string; brief: string }> = {
   finixbooks: {
-    tag: "FLAGSHIP ERP // v1.0",
+    tag: "ERP // v1.0",
     brief:
-      "Enterprise double-entry ledger ERP with integer-paise precision and bidirectional Electron Tally sync.",
+      "Enterprise double-entry ledger ERP with integer-paise precision, append-only financial records, balanced ledger validation (Debits = Credits), and bidirectional Electron Tally sync.",
   },
   duco: {
     tag: "ECOMMERCE // v1.2",
     brief:
-      "Multi-user custom apparel design platform with interactive 3D tools and real-time order analytics.",
+      "Multi-user custom merchandise and apparel design platform with interactive 3D tools, real-time order analytics, payment gateway, and comprehensive admin dashboard.",
   },
   "rental-app": {
     tag: "MOBILE // v1.0",
     brief:
-      "Cross-platform rental marketplace built with Flutter, Node.js, AWS S3 storage, and Redis queues.",
+      "Full-stack cross-platform rental marketplace built with Flutter and Node.js, featuring AWS S3 cloud media storage, Redis background queue workers, and Gmail OTP verification.",
   },
   "event-driven-file-conversion": {
     tag: "DISTRIBUTED // v1.0",
     brief:
-      "Fault-tolerant media conversion pipeline powered by Java, Spring Boot, RabbitMQ, and Docker.",
+      "Event-driven file and media conversion pipeline powered by Java, Spring Boot, RabbitMQ, and Docker, decoupling producers from worker services for fault-tolerant media processing.",
   },
 };
 
@@ -44,7 +44,7 @@ const ProjectsSection = () => {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <SectionHeader
           id="projects"
-          eyebrow="01 // SELECTED PROJECTS"
+          eyebrow="03 // SELECTED WORK"
           title="Projects"
           desc="Production-grade financial ledger engines, e-commerce platforms, mobile applications & distributed microservices."
         />
