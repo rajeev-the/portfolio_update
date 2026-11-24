@@ -2,13 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   cacheComponents: true,
-  eslint: {
-    ignoreDuringBuilds: true
-  },
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/:path*",
         headers: [
           // SAMEORIGIN (not DENY) so the resume page can embed its own PDF;
           // still blocks other sites from framing us (clickjacking protection).
@@ -19,13 +16,7 @@ const nextConfig = {
         ],
       },
       {
-        source: "/assets/(.*)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
-      {
-        source: "/_next/static/(.*)",
+        source: "/assets/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
