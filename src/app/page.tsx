@@ -14,7 +14,7 @@ function MainPage() {
   return (
     <SmoothScroll>
       <AnimatedBackground />
-      <main className="w-full max-w-full overflow-x-hidden bg-[#fbf8fe] dark:bg-[#1b1b1f] text-[#1b1b1f] dark:text-[#fbf8fe] transition-colors">
+      <main className="w-full max-w-full overflow-x-hidden bg-[#1b1b1f] text-[#fbf8fe]">
         <HeroSection />
         <SkillsSection />
         <ExperienceSection />

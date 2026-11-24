@@ -72,6 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      style={{ colorScheme: "dark" }}
       className={[
         plusJakartaSans.variable,
         inter.variable,

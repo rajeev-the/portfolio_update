@@ -10,6 +10,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
     attribute="class"
     defaultTheme="dark"
     enableSystem={false}
+    storageKey="portfolio-theme-v3"
     disableTransitionOnChange
   >
     <Preloader disabled>

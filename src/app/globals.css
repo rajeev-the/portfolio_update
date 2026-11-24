@@ -11,35 +11,34 @@ body {
 
 @layer base {
   :root {
-    --background: 280 20% 98%; /* #fbf8fe Atelier Crimson Canvas */
-    --foreground: 240 7% 11%;  /* #1b1b1f Slate Charcoal Ink */
-    --card: 0 0% 100%;         /* #ffffff Surface Raised */
-    --card-foreground: 240 7% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 7% 11%;
-    --primary: 348 96% 21%;    /* #6b0217 Dark Crimson */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 355 48% 44%;  /* #a43a43 */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 270 12% 94%;      /* #f0edf2 Surface Container */
-    --muted-foreground: 0 14% 30%; /* #574141 Ink Muted */
-    --accent: 352 64% 33%;     /* #8b1e2b Primary Accent */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 75% 42%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 270 10% 90%;     /* #e4e1e7 */
-    --input: 270 10% 90%;
-    --ring: 352 64% 33%;
+    --background: 240 7% 11%;  /* #1b1b1f Dark Base Canvas */
+    --foreground: 280 20% 98%; /* #fbf8fe Light Text */
+    --card: 240 6% 14%;         /* #232328 Raised Dark Surface */
+    --card-foreground: 280 20% 98%;
+    --popover: 240 6% 14%;
+    --popover-foreground: 280 20% 98%;
+    --primary: 355 70% 60%;
+    --primary-foreground: 240 7% 11%;
+    --secondary: 240 6% 18%;
+    --secondary-foreground: 280 20% 98%;
+    --muted: 240 6% 18%;
+    --muted-foreground: 270 10% 70%;
+    --accent: 352 64% 45%;     /* #8b1e2b Primary Accent */
+    --accent-foreground: 280 20% 98%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 280 20% 98%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 352 64% 45%;
     --radius: 0.5rem;
     
     /* Atelier Crimson Custom Tokens */
-    --brand: #8b1e2b;
+    --brand: #e06d79;
     --accent-solid: #8b1e2b;
-    --accent-glow: rgba(139, 30, 43, 0.15);
+    --accent-glow: rgba(224, 109, 121, 0.25);
   }
 
   .dark {
-    /* Subtle rich dark variant for dark-mode toggle consistency */
     --background: 240 7% 11%;  /* #1b1b1f */
     --foreground: 280 20% 98%; /* #fbf8fe */
     --card: 240 6% 14%;
@@ -60,7 +59,7 @@ body {
     --input: 240 6% 20%;
     --ring: 352 64% 45%;
     --brand: #e06d79;
-    --accent-solid: #e06d79;
+    --accent-solid: #8b1e2b;
     --accent-glow: rgba(224, 109, 121, 0.25);
   }
 }
