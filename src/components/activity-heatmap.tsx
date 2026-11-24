@@ -6,6 +6,11 @@ import { config } from "@/data/config";
 import { ArrowUpRight } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 
+const MONTH_NAMES = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+
 interface ContributionDay {
   date: string;
   count: number;
@@ -34,20 +39,21 @@ export default function ActivityHeatmap() {
     return result;
   }, [days]);
 
-  // Months label calculation
+  // Months label calculation — deterministic string parsing avoids timezone/locale hydration mismatches
   const months = useMemo(() => {
     const labels: { label: string; weekIndex: number }[] = [];
     let lastMonth = -1;
 
     weeks.forEach((week, wIdx) => {
       const firstDay = week[0];
-      if (!firstDay) return;
-      const d = new Date(firstDay.date);
-      const m = d.getMonth();
-      if (m !== lastMonth && wIdx > 0 && wIdx < weeks.length - 2) {
-        const monthShort = d.toLocaleString("en-US", { month: "short" });
-        labels.push({ label: monthShort, weekIndex: wIdx });
-        lastMonth = m;
+      if (!firstDay || !firstDay.date) return;
+      const parts = firstDay.date.split("-");
+      if (parts.length >= 2) {
+        const m = parseInt(parts[1], 10) - 1;
+        if (m !== lastMonth && wIdx > 0 && wIdx < weeks.length - 2) {
+          labels.push({ label: MONTH_NAMES[m] || "", weekIndex: wIdx });
+          lastMonth = m;
+        }
       }
     });
 
@@ -70,7 +76,7 @@ export default function ActivityHeatmap() {
   };
 
   return (
-    <div className="w-full mt-8 p-4 sm:p-5 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+    <div className="w-full mt-8 p-4 sm:p-5 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)]" suppressHydrationWarning>
       {/* Header */}
       <div className="flex items-center justify-between pb-3 mb-3 border-b border-black/[0.06] dark:border-white/[0.06]">
         <div className="flex items-center gap-2">

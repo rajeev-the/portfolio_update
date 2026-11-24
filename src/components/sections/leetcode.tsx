@@ -160,7 +160,9 @@ export const LeetcodeSection = () => {
               </div>
 
               <div className="pt-5 mt-6 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
-                <span className="font-mono text-xs text-[#8b7171]">Global Rank: #{stats.ranking?.toLocaleString() || "185,000"}</span>
+                <span className="font-mono text-xs text-[#8b7171]" suppressHydrationWarning>
+                  Global Rank: #{stats.ranking ? stats.ranking.toLocaleString("en-US") : "185,000"}
+                </span>
                 {config.social.leetcode && (
                   <a
                     href={config.social.leetcode}
