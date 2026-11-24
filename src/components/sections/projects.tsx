@@ -65,11 +65,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
   };
 
   return (
-    <div className="group rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] hover:border-[#8b1e2b]/35 dark:hover:border-[#8b1e2b]/60 transition-all p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.08)]">
+    <div className="group rounded-lg bg-[#232328] border border-white/[0.08] hover:border-[#8b1e2b]/60 transition-all p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.15)]">
       <div>
         {/* Top Rail: Monospace Tag & Direct Visit Arrow */}
-        <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-black/[0.06] dark:border-white/[0.06]">
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[#8b7171] dark:text-zinc-400">
+        <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-white/[0.06]">
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
             {meta.tag}
           </span>
           <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 target="_blank"
                 rel="noreferrer"
                 title="Live Demo"
-                className="text-[#8b1e2b] dark:text-[#ff9d9f] hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform"
+                className="text-[#ff9d9f] hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform"
               >
                 <ArrowUpRight className="w-4 h-4" />
               </a>
@@ -88,18 +88,18 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
 
         {/* Title */}
-        <h3 className="font-display text-lg sm:text-xl font-bold tracking-tight text-[#1b1b1f] dark:text-[#fbf8fe] group-hover:text-[#8b1e2b] dark:group-hover:text-[#ff9d9f] transition-colors mb-3">
+        <h3 className="font-display text-lg sm:text-xl font-bold tracking-tight text-[#fbf8fe] group-hover:text-[#ff9d9f] transition-colors mb-3">
           {project.title}
         </h3>
 
         {/* Architecture Brief */}
-        <p className="font-sans text-sm text-[#574141] dark:text-zinc-300 leading-relaxed mb-6">
+        <p className="font-sans text-sm text-zinc-300 leading-relaxed mb-6">
           {meta.brief}
         </p>
 
         {/* Screenshot Preview */}
         {project.src && (
-          <div className="relative w-full h-44 sm:h-52 rounded-[6px] overflow-hidden border border-black/[0.06] dark:border-white/[0.08] bg-[#f0edf2] dark:bg-[#1b1b1f] mb-6 shadow-inner">
+          <div className="relative w-full h-44 sm:h-52 rounded-[6px] overflow-hidden border border-white/[0.08] bg-[#1b1b1f] mb-6 shadow-inner">
             <img
               src={project.src}
               alt={project.title}
@@ -115,7 +115,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {project.skills.frontend.concat(project.skills.backend).slice(0, 5).map((skill) => (
             <span
               key={skill.title}
-              className="font-mono text-[11px] font-medium px-2 py-0.5 rounded-[3px] bg-[#f3e8e8] dark:bg-[#2a0e13] text-[#721422] dark:text-[#ff9e98] border border-[#8b1e2b]/15"
+              className="font-mono text-[11px] font-medium px-2 py-0.5 rounded-[3px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25"
             >
               {skill.title}
             </span>
@@ -123,14 +123,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
 
         {/* Action Links */}
-        <div className="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06]">
+        <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
           <div className="flex items-center gap-3">
             {project.live && project.live !== "#" && (
               <a
                 href={project.live}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#8b1e2b] dark:text-[#ff9d9f] hover:underline"
+                className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#ff9d9f] hover:underline"
               >
                 <span>Live Site</span>
                 <ArrowUpRight className="w-3 h-3" />
@@ -141,7 +141,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono text-[#574141] dark:text-zinc-400 hover:text-[#8b1e2b] dark:hover:text-white transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
               >
                 <Code2 className="w-3 h-3" />
                 <span>Code</span>
@@ -152,17 +152,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {/* Dialog trigger for in-depth architectural breakdown */}
           <ResponsiveDialog>
             <ResponsiveDialogTrigger asChild>
-              <button className="text-xs font-mono text-[#8b7171] hover:text-[#8b1e2b] transition-colors underline-offset-4 hover:underline">
+              <button className="text-xs font-mono text-zinc-400 hover:text-[#ff9d9f] transition-colors underline-offset-4 hover:underline">
                 Details →
               </button>
             </ResponsiveDialogTrigger>
-            <ResponsiveDialogContent className="max-w-3xl bg-[#fbf8fe] dark:bg-[#1b1b1f] border border-[#8b1e2b]/25 text-[#1b1b1f] dark:text-zinc-100 p-6 md:p-8 rounded-xl shadow-2xl">
-              <div className="pb-4 mb-6 border-b border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between">
+            <ResponsiveDialogContent className="max-w-3xl bg-[#1b1b1f] border border-[#8b1e2b]/40 text-zinc-100 p-6 md:p-8 rounded-xl shadow-2xl">
+              <div className="pb-4 mb-6 border-b border-white/[0.08] flex items-center justify-between">
                 <div>
-                  <span className="font-mono text-xs uppercase text-[#8b1e2b] font-semibold">
+                  <span className="font-mono text-xs uppercase text-[#ff9d9f] font-semibold">
                     {meta.tag}
                   </span>
-                  <h3 className="font-display text-2xl font-bold tracking-tight text-[#1b1b1f] dark:text-white mt-1">
+                  <h3 className="font-display text-2xl font-bold tracking-tight text-white mt-1">
                     {project.title}
                   </h3>
                 </div>
@@ -182,7 +182,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               <ScrollArea className="max-h-[60vh] pr-4">
                 <div className="space-y-6">
                   {project.src && (
-                    <div className="w-full h-64 rounded-lg overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-950">
+                    <div className="w-full h-64 rounded-lg overflow-hidden border border-white/10 bg-zinc-950">
                       <img
                         src={project.src}
                         alt={project.title}
@@ -190,7 +190,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                       />
                     </div>
                   )}
-                  <div className="font-sans text-sm md:text-base leading-relaxed text-[#574141] dark:text-zinc-300">
+                  <div className="font-sans text-sm md:text-base leading-relaxed text-zinc-300">
                     {project.content}
                   </div>
                 </div>

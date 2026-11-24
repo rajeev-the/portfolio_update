@@ -12,7 +12,7 @@ import ContactForm from "../ContactForm";
 import { config } from "@/data/config";
 import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const ContactSection = () => {
   return (
@@ -26,18 +26,18 @@ const ContactSection = () => {
         />
 
         {/* Contact Banner & Action */}
-        <div className="p-6 md:p-8 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+        <div className="p-6 md:p-8 rounded-lg bg-[#232328] border border-white/[0.08] mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
           <div>
-            <span className="font-mono text-xs uppercase tracking-wider text-[#8b7171] dark:text-zinc-400 block mb-1">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-400 block mb-1">
               DIRECT INQUIRY //
             </span>
             <a
               href={`mailto:${config.email}`}
-              className="font-display text-lg sm:text-xl font-bold text-[#8b1e2b] dark:text-[#ff9d9f] hover:underline"
+              className="font-display text-lg sm:text-xl font-bold text-[#ff9d9f] hover:underline"
             >
               {config.email}
             </a>
-            <p className="font-sans text-xs text-[#574141] dark:text-zinc-400 mt-1">
+            <p className="font-sans text-xs text-zinc-400 mt-1">
               Based in India • Open to remote worldwide &amp; on-site engineering roles.
             </p>
           </div>
@@ -53,12 +53,12 @@ const ContactSection = () => {
 
         {/* Contact Form Container */}
         <div className="max-w-2xl mx-auto">
-          <Card className="w-full bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+          <Card className="w-full bg-[#232328] border border-white/[0.08] rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
             <CardHeader className="pb-4">
-              <CardTitle className="font-display text-xl font-bold text-[#1b1b1f] dark:text-white">
+              <CardTitle className="font-display text-xl font-bold text-white">
                 Leave a Message
               </CardTitle>
-              <CardDescription className="text-xs sm:text-sm text-[#574141] dark:text-zinc-400">
+              <CardDescription className="text-xs sm:text-sm text-zinc-400">
                 You can also drop your contact details and message directly through this form:
               </CardDescription>
             </CardHeader>

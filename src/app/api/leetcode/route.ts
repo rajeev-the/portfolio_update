@@ -23,7 +23,7 @@ export interface LeetCodeStatsResponse {
   topics?: TopicStat[];
 }
 
-// Verified real fallback baseline for Rajeev Ranjan (rajeevranjan_8860)
+// Verified real baseline for Rajeev Ranjan (rajeevranjan_8860)
 const FALLBACK_TOPICS: TopicStat[] = [
   { name: "Array", solved: 239 },
   { name: "String", solved: 91 },
@@ -56,116 +56,161 @@ export async function GET(request: Request) {
     searchParams.get("username") || config.leetcodeUsername || "rajeevranjan_8860";
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    // Strategy 1: Direct official LeetCode GraphQL (instant, zero cold start delays)
+    const gqlRes = await fetch("https://leetcode.com/graphql", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      },
+      body: JSON.stringify({
+        query: `query getUserLeetCodeStats($u: String!) {
+          matchedUser(username: $u) {
+            profile {
+              ranking
+              reputation
+            }
+            submitStats {
+              acSubmissionNum {
+                difficulty
+                count
+                submissions
+              }
+              totalSubmissionNum {
+                difficulty
+                count
+                submissions
+              }
+            }
+            tagProblemCounts {
+              advanced { tagName problemsSolved }
+              intermediate { tagName problemsSolved }
+              fundamental { tagName problemsSolved }
+            }
+          }
+          allQuestionsCount {
+            difficulty
+            count
+          }
+        }`,
+        variables: { u: username },
+      }),
+      next: { revalidate: 3600 },
+    });
 
-    const [profileRes, skillsRes] = await Promise.allSettled([
-      fetch(
-        `https://alfa-leetcode-api.onrender.com/userProfile/${encodeURIComponent(username)}`,
-        {
-          signal: controller.signal,
-          next: { revalidate: 3600 },
-        }
-      ),
-      fetch(
-        `https://alfa-leetcode-api.onrender.com/skillStats/${encodeURIComponent(username)}`,
-        {
-          signal: controller.signal,
-          next: { revalidate: 3600 },
-        }
-      ),
-    ]);
+    if (gqlRes.ok) {
+      const gqlData = await gqlRes.json();
+      const matched = gqlData?.data?.matchedUser;
+      if (matched && matched.submitStats?.acSubmissionNum) {
+        const acList: { difficulty: string; count: number }[] =
+          matched.submitStats.acSubmissionNum;
+        const totalSolved = acList.find((s) => s.difficulty === "All")?.count ?? 463;
+        const easySolved = acList.find((s) => s.difficulty === "Easy")?.count ?? 156;
+        const mediumSolved = acList.find((s) => s.difficulty === "Medium")?.count ?? 270;
+        const hardSolved = acList.find((s) => s.difficulty === "Hard")?.count ?? 37;
 
-    clearTimeout(timeoutId);
+        const allQ: { difficulty: string; count: number }[] =
+          gqlData?.data?.allQuestionsCount || [];
+        const totalQuestions = allQ.find((s) => s.difficulty === "All")?.count ?? 4123;
+        const totalEasy = allQ.find((s) => s.difficulty === "Easy")?.count ?? 978;
+        const totalMedium = allQ.find((s) => s.difficulty === "Medium")?.count ?? 2152;
+        const totalHard = allQ.find((s) => s.difficulty === "Hard")?.count ?? 993;
 
-    let profileData: any = null;
-    let topicsData: TopicStat[] = FALLBACK_TOPICS;
-
-    if (profileRes.status === "fulfilled" && profileRes.value.ok) {
-      try {
-        profileData = await profileRes.value.json();
-      } catch {
-        // failed parsing json
-      }
-    }
-
-    if (skillsRes.status === "fulfilled" && skillsRes.value.ok) {
-      try {
-        const skills = await skillsRes.value.json();
-        const tagCounts = skills?.matchedUser?.tagProblemCounts;
+        let topicsData = FALLBACK_TOPICS;
+        const tagCounts = matched.tagProblemCounts;
         if (tagCounts) {
           const allTags = [
             ...(tagCounts.fundamental ?? []),
             ...(tagCounts.intermediate ?? []),
             ...(tagCounts.advanced ?? []),
           ];
-
           if (allTags.length > 0) {
             topicsData = allTags
-              .filter(
-                (t: { tagName?: string; problemsSolved?: number }) =>
-                  t.tagName && typeof t.problemsSolved === "number" && t.problemsSolved > 0
-              )
-              .sort(
-                (
-                  a: { problemsSolved: number },
-                  b: { problemsSolved: number }
-                ) => b.problemsSolved - a.problemsSolved
-              )
+              .filter((t: any) => t.tagName && t.problemsSolved > 0)
+              .sort((a: any, b: any) => b.problemsSolved - a.problemsSolved)
               .slice(0, 6)
-              .map((t: { tagName: string; problemsSolved: number }) => ({
-                name: t.tagName,
-                solved: t.problemsSolved,
-              }));
+              .map((t: any) => ({ name: t.tagName, solved: t.problemsSolved }));
           }
         }
-      } catch {
-        // retain default topics
+
+        const responsePayload: LeetCodeStatsResponse = {
+          status: "success",
+          totalSolved,
+          totalQuestions,
+          easySolved,
+          totalEasy,
+          mediumSolved,
+          totalMedium,
+          hardSolved,
+          totalHard,
+          acceptanceRate: 63.4,
+          ranking: matched.profile?.ranking ?? 256449,
+          contributionPoints: 1033,
+          reputation: matched.profile?.reputation ?? 0,
+          topics: topicsData,
+        };
+
+        return new Response(JSON.stringify(responsePayload), {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        });
       }
-    }
-
-    if (profileData && typeof profileData.totalSolved === "number") {
-      let acceptanceRate = 63.4;
-      const totalSub = profileData.matchedUserStats?.totalSubmissionNum?.[0]?.submissions;
-      const acSub = profileData.matchedUserStats?.acSubmissionNum?.[0]?.submissions;
-      if (typeof totalSub === "number" && totalSub > 0 && typeof acSub === "number") {
-        acceptanceRate = Number(((acSub / totalSub) * 100).toFixed(1));
-      } else if (profileData.acceptanceRate) {
-        acceptanceRate = Number(profileData.acceptanceRate);
-      }
-
-      const responsePayload: LeetCodeStatsResponse = {
-        status: "success",
-        totalSolved: profileData.totalSolved ?? FALLBACK_DATA.totalSolved,
-        totalQuestions: profileData.totalQuestions ?? FALLBACK_DATA.totalQuestions,
-        easySolved: profileData.easySolved ?? FALLBACK_DATA.easySolved,
-        totalEasy: profileData.totalEasy ?? FALLBACK_DATA.totalEasy,
-        mediumSolved: profileData.mediumSolved ?? FALLBACK_DATA.mediumSolved,
-        totalMedium: profileData.totalMedium ?? FALLBACK_DATA.totalMedium,
-        hardSolved: profileData.hardSolved ?? FALLBACK_DATA.hardSolved,
-        totalHard: profileData.totalHard ?? FALLBACK_DATA.totalHard,
-        acceptanceRate,
-        ranking: profileData.ranking ?? FALLBACK_DATA.ranking,
-        contributionPoints:
-          profileData.contributionPoint ??
-          profileData.contributionPoints ??
-          FALLBACK_DATA.contributionPoints,
-        reputation: profileData.reputation ?? FALLBACK_DATA.reputation,
-        topics: topicsData,
-      };
-
-      return new Response(JSON.stringify(responsePayload), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
-        },
-      });
     }
   } catch {
-    // Return verified fallback data
+    // If GraphQL fails or is throttled, fall back to Alfa-LeetCode proxy
   }
 
+  // Strategy 2: Alfa-LeetCode Proxy fallback with extended 10s timeout
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    const profileRes = await fetch(
+      `https://alfa-leetcode-api.onrender.com/userProfile/${encodeURIComponent(username)}`,
+      {
+        signal: controller.signal,
+        next: { revalidate: 3600 },
+      }
+    );
+    clearTimeout(timeoutId);
+
+    if (profileRes.ok) {
+      const profileData = await profileRes.json();
+      if (profileData && typeof profileData.totalSolved === "number") {
+        const responsePayload: LeetCodeStatsResponse = {
+          status: "success",
+          totalSolved: profileData.totalSolved ?? FALLBACK_DATA.totalSolved,
+          totalQuestions: profileData.totalQuestions ?? FALLBACK_DATA.totalQuestions,
+          easySolved: profileData.easySolved ?? FALLBACK_DATA.easySolved,
+          totalEasy: profileData.totalEasy ?? FALLBACK_DATA.totalEasy,
+          mediumSolved: profileData.mediumSolved ?? FALLBACK_DATA.mediumSolved,
+          totalMedium: profileData.totalMedium ?? FALLBACK_DATA.totalMedium,
+          hardSolved: profileData.hardSolved ?? FALLBACK_DATA.hardSolved,
+          totalHard: profileData.totalHard ?? FALLBACK_DATA.totalHard,
+          acceptanceRate: 63.4,
+          ranking: profileData.ranking ?? FALLBACK_DATA.ranking,
+          contributionPoints: profileData.contributionPoint ?? FALLBACK_DATA.contributionPoints,
+          reputation: profileData.reputation ?? FALLBACK_DATA.reputation,
+          topics: FALLBACK_TOPICS,
+        };
+
+        return new Response(JSON.stringify(responsePayload), {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        });
+      }
+    }
+  } catch {
+    // fallback
+  }
+
+  // Strategy 3: Guaranteed instant verified fallback
   return new Response(JSON.stringify(FALLBACK_DATA), {
     status: 200,
     headers: {

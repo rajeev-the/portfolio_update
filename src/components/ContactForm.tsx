@@ -68,7 +68,7 @@ const ContactForm = () => {
         router.push("/");
         clearTimeout(timer);
       }, 1000);
-    } catch (err) {
+    } catch {
       toast({
         title: "Error",
         description: "Something went wrong! Please try again.",
@@ -80,11 +80,12 @@ const ContactForm = () => {
     }
     setLoading(false);
   };
+
   return (
     <form className="w-full sm:mt-2" onSubmit={handleSubmit} aria-busy={loading}>
       <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 mb-4">
         <LabelInputContainer>
-          <Label htmlFor="fullname" className="text-xs font-mono font-medium text-[#574141] dark:text-zinc-300">
+          <Label htmlFor="fullname" className="text-xs font-mono font-medium text-zinc-300">
             Full Name
           </Label>
           <Input
@@ -93,12 +94,11 @@ const ContactForm = () => {
             type="text"
             value={fullName}
             onChange={(e) => { setFullName(e.target.value); setErrors((p) => ({ ...p, fullName: undefined })); }}
-            className="rounded-[4px] border-black/[0.12] dark:border-white/[0.12] focus:border-[#8b1e2b] focus:ring-[#8b1e2b]/20"
           />
-          {errors.fullName && <p className="text-xs text-red-600 mt-1">{errors.fullName}</p>}
+          {errors.fullName && <p className="text-xs text-rose-400 mt-1">{errors.fullName}</p>}
         </LabelInputContainer>
         <LabelInputContainer>
-          <Label htmlFor="email" className="text-xs font-mono font-medium text-[#574141] dark:text-zinc-300">
+          <Label htmlFor="email" className="text-xs font-mono font-medium text-zinc-300">
             Email Address
           </Label>
           <Input
@@ -107,13 +107,12 @@ const ContactForm = () => {
             type="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: undefined })); }}
-            className="rounded-[4px] border-black/[0.12] dark:border-white/[0.12] focus:border-[#8b1e2b] focus:ring-[#8b1e2b]/20"
           />
-          {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-xs text-rose-400 mt-1">{errors.email}</p>}
         </LabelInputContainer>
       </div>
       <div className="grid w-full gap-1.5 mb-5">
-        <Label htmlFor="content" className="text-xs font-mono font-medium text-[#574141] dark:text-zinc-300">
+        <Label htmlFor="content" className="text-xs font-mono font-medium text-zinc-300">
           Your Message
         </Label>
         <Textarea
@@ -121,9 +120,9 @@ const ContactForm = () => {
           id="content"
           value={message}
           onChange={(e) => { setMessage(e.target.value); setErrors((p) => ({ ...p, message: undefined })); }}
-          className="rounded-[4px] border-black/[0.12] dark:border-white/[0.12] focus:border-[#8b1e2b] focus:ring-[#8b1e2b]/20 min-h-[100px]"
+          className="min-h-[100px]"
         />
-        {errors.message && <p className="text-xs text-red-600 mt-1">{errors.message}</p>}
+        {errors.message && <p className="text-xs text-rose-400 mt-1">{errors.message}</p>}
       </div>
       <Button
         disabled={loading}
@@ -159,14 +158,5 @@ const LabelInputContainer = ({
     <div className={cn("flex flex-col space-y-2 w-full", className)}>
       {children}
     </div>
-  );
-};
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-brand to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent orange-400 to-transparent" />
-    </>
   );
 };
