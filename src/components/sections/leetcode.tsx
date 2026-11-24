@@ -8,10 +8,8 @@ import { FaAws } from "react-icons/fa";
 import {
   Trophy,
   GraduationCap,
-  Award,
   ArrowUpRight,
   RefreshCw,
-  CheckCircle2,
   Code2,
 } from "lucide-react";
 import { config } from "@/data/config";
@@ -26,29 +24,36 @@ interface LeetCodeStats {
   hardSolved: number;
   totalHard: number;
   ranking?: number;
+  topics?: TopicItem[];
 }
 
-const TOPICS = [
-  { name: "Binary Search", solved: 65 },
-  { name: "Dynamic Programming", solved: 85 },
-  { name: "Trees & Graphs", solved: 95 },
-  { name: "Array & Two Pointers", solved: 140 },
-  { name: "Stack & Queues", solved: 55 },
-  { name: "Heap & Greedy", solved: 60 },
+interface TopicItem {
+  name: string;
+  solved: number;
+}
+
+const DEFAULT_TOPICS: TopicItem[] = [
+  { name: "Array", solved: 239 },
+  { name: "String", solved: 91 },
+  { name: "Hash Table", solved: 87 },
+  { name: "Dynamic Programming", solved: 76 },
+  { name: "Depth-First Search", solved: 69 },
+  { name: "Two Pointers", solved: 67 },
 ];
 
 export const LeetcodeSection = () => {
   const [stats, setStats] = useState<LeetCodeStats>({
-    totalSolved: 500,
-    totalQuestions: 3300,
-    easySolved: 210,
-    totalEasy: 830,
-    mediumSolved: 240,
-    totalMedium: 1750,
-    hardSolved: 50,
-    totalHard: 720,
-    ranking: 185000,
+    totalSolved: 463,
+    totalQuestions: 4123,
+    easySolved: 156,
+    totalEasy: 978,
+    mediumSolved: 270,
+    totalMedium: 2152,
+    hardSolved: 37,
+    totalHard: 993,
+    ranking: 256449,
   });
+  const [topics, setTopics] = useState<TopicItem[]>(DEFAULT_TOPICS);
   const [loading, setLoading] = useState(false);
 
   const fetchStats = async () => {
@@ -57,8 +62,11 @@ export const LeetcodeSection = () => {
       const res = await fetch("/api/leetcode");
       if (res.ok) {
         const data = await res.json();
-        if (data && data.totalSolved) {
+        if (data && typeof data.totalSolved === "number") {
           setStats(data);
+          if (Array.isArray(data.topics) && data.topics.length > 0) {
+            setTopics(data.topics);
+          }
         }
       }
     } catch {
@@ -121,12 +129,15 @@ export const LeetcodeSection = () => {
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-[#574141] dark:text-zinc-300">Easy</span>
-                      <span className="font-semibold text-[#1b1b1f] dark:text-white">{stats.easySolved}</span>
+                      <span className="font-semibold text-[#1b1b1f] dark:text-white">
+                        {stats.easySolved}
+                        <span className="text-[#8b7171] text-[10px] ml-1">/{stats.totalEasy || 978}</span>
+                      </span>
                     </div>
                     <div className="w-full h-1.5 bg-[#f0edf2] dark:bg-zinc-800 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-emerald-600 rounded-full"
-                        style={{ width: `${Math.min(100, (stats.easySolved / 400) * 100)}%` }}
+                        style={{ width: `${Math.min(100, Math.round((stats.easySolved / (stats.totalEasy || 978)) * 100))}%` }}
                       />
                     </div>
                   </div>
@@ -134,12 +145,15 @@ export const LeetcodeSection = () => {
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-[#574141] dark:text-zinc-300">Medium</span>
-                      <span className="font-semibold text-[#1b1b1f] dark:text-white">{stats.mediumSolved}</span>
+                      <span className="font-semibold text-[#1b1b1f] dark:text-white">
+                        {stats.mediumSolved}
+                        <span className="text-[#8b7171] text-[10px] ml-1">/{stats.totalMedium || 2152}</span>
+                      </span>
                     </div>
                     <div className="w-full h-1.5 bg-[#f0edf2] dark:bg-zinc-800 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-amber-600 rounded-full"
-                        style={{ width: `${Math.min(100, (stats.mediumSolved / 400) * 100)}%` }}
+                        style={{ width: `${Math.min(100, Math.round((stats.mediumSolved / (stats.totalMedium || 2152)) * 100))}%` }}
                       />
                     </div>
                   </div>
@@ -147,12 +161,15 @@ export const LeetcodeSection = () => {
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-[#574141] dark:text-zinc-300">Hard</span>
-                      <span className="font-semibold text-[#1b1b1f] dark:text-white">{stats.hardSolved}</span>
+                      <span className="font-semibold text-[#1b1b1f] dark:text-white">
+                        {stats.hardSolved}
+                        <span className="text-[#8b7171] text-[10px] ml-1">/{stats.totalHard || 993}</span>
+                      </span>
                     </div>
                     <div className="w-full h-1.5 bg-[#f0edf2] dark:bg-zinc-800 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-[#8b1e2b] rounded-full"
-                        style={{ width: `${Math.min(100, (stats.hardSolved / 100) * 100)}%` }}
+                        style={{ width: `${Math.min(100, Math.round((stats.hardSolved / (stats.totalHard || 993)) * 100))}%` }}
                       />
                     </div>
                   </div>
@@ -161,7 +178,7 @@ export const LeetcodeSection = () => {
 
               <div className="pt-5 mt-6 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
                 <span className="font-mono text-xs text-[#8b7171]" suppressHydrationWarning>
-                  Global Rank: #{stats.ranking ? stats.ranking.toLocaleString("en-US") : "185,000"}
+                  Global Rank: #{stats.ranking ? stats.ranking.toLocaleString("en-US") : "256,449"}
                 </span>
                 {config.social.leetcode && (
                   <a
@@ -188,7 +205,7 @@ export const LeetcodeSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                  {TOPICS.map((topic) => (
+                  {topics.map((topic) => (
                     <div
                       key={topic.name}
                       className="p-3 rounded-[6px] bg-[#fbf8fe] dark:bg-[#1b1b1f] border border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between"
@@ -254,7 +271,7 @@ export const LeetcodeSection = () => {
                   <h3 className="font-display text-base font-bold text-[#1b1b1f] dark:text-white truncate">
                     500+ Algorithmic Problems Solved
                   </h3>
-                  <span className="font-mono text-xs text-[#8b7171] shrink-0">LeetCode</span>
+                  <span className="font-mono text-xs text-[#8b7171] shrink-0">LeetCode &amp; GFG</span>
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-[#574141] dark:text-zinc-400 leading-relaxed mb-2">
                   Demonstrated mastery across Data Structures, Algorithms, Dynamic Programming, Graphs, and Greedy heuristics on LeetCode &amp; GeeksforGeeks.
