@@ -8,7 +8,7 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400">
         <div>
           <span className="font-semibold text-white">{config.author}</span>
-          <span className="text-[#8b7171] ml-2">— Built with precision &amp; pure minimal design.</span>
+          <span className="text-[#8b7171] ml-2">{"— Built with precision & pure minimal design."}</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-4">
@@ -48,7 +48,7 @@ function Footer() {
           >
             Email
           </a>
-          <span className="text-[#8b7171]">© 2026</span>
+          <span className="text-[#8b7171]">{"© 2026"}</span>
         </div>
       </div>
     </footer>

@@ -38,7 +38,7 @@ const ContactSection = () => {
               {config.email}
             </a>
             <p className="font-sans text-xs text-zinc-400 mt-1">
-              Based in India • Open to remote worldwide &amp; on-site engineering roles.
+              {"Based in India • Open to remote worldwide & on-site engineering roles."}
             </p>
           </div>
 

@@ -84,7 +84,7 @@ export default function ActivityHeatmap() {
           <span className="font-mono text-xs font-semibold text-white">
             GitHub Activity
           </span>
-          <span className="text-zinc-400 text-xs font-mono">• {total} contributions in the last year</span>
+          <span className="text-zinc-400 text-xs font-mono">{`• ${total} contributions in the last year`}</span>
         </div>
 
         {config.social.github && (
@@ -94,7 +94,7 @@ export default function ActivityHeatmap() {
             rel="noreferrer"
             className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-[#ff9d9f] hover:underline"
           >
-            <span>@{config.githubUsername || "rajeev-the"}</span>
+            <span>{`@${config.githubUsername || "rajeev-the"}`}</span>
             <ArrowUpRight className="w-3 h-3" />
           </a>
         )}
@@ -120,7 +120,7 @@ export default function ActivityHeatmap() {
 
           <div className="flex gap-[3px]">
             {/* Day of week labels */}
-            <div className="flex flex-col gap-[3px] text-[9px] font-mono text-zinc-400 pr-1 select-none">
+            <div className="flex flex-col gap-[3px] text-[9px] font-mono text-zinc-400 pr-1">
               <span className="h-[10px] leading-[10px]"></span>
               <span className="h-[10px] leading-[10px]">Mon</span>
               <span className="h-[10px] leading-[10px]"></span>
@@ -155,14 +155,14 @@ export default function ActivityHeatmap() {
         <div>
           {hoveredDay ? (
             <span className="text-[#ff9d9f] font-semibold">
-              {hoveredDay.count} contribution{hoveredDay.count === 1 ? "" : "s"} on {hoveredDay.date}
+              {`${hoveredDay.count} contribution${hoveredDay.count === 1 ? "" : "s"} on ${hoveredDay.date}`}
             </span>
           ) : (
-            <span>Daily git commit &amp; push activity across engineering repos</span>
+            <span>{"Daily git commit & push activity across engineering repos"}</span>
           )}
         </div>
 
-        <div className="flex items-center gap-1.5 select-none">
+        <div className="flex items-center gap-1.5">
           <span>Less</span>
           <span className="w-2.5 h-2.5 rounded-[2px] bg-[#27272a]" />
           <span className="w-2.5 h-2.5 rounded-[2px] bg-[#4a181e]" />

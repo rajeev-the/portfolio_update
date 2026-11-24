@@ -8,7 +8,7 @@ export default function FunnyThemeToggle({ className }: { className?: string }) 
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1.5 px-2 py-1 rounded-[4px] bg-[#2a0e13] border border-[#8b1e2b]/30 text-[#ff9d9f] text-[11px] font-mono select-none",
+        "inline-flex items-center gap-1.5 px-2 py-1 rounded-[4px] bg-[#2a0e13] border border-[#8b1e2b]/30 text-[#ff9d9f] text-[11px] font-mono",
         className
       )}
       title="Atelier Crimson Dark Canvas"

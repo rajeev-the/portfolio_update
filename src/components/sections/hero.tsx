@@ -11,14 +11,14 @@ const HeroSection = () => {
     <SectionWrapper id="hero" className="w-full pt-28 pb-14 md:pt-36 md:pb-20">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         {/* Status Pill */}
-        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#2a0e13] border border-[#8b1e2b]/30 text-[#ff9d9f] text-xs font-mono font-medium mb-5 select-none">
+        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#2a0e13] border border-[#8b1e2b]/30 text-[#ff9d9f] text-xs font-mono font-medium mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#e06d79] animate-pulse" />
           <span>Available for hire</span>
         </div>
 
         {/* Headline */}
         <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.12] text-[#fbf8fe] mb-4 max-w-4xl">
-          Rajeev Ranjan —{" "}
+          {"Rajeev Ranjan — "}
           <span className="text-[#ff9d9f]">
             Software Developer.
           </span>
@@ -91,7 +91,7 @@ const HeroSection = () => {
           )}
         </div>
 
-        {/* GitHub Heatmap - 100% visible immediately */}
+        {/* GitHub Heatmap */}
         <ActivityHeatmap />
       </div>
     </SectionWrapper>

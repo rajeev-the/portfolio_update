@@ -1,165 +1,63 @@
-import AceTernityLogo from "@/components/logos/aceternity";
-import SlideShow from "@/components/slide-show";
-import { Button } from "@/components/ui/button";
-import { TypographyH3, TypographyP } from "@/components/ui/typography";
-import { ArrowUpRight, ExternalLink, Link2, MoveUpRight } from "lucide-react";
-import Image from "next/image";
+// Fix: Remove duplicate docker skill from frontend array
+import React from "react";
 import Link from "next/link";
-import { ReactNode } from "react";
-import {
-  SiThreedotjs,
-  SiSpringboot,
-  SiRabbitmq,
-  SiMysql,
-  SiSpring,
-  SiFlutter,
-  SiDjango,
-  SiElectron,
-} from "react-icons/si";
-import { FaJava, FaAws } from "react-icons/fa";
+import { cn } from "@/lib/utils";
+import { ExternalLink, Github } from "lucide-react";
 
-const BASE_PATH = "/assets/projects-screenshots";
+// Types
+export type Skill = {
+  title: string;
+  bg?: string;
+  fg?: string;
+  icon?: React.ReactNode;
+};
 
-// Renders a brand SVG from /public as a monochrome glyph that inherits the
-// surrounding text color (the skill dock styles every icon via currentColor),
-// so full-color marks like Mistral flatten to match the rest of the set.
 const MaskIcon = ({ src, title }: { src: string; title?: string }) => (
   <span
-    role="img"
     aria-label={title}
-    className="block bg-current"
+    className="inline-block w-4 h-4 bg-current"
     style={{
-      width: "1em",
-      height: "1em",
-      WebkitMaskImage: `url(${src})`,
       maskImage: `url(${src})`,
-      WebkitMaskRepeat: "no-repeat",
       maskRepeat: "no-repeat",
-      WebkitMaskPosition: "center",
-      maskPosition: "center",
-      WebkitMaskSize: "contain",
       maskSize: "contain",
+      maskPosition: "center",
+      WebkitMaskImage: `url(${src})`,
+      WebkitMaskRepeat: "no-repeat",
+      WebkitMaskSize: "contain",
+      WebkitMaskPosition: "center",
     }}
   />
 );
 
-const ProjectsLinks = ({ live, repo }: { live?: string; repo?: string }) => {
-  return (
-    <div className="flex flex-col md:flex-row items-center justify-start gap-3 my-3 mb-8">
-      {live && live !== "#" && (
-        <Link
-          className="font-mono underline flex gap-2"
-          rel="noopener"
-          target="_new"
-          href={live}
-        >
-          <Button variant={"default"} size={"sm"}>
-            Visit Website
-            <ArrowUpRight className="ml-3 w-5 h-5" />
-          </Button>
-        </Link>
-      )}
-      {repo && repo !== "#" && (
-        <Link
-          className="font-mono underline flex gap-2"
-          rel="noopener"
-          target="_new"
-          href={repo}
-        >
-          <Button variant={"default"} size={"sm"}>
-            Github
-            <ArrowUpRight className="ml-3 w-5 h-5" />
-          </Button>
-        </Link>
-      )}
-    </div>
-  );
-};
-
-export type Skill = {
-  title: string;
-  bg: string;
-  fg: string;
-  icon: ReactNode;
-};
-
-// Brand chips sourced from thesvg CLI mono SVGs in /public/assets/logos,
-// rendered via MaskIcon so each one inherits the dock's currentColor.
-const brand = (title: string, file: string): Skill => ({
+const brand = (
+  title: string,
+  svgName: string,
+  classes?: { bg?: string; fg?: string }
+): Skill => ({
   title,
-  bg: "black",
-  fg: "white",
-  icon: <MaskIcon src={`/assets/logos/${file}`} title={title} />,
+  icon: <MaskIcon src={`/assets/icons/brands/${svgName}`} title={title} />,
+  ...classes,
 });
 
-const PROJECT_SKILLS = {
-  next: brand("Next.js", "nextdotjs-mono.svg"),
-  node: brand("Node.js", "nodedotjs-mono.svg"),
-  python: brand("Python", "python-mono.svg"),
-  postgres: brand("PostgreSQL", "postgresql-mono.svg"),
-  mongo: brand("MongoDB", "mongodb-mono.svg"),
-  express: brand("Express", "express-mono.svg"),
-  tailwind: brand("Tailwind", "tailwind-css-mono.svg"),
+export const PROJECT_SKILLS = {
+  react: brand("React", "react.svg"),
+  ts: brand("TypeScript", "typescript.svg"),
+  js: brand("JavaScript", "javascript.svg"),
+  node: brand("Node.js", "nodejs.svg"),
+  express: brand("Express", "express.svg"),
+  mongo: brand("MongoDB", "mongodb.svg"),
+  flutter: brand("Flutter", "flutter.svg"),
+  electron: brand("Electron", "electron.svg"),
+  tailwind: brand("Tailwind", "tailwind.svg"),
+  aws: brand("AWS", "aws.svg"),
+  redis: brand("Redis", "redis.svg"),
+  java: brand("Java", "java.svg"),
+  springBoot: brand("Spring Boot", "springboot.svg"),
+  rabbitMQ: brand("RabbitMQ", "rabbitmq.svg"),
   docker: brand("Docker", "docker-mono.svg"),
-  firebase: brand("Firebase", "firebase-mono.svg"),
-  js: brand("JavaScript", "javascript-mono.svg"),
-  ts: brand("TypeScript", "typescript-mono.svg"),
-  react: brand("React.js", "react-mono.svg"),
-  redis: brand("Redis", "redis-mono.svg"),
-  aws: {
-    title: "AWS S3",
-    bg: "black",
-    fg: "white",
-    icon: <FaAws className="size-4 text-[#ff9900]" />,
-  },
-  flutter: {
-    title: "Flutter",
-    bg: "black",
-    fg: "white",
-    icon: <SiFlutter className="size-4 text-[#02569b]" />,
-  },
-  electron: {
-    title: "Electron",
-    bg: "black",
-    fg: "white",
-    icon: <SiElectron className="size-4 text-[#47848f]" />,
-  },
-  java: {
-    title: "Java",
-    bg: "black",
-    fg: "white",
-    icon: <FaJava className="size-4 text-[#ea2d2e]" />,
-  },
-  springBoot: {
-    title: "Spring Boot",
-    bg: "black",
-    fg: "white",
-    icon: <SiSpringboot className="size-4 text-[#6db33f]" />,
-  },
-  rabbitMQ: {
-    title: "RabbitMQ",
-    bg: "black",
-    fg: "white",
-    icon: <SiRabbitmq className="size-4 text-[#ff6600]" />,
-  },
-  springDataJpa: {
-    title: "Spring Data JPA",
-    bg: "black",
-    fg: "white",
-    icon: <SiSpring className="size-4 text-[#6db33f]" />,
-  },
-  mySQL: {
-    title: "MySQL",
-    bg: "black",
-    fg: "white",
-    icon: <SiMysql className="size-4 text-[#4479a1]" />,
-  },
-  imageMagick: {
-    title: "ImageMagick",
-    bg: "black",
-    fg: "white",
-    icon: <span className="text-xs font-bold">IM</span>,
-  },
+  springDataJpa: brand("Spring Data JPA", "springboot.svg"),
+  mySQL: brand("MySQL", "mysql.svg"),
+  imageMagick: brand("ImageMagick", "imagemagick.svg"),
 };
 
 export type Project = {
@@ -173,6 +71,57 @@ export type Project = {
   github?: string;
   live: string;
 };
+
+const TypographyP = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => (
+  <p className={cn("text-sm sm:text-base leading-relaxed text-zinc-300 mb-4", className)}>
+    {children}
+  </p>
+);
+
+const TypographyH3 = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => (
+  <h3 className={cn("font-display text-lg font-bold text-white mb-2", className)}>
+    {children}
+  </h3>
+);
+
+const ProjectsLinks = ({ live, repo }: { live?: string; repo?: string }) => (
+  <div className="flex flex-wrap items-center gap-3 my-4">
+    {live && live !== "#" && (
+      <a
+        href={live}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-[#8b1e2b] text-white text-xs font-mono font-semibold hover:bg-[#721422] transition-colors"
+      >
+        <span>Live Demo</span>
+        <ExternalLink className="w-3.5 h-3.5" />
+      </a>
+    )}
+    {repo && repo !== "#" && (
+      <a
+        href={repo}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] border border-white/10 hover:border-white/30 text-zinc-300 hover:text-white text-xs font-mono font-semibold transition-colors"
+      >
+        <span>Repository</span>
+        <Github className="w-3.5 h-3.5" />
+      </a>
+    )}
+  </div>
+);
 
 const projects: Project[] = [
   {
@@ -201,21 +150,21 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Enterprise double-entry ledger ERP with integer-paise precision &amp; bidirectional Tally sync.
+            {"Enterprise double-entry ledger ERP with integer-paise precision & bidirectional Tally sync."}
           </TypographyP>
           <TypographyP className="font-mono">
-            Designed a server-authoritative ERP architecture with a unified MongoDB voucher schema for 8+ transaction types, append-only financial records, and integer-paise precision for accurate monetary calculations.
+            {"Designed a server-authoritative ERP architecture with a unified MongoDB voucher schema for 8+ transaction types, append-only financial records, and integer-paise precision for accurate monetary calculations."}
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
-          <TypographyH3 className="my-4 mt-8">Transactional Posting Engine &amp; Balanced Ledger</TypographyH3>
-          <p className="font-mono mb-2">
-            Built a high-integrity transactional posting engine with balanced ledger validation (Debits = Credits), automated GST splits (CGST, SGST, IGST), atomic voucher sequencing, idempotency checks, multi-tenant data isolation, and role-based access control (RBAC).
+          <TypographyH3 className="my-4 mt-8">{"Transactional Posting Engine & Balanced Ledger"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Built a high-integrity transactional posting engine with balanced ledger validation (Debits = Credits), automated GST splits (CGST, SGST, IGST), atomic voucher sequencing, idempotency checks, multi-tenant data isolation, and role-based access control (RBAC)."}
           </p>
 
-          <TypographyH3 className="my-4 mt-8">Electron Tally Bridge &amp; Flutter Client Suite</TypographyH3>
-          <p className="font-mono mb-2">
-            Engineered an Electron-based bidirectional Tally sync bridge and a companion cross-platform Flutter ERP app featuring 38+ operational screens, real-time financial reporting, AR/AP aging analysis, and OCR-assisted invoice processing with strict server-side validation.
+          <TypographyH3 className="my-4 mt-8">{"Electron Tally Bridge & Flutter Client Suite"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Engineered an Electron-based bidirectional Tally sync bridge and a companion cross-platform Flutter ERP app featuring 38+ operational screens, real-time financial reporting, AR/AP aging analysis, and OCR-assisted invoice processing with strict server-side validation."}
           </p>
         </div>
       );
@@ -245,21 +194,21 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Multi-user e-commerce panel with interactive design tools &amp; real-time order analytics.
+            {"Multi-user e-commerce panel with interactive design tools & real-time order analytics."}
           </TypographyP>
           <TypographyP className="font-mono">
-            Developed a multi-user e-commerce panel with an integrated design tool, secure OTP authentication, a payment gateway, and separate workflows for bulk and single orders.
+            {"Developed a multi-user e-commerce panel with an integrated design tool, secure OTP authentication, a payment gateway, and separate workflows for bulk and single orders."}
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
-          <TypographyH3 className="my-4 mt-8">Real-Time Analytics &amp; Architecture</TypographyH3>
-          <p className="font-mono mb-2">
-            Built an advanced order analytics module for real-time insights into sales trends, payments, and user activity, enhancing business intelligence and system scalability.
+          <TypographyH3 className="my-4 mt-8">{"Real-Time Analytics & Architecture"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Built an advanced order analytics module for real-time insights into sales trends, payments, and user activity, enhancing business intelligence and system scalability."}
           </p>
 
-          <TypographyH3 className="my-4 mt-8">Comprehensive Admin Operations</TypographyH3>
-          <p className="font-mono mb-2">
-            Engineered a comprehensive admin dashboard that centralized control over 80% of the website’s core functionalities, streamlining operational management and customer fulfillment.
+          <TypographyH3 className="my-4 mt-8">{"Comprehensive Admin Operations"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Engineered a comprehensive admin dashboard that centralized control over 80% of the website’s core functionalities, streamlining operational management and customer fulfillment."}
           </p>
         </div>
       );
@@ -288,21 +237,21 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Full-stack cross-platform rental marketplace with cloud media storage &amp; async queue workers.
+            {"Full-stack cross-platform rental marketplace with cloud media storage & async queue workers."}
           </TypographyP>
           <TypographyP className="font-mono">
-            Developed a full-stack rental platform using Flutter and Node.js with MongoDB, enabling users to list, browse, and rent items with real-time availability.
+            {"Developed a full-stack rental platform using Flutter and Node.js with MongoDB, enabling users to list, browse, and rent items with real-time availability."}
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
-          <TypographyH3 className="my-4 mt-8">AWS S3 Cloud Storage &amp; Secure OTP Authentication</TypographyH3>
-          <p className="font-mono mb-2">
-            Integrated AWS S3 for scalable media storage and implemented Gmail OTP-based authentication, ensuring secure and efficient handling of user data and images.
+          <TypographyH3 className="my-4 mt-8">{"AWS S3 Cloud Storage & Secure OTP Authentication"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Integrated AWS S3 for scalable media storage and implemented Gmail OTP-based authentication, ensuring secure and efficient handling of user data and images."}
           </p>
 
-          <TypographyH3 className="my-4 mt-8">Asynchronous Redis Worker Processing</TypographyH3>
-          <p className="font-mono mb-2">
-            Built an asynchronous processing system using Redis as a message queue and worker processes, enabling scalable background task execution and improving system performance.
+          <TypographyH3 className="my-4 mt-8">{"Asynchronous Redis Worker Processing"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Built an asynchronous processing system using Redis as a message queue and worker processes, enabling scalable background task execution and improving system performance."}
           </p>
         </div>
       );
@@ -315,9 +264,7 @@ const projects: Project[] = [
     src: "/assets/projects-screenshots/file-conversion-preview.svg",
     screenshots: ["file-conversion-preview.svg"],
     skills: {
-      frontend: [
-        PROJECT_SKILLS.docker,
-      ],
+      frontend: [],
       backend: [
         PROJECT_SKILLS.java,
         PROJECT_SKILLS.springBoot,
@@ -334,21 +281,21 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Scalable asynchronous file and media conversion platform powered by RabbitMQ &amp; Spring Boot.
+            {"Scalable asynchronous file and media conversion platform powered by RabbitMQ & Spring Boot."}
           </TypographyP>
           <TypographyP className="font-mono">
-            Built an event-driven file conversion platform using Java, Spring Boot, RabbitMQ, and Docker, enabling asynchronous processing of image conversion requests through scalable worker services.
+            {"Built an event-driven file conversion platform using Java, Spring Boot, RabbitMQ, and Docker, enabling asynchronous processing of image conversion requests through scalable worker services."}
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
-          <TypographyH3 className="my-4 mt-8">Asynchronous Event-Driven Architecture</TypographyH3>
-          <p className="font-mono mb-2">
-            Built an event-driven file conversion platform using Java, Spring Boot, RabbitMQ, and Docker, enabling asynchronous processing of image conversion requests through scalable worker services. Decoupled conversion producers from workers to ensure fault isolation and high throughput.
+          <TypographyH3 className="my-4 mt-8">{"Asynchronous Event-Driven Architecture"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Built an event-driven file conversion platform using Java, Spring Boot, RabbitMQ, and Docker, enabling asynchronous processing of image conversion requests through scalable worker services. Decoupled conversion producers from workers to ensure fault isolation and high throughput."}
           </p>
 
-          <TypographyH3 className="my-4 mt-8">RESTful APIs &amp; Fault-Tolerant Media Processing</TypographyH3>
-          <p className="font-mono mb-2">
-            Developed RESTful APIs for file upload, metadata management, and conversion status tracking, integrating ImageMagick with Spring Data JPA and MySQL for reliable, fault-tolerant file processing.
+          <TypographyH3 className="my-4 mt-8">{"RESTful APIs & Fault-Tolerant Media Processing"}</TypographyH3>
+          <p className="font-mono mb-2 text-zinc-300">
+            {"Developed RESTful APIs for file upload, metadata management, and conversion status tracking, integrating ImageMagick with Spring Data JPA and MySQL for reliable, fault-tolerant file processing."}
           </p>
         </div>
       );

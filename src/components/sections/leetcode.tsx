@@ -106,6 +106,7 @@ export const LeetcodeSection = () => {
                     </span>
                   </div>
                   <button
+                    type="button"
                     onClick={fetchStats}
                     disabled={loading}
                     title="Refresh data"
@@ -117,7 +118,7 @@ export const LeetcodeSection = () => {
 
                 <div className="flex items-baseline gap-3 mb-6" suppressHydrationWarning>
                   <span className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#ff9d9f]">
-                    {stats.totalSolved}+
+                    {`${stats.totalSolved}+`}
                   </span>
                   <span className="font-sans text-sm text-zinc-300">
                     Problems Solved Across Categories
@@ -130,8 +131,8 @@ export const LeetcodeSection = () => {
                     <div className="flex justify-between mb-1">
                       <span className="text-zinc-300">Easy</span>
                       <span className="font-semibold text-white">
-                        {stats.easySolved}
-                        <span className="text-zinc-500 text-[10px] ml-1">/{stats.totalEasy || 978}</span>
+                        <span>{stats.easySolved}</span>
+                        <span className="text-zinc-500 text-[10px] ml-1">{`/${stats.totalEasy || 978}`}</span>
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -146,8 +147,8 @@ export const LeetcodeSection = () => {
                     <div className="flex justify-between mb-1">
                       <span className="text-zinc-300">Medium</span>
                       <span className="font-semibold text-white">
-                        {stats.mediumSolved}
-                        <span className="text-zinc-500 text-[10px] ml-1">/{stats.totalMedium || 2152}</span>
+                        <span>{stats.mediumSolved}</span>
+                        <span className="text-zinc-500 text-[10px] ml-1">{`/${stats.totalMedium || 2152}`}</span>
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -162,8 +163,8 @@ export const LeetcodeSection = () => {
                     <div className="flex justify-between mb-1">
                       <span className="text-zinc-300">Hard</span>
                       <span className="font-semibold text-white">
-                        {stats.hardSolved}
-                        <span className="text-zinc-500 text-[10px] ml-1">/{stats.totalHard || 993}</span>
+                        <span>{stats.hardSolved}</span>
+                        <span className="text-zinc-500 text-[10px] ml-1">{`/${stats.totalHard || 993}`}</span>
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -178,7 +179,7 @@ export const LeetcodeSection = () => {
 
               <div className="pt-5 mt-6 border-t border-white/[0.06] flex items-center justify-between">
                 <span className="font-mono text-xs text-zinc-400" suppressHydrationWarning>
-                  Global Rank: #{stats.ranking ? stats.ranking.toLocaleString("en-US") : "256,449"}
+                  {`Global Rank: #${stats.ranking ? stats.ranking.toLocaleString("en-US") : "256,449"}`}
                 </span>
                 {config.social.leetcode && (
                   <a
@@ -199,7 +200,7 @@ export const LeetcodeSection = () => {
               <div>
                 <div className="flex items-center justify-between pb-3 mb-5 border-b border-white/[0.06]">
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
-                    Topic Breakdown &amp; Algorithmic Mastery
+                    {"Topic Breakdown & Algorithmic Mastery"}
                   </span>
                   <span className="font-mono text-xs text-zinc-400">DSA Telemetry</span>
                 </div>
@@ -214,7 +215,7 @@ export const LeetcodeSection = () => {
                         {topic.name}
                       </span>
                       <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-[3px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25" suppressHydrationWarning>
-                        {topic.solved}+
+                        {`${topic.solved}+`}
                       </span>
                     </div>
                   ))}
@@ -271,7 +272,7 @@ export const LeetcodeSection = () => {
                   <h3 className="font-display text-base font-bold text-white truncate">
                     500+ Algorithmic Problems Solved
                   </h3>
-                  <span className="font-mono text-xs text-zinc-400 shrink-0">LeetCode &amp; GFG</span>
+                  <span className="font-mono text-xs text-zinc-400 shrink-0">{"LeetCode & GFG"}</span>
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed mb-2">
                   Demonstrated mastery across Data Structures, Algorithms, Dynamic Programming, Graphs, and Greedy heuristics on LeetCode &amp; GeeksforGeeks.
@@ -290,14 +291,14 @@ export const LeetcodeSection = () => {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <h3 className="font-display text-base font-bold text-white truncate">
-                    Sharda University — B.Tech CSE
+                    {"Sharda University — B.Tech CSE"}
                   </h3>
                   <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
                     CGPA: 8.0
                   </span>
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                  B.Tech in Computer Science &amp; Engineering. Core curriculum in Operating Systems, Database Management Systems, Computer Networks, and Object-Oriented Analysis.
+                  {"B.Tech in Computer Science & Engineering. Core curriculum in Operating Systems, Database Management Systems, Computer Networks, and Object-Oriented Analysis."}
                 </p>
               </div>
             </div>
@@ -310,9 +311,9 @@ export const LeetcodeSection = () => {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <h3 className="font-display text-base font-bold text-white truncate">
-                    Full-Stack &amp; Enterprise Production Software
+                    {"Full-Stack & Enterprise Production Software"}
                   </h3>
-                  <span className="font-mono text-xs text-zinc-400 shrink-0">2025–2026</span>
+                  <span className="font-mono text-xs text-zinc-400 shrink-0">{"2025–2026"}</span>
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed">
                   Architected production-ready platforms including FinixBooks, DucoArt, LandSathi, and high-throughput RabbitMQ file conversion pipelines.

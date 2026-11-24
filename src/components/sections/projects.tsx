@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
-  ResponsiveDialog,
-  ResponsiveDialogContent,
-  ResponsiveDialogTrigger,
-} from "../ui/responsive-dialog";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
-import Link from "next/link";
-import { ArrowUpRight, ExternalLink, Code2 } from "lucide-react";
+import { ArrowUpRight, Code2 } from "lucide-react";
 import projects, { Project } from "@/data/projects";
 import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
@@ -37,6 +37,8 @@ const PROJECT_META: Record<string, { tag: string; brief: string }> = {
 };
 
 const ProjectsSection = () => {
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+
   return (
     <SectionWrapper id="projects" className="w-full py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
@@ -50,19 +52,88 @@ const ProjectsSection = () => {
         {/* 2x2 Grid of Atelier Crimson Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onOpenDetails={() => setActiveProject(project)}
+            />
           ))}
         </div>
+
+        {/* Single Controlled Dialog - 0 SlotClone hydration mismatch */}
+        <Dialog
+          open={activeProject !== null}
+          onOpenChange={(open) => {
+            if (!open) setActiveProject(null);
+          }}
+        >
+          {activeProject && (
+            <DialogContent className="max-w-3xl bg-[#1b1b1f] border border-[#8b1e2b]/40 text-zinc-100 p-6 md:p-8 rounded-xl shadow-2xl">
+              <div className="pb-4 mb-6 border-b border-white/[0.08] flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-xs uppercase text-[#ff9d9f] font-semibold">
+                    {PROJECT_META[activeProject.id]?.tag || "ENGINEERING // v1.0"}
+                  </span>
+                  <DialogTitle className="font-display text-2xl font-bold tracking-tight text-white mt-1">
+                    {activeProject.title}
+                  </DialogTitle>
+                </div>
+                {activeProject.live && activeProject.live !== "#" && (
+                  <a
+                    href={activeProject.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-[4px] bg-[#8b1e2b] text-white text-xs font-mono font-semibold hover:bg-[#721422] transition-colors"
+                  >
+                    <span>Visit</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+
+              <ScrollArea className="max-h-[60vh] pr-4">
+                <div className="space-y-6">
+                  {activeProject.src && (
+                    <div className="w-full h-64 rounded-lg overflow-hidden border border-white/10 bg-zinc-950">
+                      <img
+                        src={activeProject.src}
+                        alt={activeProject.title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                  )}
+                  <div className="font-sans text-sm md:text-base leading-relaxed text-zinc-300">
+                    {activeProject.content}
+                  </div>
+                </div>
+              </ScrollArea>
+            </DialogContent>
+          )}
+        </Dialog>
       </div>
     </SectionWrapper>
   );
 };
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = ({
+  project,
+  onOpenDetails,
+}: {
+  project: Project;
+  onOpenDetails: () => void;
+}) => {
   const meta = PROJECT_META[project.id] || {
     tag: "ENGINEERING // v1.0",
     brief: project.category,
   };
+
+  const skillsList = Array.from(
+    new Map(
+      project.skills.frontend
+        .concat(project.skills.backend)
+        .map((s) => [s.title, s])
+    ).values()
+  ).slice(0, 5);
 
   return (
     <div className="group rounded-lg bg-[#232328] border border-white/[0.08] hover:border-[#8b1e2b]/60 transition-all p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.15)]">
@@ -112,9 +183,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
       {/* Bottom Rail: Tech Stack Chips & Action Trigger */}
       <div>
         <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.skills.frontend.concat(project.skills.backend).slice(0, 5).map((skill) => (
+          {skillsList.map((skill) => (
             <span
-              key={skill.title}
+              key={`${project.id}-${skill.title}`}
               className="font-mono text-[11px] font-medium px-2 py-0.5 rounded-[3px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25"
             >
               {skill.title}
@@ -149,54 +220,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
             )}
           </div>
 
-          {/* Dialog trigger for in-depth architectural breakdown */}
-          <ResponsiveDialog>
-            <ResponsiveDialogTrigger asChild>
-              <button className="text-xs font-mono text-zinc-400 hover:text-[#ff9d9f] transition-colors underline-offset-4 hover:underline">
-                Details →
-              </button>
-            </ResponsiveDialogTrigger>
-            <ResponsiveDialogContent className="max-w-3xl bg-[#1b1b1f] border border-[#8b1e2b]/40 text-zinc-100 p-6 md:p-8 rounded-xl shadow-2xl">
-              <div className="pb-4 mb-6 border-b border-white/[0.08] flex items-center justify-between">
-                <div>
-                  <span className="font-mono text-xs uppercase text-[#ff9d9f] font-semibold">
-                    {meta.tag}
-                  </span>
-                  <h3 className="font-display text-2xl font-bold tracking-tight text-white mt-1">
-                    {project.title}
-                  </h3>
-                </div>
-                {project.live && project.live !== "#" && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-[4px] bg-[#8b1e2b] text-white text-xs font-mono font-semibold hover:bg-[#721422] transition-colors"
-                  >
-                    <span>Visit</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                )}
-              </div>
-
-              <ScrollArea className="max-h-[60vh] pr-4">
-                <div className="space-y-6">
-                  {project.src && (
-                    <div className="w-full h-64 rounded-lg overflow-hidden border border-white/10 bg-zinc-950">
-                      <img
-                        src={project.src}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-top"
-                      />
-                    </div>
-                  )}
-                  <div className="font-sans text-sm md:text-base leading-relaxed text-zinc-300">
-                    {project.content}
-                  </div>
-                </div>
-              </ScrollArea>
-            </ResponsiveDialogContent>
-          </ResponsiveDialog>
+          <button
+            type="button"
+            onClick={onOpenDetails}
+            className="text-xs font-mono text-zinc-400 hover:text-[#ff9d9f] transition-colors underline-offset-4 hover:underline"
+          >
+            {"Details →"}
+          </button>
         </div>
       </div>
     </div>

@@ -77,7 +77,7 @@ export const SkillsSection = () => {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="font-mono text-[11px] font-medium px-2.5 py-1 rounded-[4px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25 hover:border-[#8b1e2b]/50 hover:bg-[#3d151c] transition-colors select-none"
+                      className="font-mono text-[11px] font-medium px-2.5 py-1 rounded-[4px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25 hover:border-[#8b1e2b]/50 hover:bg-[#3d151c] transition-colors"
                     >
                       {skill}
                     </span>
