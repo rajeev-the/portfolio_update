@@ -115,7 +115,7 @@ export const LeetcodeSection = () => {
                   </button>
                 </div>
 
-                <div className="flex items-baseline gap-3 mb-6">
+                <div className="flex items-baseline gap-3 mb-6" suppressHydrationWarning>
                   <span className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#8b1e2b] dark:text-[#ff9d9f]">
                     {stats.totalSolved}+
                   </span>
@@ -125,7 +125,7 @@ export const LeetcodeSection = () => {
                 </div>
 
                 {/* Difficulty Bars */}
-                <div className="space-y-3 font-mono text-xs">
+                <div className="space-y-3 font-mono text-xs" suppressHydrationWarning>
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-[#574141] dark:text-zinc-300">Easy</span>
@@ -204,7 +204,7 @@ export const LeetcodeSection = () => {
                   <span className="font-mono text-xs text-[#8b7171]">DSA Telemetry</span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4" suppressHydrationWarning>
                   {topics.map((topic) => (
                     <div
                       key={topic.name}
@@ -213,7 +213,7 @@ export const LeetcodeSection = () => {
                       <span className="font-sans text-xs font-medium text-[#1b1b1f] dark:text-zinc-200">
                         {topic.name}
                       </span>
-                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-[3px] bg-[#f3e8e8] dark:bg-[#2a0e13] text-[#721422] dark:text-[#ff9e98] border border-[#8b1e2b]/15">
+                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-[3px] bg-[#f3e8e8] dark:bg-[#2a0e13] text-[#721422] dark:text-[#ff9e98] border border-[#8b1e2b]/15" suppressHydrationWarning>
                         {topic.solved}+
                       </span>
                     </div>
