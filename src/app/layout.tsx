@@ -82,7 +82,7 @@ export default function RootLayout({
       ].join(" ")}
       suppressHydrationWarning
     >
-      <head>
+      <body suppressHydrationWarning className="bg-[#1b1b1f] text-[#fbf8fe]">
         {process.env.UMAMI_SITE_ID && (
           <Script
             defer
@@ -90,8 +90,6 @@ export default function RootLayout({
             data-website-id={process.env.UMAMI_SITE_ID}
           />
         )}
-      </head>
-      <body suppressHydrationWarning className="bg-[#1b1b1f] text-[#fbf8fe]">
         <Providers>
           <SiteFrame>{children}</SiteFrame>
         </Providers>
