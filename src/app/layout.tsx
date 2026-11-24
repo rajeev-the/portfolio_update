@@ -91,7 +91,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body>
+      <body suppressHydrationWarning className="bg-[#1b1b1f] text-[#fbf8fe]">
         <Providers>
           <SiteFrame>{children}</SiteFrame>
         </Providers>
