@@ -1,169 +1,98 @@
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import React from "react";
-import { Button } from "../ui/button";
-import { File, Github, Linkedin } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { usePreloader } from "../preloader";
-import { BlurIn, BoxReveal } from "../reveal-animations";
-import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiLeetcode, SiX } from "react-icons/si";
-import { config } from "@/data/config";
+"use client";
 
+import React from "react";
+import { config } from "@/data/config";
+import { Mail, ArrowDown, ArrowUpRight, FileText } from "lucide-react";
 import SectionWrapper from "../ui/section-wrapper";
-import HeroTerminal from "../hero-terminal";
+import ActivityHeatmap from "../activity-heatmap";
 
 const HeroSection = () => {
-  const { isLoading } = usePreloader();
-
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full min-h-screen pb-16 md:pb-0")}>
-      <div className="grid md:grid-cols-2 items-center">
-        <div
-          className={cn(
-            "h-auto md:h-[calc(100dvh-4rem)] z-[2]",
-            "col-span-1 w-full",
-            "flex flex-col justify-start md:justify-center items-start",
-            "px-4 pt-20 pb-6 sm:px-8 sm:pb-12 md:p-16 lg:p-20 xl:p-24"
-          )}
-        >
-          {!isLoading && (
-            <div className="flex flex-col w-full max-w-full">
-              <div>
-                <BlurIn delay={0.7}>
-                  <p
-                    className={cn(
-                      "mt-2 sm:mt-4 font-medium text-sm sm:text-lg md:text-xl text-slate-500 dark:text-zinc-400",
-                      "cursor-default whitespace-nowrap bg-clip-text"
-                    )}
-                  >
-                    Hi, I am
-                  </p>
-                </BlurIn>
+    <SectionWrapper id="hero" className="w-full pt-28 pb-14 md:pt-36 md:pb-20">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+        {/* Status Pill */}
+        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#f3e8e8] dark:bg-[#2a0e13] border border-[#8b1e2b]/20 text-[#8b1e2b] dark:text-[#ff9d9f] text-xs font-mono font-medium mb-5 select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#8b1e2b] animate-pulse" />
+          <span>Available for hire</span>
+        </div>
 
-                <BlurIn delay={1}>
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <h1
-                        className={cn(
-                          "leading-none text-transparent text-slate-800 text-left",
-                          "font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
-                          "cursor-default text-edge-outline font-display tracking-tight break-words mt-2"
-                        )}
-                      >
-                        {config.author.split(" ")[0]}
-                        <br />
-                        {config.author.split(" ")[1]}
-                      </h1>
-                    </TooltipTrigger>
-                    <TooltipContent
-                      side="top"
-                      className="dark:bg-white dark:text-black"
-                    >
-                      theres something waiting for you in devtools
-                    </TooltipContent>
-                  </Tooltip>
-                </BlurIn>
-                {/* <div className="md:block hidden bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 w-screen h-px animate-fade-right animate-glow" /> */}
-                <BlurIn delay={1.2}>
-                  <p
-                    className={cn(
-                      "md:self-start md:mt-4 font-medium text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
-                    )}
-                  >
-                    Software Developer
-                  </p>
-                </BlurIn>
-              </div>
-              <div className="mt-8 flex flex-col gap-3 w-fit">
-                <Link
-                  href="/rajeev_sdd.pdf"
-                  target="_blank"
-                  className="flex-1"
-                >
-                  <BoxReveal delay={2} width="100%" >
-                    <Button className="flex items-center gap-2 w-full">
-                      <File size={24} />
-                      <p>Resume</p>
-                    </Button>
-                  </BoxReveal>
-                </Link>
-                <div className="md:self-start flex gap-3">
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <Link href={"#contact"}>
-                        <Button
-                          variant={"outline"}
-                          className="block w-full overflow-hidden"
-                        >
-                          Hire Me
-                        </Button>
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom">
-                      <p>pls 🥹 🙏</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <div className="flex items-center h-full gap-2">
-                    {config.social.leetcode && (
-                      <Link
-                        href={config.social.leetcode}
-                        target="_blank"
-                        className="cursor-can-hover"
-                        aria-label="LeetCode Profile"
-                      >
-                        <Button variant={"outline"} size="icon" className="size-10 text-amber-500 hover:text-amber-400">
-                          <SiLeetcode size={20} />
-                        </Button>
-                      </Link>
-                    )}
-                    {config.social.github && (
-                      <Link
-                        href={config.social.github}
-                        target="_blank"
-                        className="cursor-can-hover"
-                        aria-label="GitHub Profile"
-                      >
-                        <Button variant={"outline"} size="icon" className="size-10">
-                          <SiGithub size={20} />
-                        </Button>
-                      </Link>
-                    )}
-                    {config.social.linkedin && (
-                      <Link
-                        href={config.social.linkedin}
-                        target="_blank"
-                        className="cursor-can-hover"
-                        aria-label="LinkedIn Profile"
-                      >
-                        <Button variant={"outline"} size="icon" className="size-10">
-                          <SiLinkedin size={20} />
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Headline */}
+        <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.12] text-[#1b1b1f] dark:text-[#fbf8fe] mb-4 max-w-4xl">
+          Rajeev Ranjan —{" "}
+          <span className="text-[#8b1e2b] dark:text-[#ff9d9f]">
+            Software Developer.
+          </span>
+        </h1>
+
+        {/* Concise Narrative */}
+        <p className="font-sans text-base sm:text-lg text-[#574141] dark:text-zinc-300 leading-relaxed max-w-2xl mb-8">
+          Building backend services, financial ledger engines, and cross-platform applications with Java, Spring Boot, Node.js, Flutter, and AWS.
+        </p>
+
+        {/* Action Row */}
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <a
+            href={`mailto:${config.email}`}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-[4px] bg-[#8b1e2b] hover:bg-[#721422] text-white text-xs sm:text-sm font-mono font-semibold tracking-wide transition-all shadow-xs active:translate-y-[1px]"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            <span>{config.email}</span>
+          </a>
+
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[4px] border border-black/15 dark:border-white/15 hover:border-[#8b1e2b] text-[#1b1b1f] dark:text-zinc-200 hover:text-[#8b1e2b] text-xs sm:text-sm font-medium transition-colors"
+          >
+            <span>Projects</span>
+            <ArrowDown className="w-3.5 h-3.5" />
+          </a>
+
+          <a
+            href="/rajeev_sdd.pdf"
+            target="_blank"
+            className="inline-flex items-center gap-1 px-3 py-2 text-xs sm:text-sm font-mono text-[#574141] dark:text-zinc-300 hover:text-[#8b1e2b] transition-colors"
+          >
+            <FileText className="w-3.5 h-3.5 text-[#8b1e2b]" />
+            <span>Resume</span>
+            <ArrowUpRight className="w-3 h-3 opacity-70" />
+          </a>
+        </div>
+
+        {/* Monospace Quick Links */}
+        <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-[#574141] dark:text-zinc-400">
+          {config.social.github && (
+            <a
+              href={config.social.github}
+              target="_blank"
+              className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
+            >
+              GitHub ↗
+            </a>
+          )}
+          <span>•</span>
+          {config.social.linkedin && (
+            <a
+              href={config.social.linkedin}
+              target="_blank"
+              className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
+            >
+              LinkedIn ↗
+            </a>
+          )}
+          <span>•</span>
+          {config.social.leetcode && (
+            <a
+              href={config.social.leetcode}
+              target="_blank"
+              className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
+            >
+              LeetCode ↗
+            </a>
           )}
         </div>
 
-        {/* Right Column: Interactive Hero Terminal (Visible on Mobile & Desktop) */}
-        <div className="flex col-span-1 items-center justify-center px-4 pb-12 sm:px-6 md:p-8 lg:p-12 z-[2] w-full">
-          {!isLoading && (
-            <BlurIn delay={1.4} className="w-full max-w-lg">
-              <HeroTerminal />
-            </BlurIn>
-          )}
-        </div>
-      </div>
-      <div className="absolute bottom-6 md:bottom-10 left-[50%] translate-x-[-50%] hidden sm:block">
-        <ScrollDownIcon />
+        {/* GitHub Heatmap - 100% visible immediately */}
+        <ActivityHeatmap />
       </div>
     </SectionWrapper>
   );

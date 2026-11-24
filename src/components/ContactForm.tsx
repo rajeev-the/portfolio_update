@@ -81,60 +81,66 @@ const ContactForm = () => {
     setLoading(false);
   };
   return (
-    <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit} aria-busy={loading}>
-      <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+    <form className="w-full sm:mt-2" onSubmit={handleSubmit} aria-busy={loading}>
+      <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 mb-4">
         <LabelInputContainer>
-          <Label htmlFor="fullname">Full name</Label>
+          <Label htmlFor="fullname" className="text-xs font-mono font-medium text-[#574141] dark:text-zinc-300">
+            Full Name
+          </Label>
           <Input
             id="fullname"
             placeholder="Your Name"
             type="text"
             value={fullName}
             onChange={(e) => { setFullName(e.target.value); setErrors((p) => ({ ...p, fullName: undefined })); }}
+            className="rounded-[4px] border-black/[0.12] dark:border-white/[0.12] focus:border-[#8b1e2b] focus:ring-[#8b1e2b]/20"
           />
-          {errors.fullName && <p className="text-sm text-red-500">{errors.fullName}</p>}
+          {errors.fullName && <p className="text-xs text-red-600 mt-1">{errors.fullName}</p>}
         </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
+        <LabelInputContainer>
+          <Label htmlFor="email" className="text-xs font-mono font-medium text-[#574141] dark:text-zinc-300">
+            Email Address
+          </Label>
           <Input
             id="email"
             placeholder="you@example.com"
             type="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: undefined })); }}
+            className="rounded-[4px] border-black/[0.12] dark:border-white/[0.12] focus:border-[#8b1e2b] focus:ring-[#8b1e2b]/20"
           />
-          {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+          {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
         </LabelInputContainer>
       </div>
-      <div className="grid w-full gap-1.5 mb-4">
-        <Label htmlFor="content">Your Message</Label>
+      <div className="grid w-full gap-1.5 mb-5">
+        <Label htmlFor="content" className="text-xs font-mono font-medium text-[#574141] dark:text-zinc-300">
+          Your Message
+        </Label>
         <Textarea
-          placeholder="Tell me about about your project,"
+          placeholder="Briefly describe your project, timeline, or engineering inquiry..."
           id="content"
           value={message}
           onChange={(e) => { setMessage(e.target.value); setErrors((p) => ({ ...p, message: undefined })); }}
+          className="rounded-[4px] border-black/[0.12] dark:border-white/[0.12] focus:border-[#8b1e2b] focus:ring-[#8b1e2b]/20 min-h-[100px]"
         />
-        {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
-        <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
-        </p>
+        {errors.message && <p className="text-xs text-red-600 mt-1">{errors.message}</p>}
       </div>
       <Button
         disabled={loading}
-        className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+        className="w-full h-11 rounded-[4px] bg-[#8b1e2b] hover:bg-[#721422] text-white font-mono text-xs font-semibold tracking-wider uppercase transition-all shadow-sm active:translate-y-[1px]"
         type="submit"
       >
         {loading ? (
-          <div className="flex items-center justify-center">
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            <p>Please wait</p>
+          <div className="flex items-center justify-center gap-2">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span>Sending Message...</span>
           </div>
         ) : (
-          <div className="flex items-center justify-center">
-            Send Message <ChevronRight className="w-4 h-4 ml-4" />
+          <div className="flex items-center justify-center gap-2">
+            <span>Send Message</span>
+            <ChevronRight className="w-4 h-4" />
           </div>
         )}
-        <BottomGradient />
       </Button>
     </form>
   );

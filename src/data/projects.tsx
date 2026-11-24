@@ -14,6 +14,7 @@ import {
   SiSpring,
   SiFlutter,
   SiDjango,
+  SiElectron,
 } from "react-icons/si";
 import { FaJava, FaAws } from "react-icons/fa";
 
@@ -117,6 +118,12 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiFlutter className="size-4 text-[#02569b]" />,
   },
+  electron: {
+    title: "Electron",
+    bg: "black",
+    fg: "white",
+    icon: <SiElectron className="size-4 text-[#47848f]" />,
+  },
   java: {
     title: "Java",
     bg: "black",
@@ -168,6 +175,52 @@ export type Project = {
 };
 
 const projects: Project[] = [
+  {
+    id: "finixbooks",
+    category: "Enterprise ERP & Ledger Engine",
+    title: "FinixBooks: Enterprise Financial Ledger & Tally Sync",
+    src: "/assets/projects-screenshots/finixbooks-preview.svg",
+    screenshots: ["finixbooks-preview.svg"],
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.flutter,
+        PROJECT_SKILLS.electron,
+        PROJECT_SKILLS.ts,
+      ],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.express,
+        PROJECT_SKILLS.mongo,
+      ],
+    },
+    live: "https://finixbooks.vercel.app/",
+    github: "https://github.com/rajeev-the",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            Enterprise double-entry ledger ERP with integer-paise precision &amp; bidirectional Tally sync.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Designed a server-authoritative ERP architecture with a unified MongoDB voucher schema for 8+ transaction types, append-only financial records, and integer-paise precision for accurate monetary calculations.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+
+          <TypographyH3 className="my-4 mt-8">Transactional Posting Engine &amp; Balanced Ledger</TypographyH3>
+          <p className="font-mono mb-2">
+            Built a high-integrity transactional posting engine with balanced ledger validation (Debits = Credits), automated GST splits (CGST, SGST, IGST), atomic voucher sequencing, idempotency checks, multi-tenant data isolation, and role-based access control (RBAC).
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">Electron Tally Bridge &amp; Flutter Client Suite</TypographyH3>
+          <p className="font-mono mb-2">
+            Engineered an Electron-based bidirectional Tally sync bridge and a companion cross-platform Flutter ERP app featuring 38+ operational screens, real-time financial reporting, AR/AP aging analysis, and OCR-assisted invoice processing with strict server-side validation.
+          </p>
+        </div>
+      );
+    },
+  },
   {
     id: "duco",
     category: "E-Commerce & Custom Design",

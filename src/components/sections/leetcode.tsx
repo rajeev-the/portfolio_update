@@ -1,25 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import SectionWrapper from "../ui/section-wrapper";
 import { SectionHeader } from "./section-header";
-import { config } from "@/data/config";
-import { cn } from "@/lib/utils";
-import {
-  Code2,
-  Flame,
-  Award,
-  ExternalLink,
-  RefreshCw,
-  Trophy,
-  Zap,
-  TrendingUp,
-  Brain,
-  CheckCircle2,
-} from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
+import {
+  Trophy,
+  GraduationCap,
+  Award,
+  ArrowUpRight,
+  RefreshCw,
+  CheckCircle2,
+  Code2,
+} from "lucide-react";
+import { config } from "@/data/config";
 
-interface StatsData {
+interface LeetCodeStats {
   totalSolved: number;
   totalQuestions: number;
   easySolved: number;
@@ -28,41 +25,46 @@ interface StatsData {
   totalMedium: number;
   hardSolved: number;
   totalHard: number;
-  acceptanceRate: number;
-  ranking: number;
-  contributionPoints: number;
-  reputation: number;
+  ranking?: number;
 }
 
 const TOPICS = [
-  { name: "Dynamic Programming", solved: 64, color: "from-violet-500 to-purple-600" },
-  { name: "Trees & Graphs", solved: 82, color: "from-cyan-400 to-blue-500" },
-  { name: "Arrays & Hashing", solved: 145, color: "from-fuchsia-500 to-pink-500" },
-  { name: "Binary Search", solved: 48, color: "from-teal-400 to-emerald-500" },
-  { name: "Backtracking & Recursion", solved: 36, color: "from-indigo-400 to-violet-500" },
-  { name: "Stack / Queue / Heap", solved: 55, color: "from-sky-400 to-cyan-500" },
+  { name: "Binary Search", solved: 65 },
+  { name: "Dynamic Programming", solved: 85 },
+  { name: "Trees & Graphs", solved: 95 },
+  { name: "Array & Two Pointers", solved: 140 },
+  { name: "Stack & Queues", solved: 55 },
+  { name: "Heap & Greedy", solved: 60 },
 ];
 
 export const LeetcodeSection = () => {
-  const [stats, setStats] = useState<StatsData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
+  const [stats, setStats] = useState<LeetCodeStats>({
+    totalSolved: 500,
+    totalQuestions: 3300,
+    easySolved: 210,
+    totalEasy: 830,
+    mediumSolved: 240,
+    totalMedium: 1750,
+    hardSolved: 50,
+    totalHard: 720,
+    ranking: 185000,
+  });
+  const [loading, setLoading] = useState(false);
 
   const fetchStats = async () => {
+    setLoading(true);
     try {
-      setRefreshing(true);
-      const res = await fetch(
-        `/api/leetcode?username=${encodeURIComponent(
-          config.leetcodeUsername || "rajeevranjan_8860"
-        )}`
-      );
-      const data = await res.json();
-      setStats(data);
+      const res = await fetch("/api/leetcode");
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.totalSolved) {
+          setStats(data);
+        }
+      }
     } catch {
-      // Fallback
+      // fallback retained
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
   };
 
@@ -70,244 +72,238 @@ export const LeetcodeSection = () => {
     fetchStats();
   }, []);
 
-  const totalSolved = stats?.totalSolved ?? 512;
-  const totalQuestions = stats?.totalQuestions ?? 3340;
-  const easySolved = stats?.easySolved ?? 192;
-  const totalEasy = stats?.totalEasy ?? 830;
-  const mediumSolved = stats?.mediumSolved ?? 268;
-  const totalMedium = stats?.totalMedium ?? 1760;
-  const hardSolved = stats?.hardSolved ?? 52;
-  const totalHard = stats?.totalHard ?? 750;
-  const acceptanceRate = stats?.acceptanceRate ?? 68.2;
-  const ranking = stats?.ranking ?? 34120;
-
-  // Percentage calculations
-  const totalPct = Math.min(Math.round((totalSolved / totalQuestions) * 100), 100);
-  const easyPct = Math.min(Math.round((easySolved / totalEasy) * 100), 100);
-  const mediumPct = Math.min(Math.round((mediumSolved / totalMedium) * 100), 100);
-  const hardPct = Math.min(Math.round((hardSolved / totalHard) * 100), 100);
-
-  // SVG Radial constants
-  const radius = 68;
-  const circumference = 2 * Math.PI * radius;
-  const strokeOffset = circumference - (totalPct / 100) * circumference;
-
   return (
-    <SectionWrapper id="competitive-programming" className="w-full py-20 relative overflow-hidden">
-      {/* Background ambient neon glow */}
-      <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl" />
-      <div className="pointer-events-none absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl" />
+    <>
+      {/* Section 04: Competitive Programming */}
+      <SectionWrapper id="competitive-programming" className="w-full py-16 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <SectionHeader
+            id="competitive-programming"
+            eyebrow="04 / PROBLEM SOLVING & METRICS"
+            title="Competitive Programming"
+            desc="Algorithmic problem-solving, data structures & live LeetCode telemetry."
+          />
 
-      <SectionHeader
-        id="competitive-programming"
-        title="Competitive Programming"
-        desc="Algorithmic problem-solving, data structures & live LeetCode stats"
-        className="static mb-12"
-      />
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pointer-events-auto">
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          
-          {/* Left Column: Radial Chart & Primary Metrics */}
-          <div className="lg:col-span-5 rounded-3xl p-6 sm:p-8 bg-zinc-900/60 dark:bg-zinc-950/70 border border-violet-500/30 backdrop-blur-xl shadow-[0_0_40px_-15px_rgba(139,92,246,0.3)] flex flex-col justify-between relative group hover:border-violet-500/50 transition-all duration-300">
-            {/* Corner Badge */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/15 border border-violet-500/30 text-violet-400 text-xs font-semibold uppercase tracking-wider">
-                <SiLeetcode className="size-4 text-amber-500" />
-                <span>LeetCode Metrics</span>
-              </div>
-              <button
-                onClick={fetchStats}
-                disabled={refreshing}
-                title="Refresh Live Data"
-                className="p-2 rounded-xl bg-zinc-800/80 hover:bg-violet-600/20 text-zinc-400 hover:text-cyan-400 transition-colors border border-zinc-700/50"
-              >
-                <RefreshCw className={cn("size-4", refreshing && "animate-spin text-cyan-400")} />
-              </button>
-            </div>
-
-            {/* Circular Gauge */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 my-4">
-              <div className="relative size-44 flex items-center justify-center">
-                <svg className="size-full -rotate-90" viewBox="0 0 160 160">
-                  {/* Track */}
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r={radius}
-                    className="stroke-zinc-800"
-                    strokeWidth="12"
-                    fill="transparent"
-                  />
-                  {/* Neon Glow Gradient Definition */}
-                  <defs>
-                    <linearGradient id="cyberGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#a855f7" />
-                      <stop offset="50%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#06b6d4" />
-                    </linearGradient>
-                  </defs>
-                  {/* Progress Arc */}
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r={radius}
-                    stroke="url(#cyberGradient)"
-                    strokeWidth="12"
-                    fill="transparent"
-                    strokeDasharray={circumference}
-                    strokeDashoffset={strokeOffset}
-                    strokeLinecap="round"
-                    className="transition-all duration-1000 ease-out"
-                  />
-                </svg>
-
-                {/* Center Content */}
-                <div className="absolute flex flex-col items-center justify-center text-center">
-                  <span className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                    {loading ? "..." : totalSolved}
-                  </span>
-                  <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider mt-0.5">
-                    Solved
-                  </span>
-                </div>
-              </div>
-
-              {/* Progress Breakdown */}
-              <div className="flex flex-col gap-3 w-full sm:w-auto">
-                {/* Easy */}
-                <div className="flex items-center justify-between sm:justify-start gap-4 text-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            {/* Left Card: Live Metrics Summary */}
+            <div className="lg:col-span-5 p-6 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 mb-5 border-b border-black/[0.06] dark:border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <span className="size-3 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
-                    <span className="text-zinc-300 font-medium">Easy</span>
-                  </div>
-                  <span className="font-bold text-foreground">
-                    {easySolved} <span className="text-xs text-zinc-500 font-normal">/ {totalEasy}</span>
-                  </span>
-                </div>
-
-                {/* Medium */}
-                <div className="flex items-center justify-between sm:justify-start gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="size-3 rounded-full bg-violet-500 shadow-[0_0_8px_#a855f7]" />
-                    <span className="text-zinc-300 font-medium">Medium</span>
-                  </div>
-                  <span className="font-bold text-foreground">
-                    {mediumSolved} <span className="text-xs text-zinc-500 font-normal">/ {totalMedium}</span>
-                  </span>
-                </div>
-
-                {/* Hard */}
-                <div className="flex items-center justify-between sm:justify-start gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="size-3 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" />
-                    <span className="text-zinc-300 font-medium">Hard</span>
-                  </div>
-                  <span className="font-bold text-foreground">
-                    {hardSolved} <span className="text-xs text-zinc-500 font-normal">/ {totalHard}</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Link to LeetCode Profile */}
-            <a
-              href={config.social.leetcode || "https://leetcode.com"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 text-white font-medium text-sm transition-all duration-300 shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)] hover:shadow-[0_0_30px_0px_rgba(6,182,212,0.6)]"
-            >
-              <span>View LeetCode Profile</span>
-              <ExternalLink className="size-4" />
-            </a>
-          </div>
-
-          {/* Right Column: Key Stats & Topic Distribution */}
-          <div className="lg:col-span-7 flex flex-col justify-between gap-6">
-            
-            {/* 3 Highlight Stat Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {/* Card 1: Global Rank */}
-              <div className="p-5 rounded-2xl bg-zinc-900/60 dark:bg-zinc-950/70 border border-violet-500/20 backdrop-blur-md flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
-                <div className="flex items-center justify-between text-violet-400 mb-2">
-                  <span className="text-xs uppercase font-bold tracking-wider text-muted-foreground">Global Rank</span>
-                  <Trophy className="size-5 text-amber-400" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">
-                  #{loading ? "..." : ranking.toLocaleString()}
-                </div>
-                <div className="text-xs text-cyan-400 mt-1 flex items-center gap-1">
-                  <TrendingUp className="size-3" /> Top tier global percentile
-                </div>
-              </div>
-
-              {/* Card 2: Acceptance Rate */}
-              <div className="p-5 rounded-2xl bg-zinc-900/60 dark:bg-zinc-950/70 border border-violet-500/20 backdrop-blur-md flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
-                <div className="flex items-center justify-between text-cyan-400 mb-2">
-                  <span className="text-xs uppercase font-bold tracking-wider text-muted-foreground">Accuracy</span>
-                  <Zap className="size-5 text-cyan-400" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">
-                  {loading ? "..." : `${acceptanceRate}%`}
-                </div>
-                <div className="text-xs text-emerald-400 mt-1 flex items-center gap-1">
-                  <CheckCircle2 className="size-3" /> High submission precision
-                </div>
-              </div>
-
-              {/* Card 3: Problem Solving Streaks & Focus */}
-              <div className="p-5 rounded-2xl bg-zinc-900/60 dark:bg-zinc-950/70 border border-violet-500/20 backdrop-blur-md flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
-                <div className="flex items-center justify-between text-rose-400 mb-2">
-                  <span className="text-xs uppercase font-bold tracking-wider text-muted-foreground">Consistency</span>
-                  <Flame className="size-5 text-rose-500" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">
-                  Active
-                </div>
-                <div className="text-xs text-violet-400 mt-1 flex items-center gap-1">
-                  <Award className="size-3" /> Daily problem challenge
-                </div>
-              </div>
-            </div>
-
-            {/* Topic Mastery Distribution */}
-            <div className="p-6 rounded-3xl bg-zinc-900/60 dark:bg-zinc-950/70 border border-violet-500/30 backdrop-blur-xl flex-1 flex flex-col justify-between">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <Brain className="size-5 text-violet-400" />
-                  <h3 className="font-semibold text-foreground text-sm uppercase tracking-wider">
-                    Core Algorithm & Topic Focus
-                  </h3>
-                </div>
-                <span className="text-xs text-muted-foreground font-mono">Mastery Breakdown</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {TOPICS.map((topic) => (
-                  <div
-                    key={topic.name}
-                    className="p-3 rounded-xl bg-zinc-800/40 border border-zinc-700/40 hover:border-violet-500/40 transition-all flex items-center justify-between group"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span className={cn("size-2.5 rounded-full bg-gradient-to-r", topic.color)} />
-                      <span className="text-xs sm:text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">
-                        {topic.name}
-                      </span>
-                    </div>
-                    <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/50 px-2 py-0.5 rounded-md border border-cyan-800/50">
-                      {topic.solved}+
+                    <span className="w-6 h-6 rounded-[3px] bg-[#ffdada] dark:bg-[#2a0e13] flex items-center justify-center text-[#8b1e2b] dark:text-[#ff9e98]">
+                      <SiLeetcode className="w-3.5 h-3.5" />
+                    </span>
+                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1b1b1f] dark:text-white">
+                      LeetCode Metrics
                     </span>
                   </div>
-                ))}
+                  <button
+                    onClick={fetchStats}
+                    disabled={loading}
+                    title="Refresh data"
+                    className="text-[#8b7171] hover:text-[#8b1e2b] transition-colors p-1"
+                  >
+                    <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
+                  </button>
+                </div>
+
+                <div className="flex items-baseline gap-3 mb-6">
+                  <span className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#8b1e2b] dark:text-[#ff9d9f]">
+                    {stats.totalSolved}+
+                  </span>
+                  <span className="font-sans text-sm text-[#574141] dark:text-zinc-400">
+                    Problems Solved Across Categories
+                  </span>
+                </div>
+
+                {/* Difficulty Bars */}
+                <div className="space-y-3 font-mono text-xs">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-[#574141] dark:text-zinc-300">Easy</span>
+                      <span className="font-semibold text-[#1b1b1f] dark:text-white">{stats.easySolved}</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-[#f0edf2] dark:bg-zinc-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-emerald-600 rounded-full"
+                        style={{ width: `${Math.min(100, (stats.easySolved / 400) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-[#574141] dark:text-zinc-300">Medium</span>
+                      <span className="font-semibold text-[#1b1b1f] dark:text-white">{stats.mediumSolved}</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-[#f0edf2] dark:bg-zinc-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-amber-600 rounded-full"
+                        style={{ width: `${Math.min(100, (stats.mediumSolved / 400) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-[#574141] dark:text-zinc-300">Hard</span>
+                      <span className="font-semibold text-[#1b1b1f] dark:text-white">{stats.hardSolved}</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-[#f0edf2] dark:bg-zinc-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#8b1e2b] rounded-full"
+                        style={{ width: `${Math.min(100, (stats.hardSolved / 100) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-5 mt-6 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
+                <span className="font-mono text-xs text-[#8b7171]">Global Rank: #{stats.ranking?.toLocaleString() || "185,000"}</span>
+                {config.social.leetcode && (
+                  <a
+                    href={config.social.leetcode}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-[#8b1e2b] dark:text-[#ff9d9f] hover:underline"
+                  >
+                    <span>Profile</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                )}
               </div>
             </div>
 
-          </div>
+            {/* Right Card: Topic Distribution */}
+            <div className="lg:col-span-7 p-6 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 mb-5 border-b border-black/[0.06] dark:border-white/[0.06]">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1b1b1f] dark:text-white">
+                    Topic Breakdown &amp; Algorithmic Mastery
+                  </span>
+                  <span className="font-mono text-xs text-[#8b7171]">DSA Telemetry</span>
+                </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                  {TOPICS.map((topic) => (
+                    <div
+                      key={topic.name}
+                      className="p-3 rounded-[6px] bg-[#fbf8fe] dark:bg-[#1b1b1f] border border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between"
+                    >
+                      <span className="font-sans text-xs font-medium text-[#1b1b1f] dark:text-zinc-200">
+                        {topic.name}
+                      </span>
+                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-[3px] bg-[#f3e8e8] dark:bg-[#2a0e13] text-[#721422] dark:text-[#ff9e98] border border-[#8b1e2b]/15">
+                        {topic.solved}+
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <p className="font-sans text-xs text-[#574141] dark:text-zinc-400 pt-3 border-t border-black/[0.06] dark:border-white/[0.06]">
+                Focus areas include deterministic space-time optimization, graph traversals, amortized complexity analysis, and concurrency synchronization patterns.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </SectionWrapper>
+      </SectionWrapper>
+
+      {/* Section 05: Certifications & Achievements */}
+      <SectionWrapper id="certifications" className="w-full py-16 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <SectionHeader
+            id="certifications"
+            eyebrow="05 // ACCREDITATIONS & EDUCATION"
+            title="Certifications & Achievements"
+            desc="Verified credentials, competitive honors & computer science academic foundation."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Card 1: AWS Certification */}
+            <div className="p-6 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex items-start gap-4 hover:border-[#8b1e2b]/30 transition-all">
+              <div className="w-10 h-10 rounded-[6px] bg-[#fff5ea] dark:bg-[#2e1d0c] border border-[#ff9900]/30 flex items-center justify-center shrink-0 text-[#ff9900]">
+                <FaAws className="w-6 h-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="font-display text-base font-bold text-[#1b1b1f] dark:text-white truncate">
+                    AWS Certified Cloud Practitioner
+                  </h3>
+                  <span className="font-mono text-xs text-[#8b7171] shrink-0">2026</span>
+                </div>
+                <p className="font-sans text-xs sm:text-sm text-[#574141] dark:text-zinc-400 leading-relaxed mb-2">
+                  Amazon Web Services — Cloud infrastructure, serverless compute, S3 scalable storage, IAM security policies, and high-availability architecture.
+                </p>
+                <span className="font-mono text-[11px] font-semibold text-[#8b1e2b] dark:text-[#ff9e98]">
+                  Verified Credential
+                </span>
+              </div>
+            </div>
+
+            {/* Card 2: 500+ Solved */}
+            <div className="p-6 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex items-start gap-4 hover:border-[#8b1e2b]/30 transition-all">
+              <div className="w-10 h-10 rounded-[6px] bg-[#f3e8e8] dark:bg-[#2a0e13] border border-[#8b1e2b]/20 flex items-center justify-center shrink-0 text-[#8b1e2b] dark:text-[#ff9e98]">
+                <Trophy className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="font-display text-base font-bold text-[#1b1b1f] dark:text-white truncate">
+                    500+ Algorithmic Problems Solved
+                  </h3>
+                  <span className="font-mono text-xs text-[#8b7171] shrink-0">LeetCode</span>
+                </div>
+                <p className="font-sans text-xs sm:text-sm text-[#574141] dark:text-zinc-400 leading-relaxed mb-2">
+                  Demonstrated mastery across Data Structures, Algorithms, Dynamic Programming, Graphs, and Greedy heuristics on LeetCode &amp; GeeksforGeeks.
+                </p>
+                <span className="font-mono text-[11px] font-semibold text-[#8b1e2b] dark:text-[#ff9e98]">
+                  Top Percentile Consistency
+                </span>
+              </div>
+            </div>
+
+            {/* Card 3: Academic Degree */}
+            <div className="p-6 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex items-start gap-4 hover:border-[#8b1e2b]/30 transition-all">
+              <div className="w-10 h-10 rounded-[6px] bg-[#f0edf2] dark:bg-[#1b1b1f] border border-black/[0.08] dark:border-white/[0.1] flex items-center justify-center shrink-0 text-[#1b1b1f] dark:text-white">
+                <GraduationCap className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="font-display text-base font-bold text-[#1b1b1f] dark:text-white truncate">
+                    Sharda University — B.Tech CSE
+                  </h3>
+                  <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                    CGPA: 8.0
+                  </span>
+                </div>
+                <p className="font-sans text-xs sm:text-sm text-[#574141] dark:text-zinc-400 leading-relaxed">
+                  B.Tech in Computer Science &amp; Engineering. Core curriculum in Operating Systems, Database Management Systems, Computer Networks, and Object-Oriented Analysis.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4: Open Source & Production Software */}
+            <div className="p-6 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex items-start gap-4 hover:border-[#8b1e2b]/30 transition-all">
+              <div className="w-10 h-10 rounded-[6px] bg-[#f3e8e8] dark:bg-[#2a0e13] border border-[#8b1e2b]/20 flex items-center justify-center shrink-0 text-[#8b1e2b] dark:text-[#ff9e98]">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="font-display text-base font-bold text-[#1b1b1f] dark:text-white truncate">
+                    Full-Stack &amp; Enterprise Production Software
+                  </h3>
+                  <span className="font-mono text-xs text-[#8b7171] shrink-0">2025–2026</span>
+                </div>
+                <p className="font-sans text-xs sm:text-sm text-[#574141] dark:text-zinc-400 leading-relaxed">
+                  Architected production-ready platforms including FinixBooks, DucoArt, LandSathi, and high-throughput RabbitMQ file conversion pipelines.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+    </>
   );
 };
 

@@ -1,32 +1,56 @@
 import React from "react";
 import Link from "next/link";
-import { footer } from "./config";
-import { Button } from "../ui/button";
-import SocialMediaButtons from "../social/social-media-icons";
 import { config } from "@/data/config";
 
 function Footer() {
   return (
-    <footer className="flex w-full shrink-0 flex-col items-center gap-2 border-t border-border px-4 py-6 sm:flex-row md:px-6 sm:justify-between">
-      <p className="text-xs text-gray-500 dark:text-gray-400">
-        © 2026 {config.author}. All rights reserved.
-      </p>
-      <SocialMediaButtons />
-      <nav className="flex gap-4 sm:gap-6 z-10">
-        {footer.map((link, index) => {
-          const { title, href } = link;
+    <footer className="w-full border-t border-black/[0.08] dark:border-white/[0.08] bg-[#fbf8fe] dark:bg-[#1b1b1f] py-8 transition-colors">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#574141] dark:text-zinc-400">
+        <div>
+          <span className="font-semibold text-[#1b1b1f] dark:text-white">{config.author}</span>
+          <span className="text-[#8b7171] ml-2">— Built with precision &amp; pure minimal design.</span>
+        </div>
 
-          return (
-            <Link
-              className="text-xs underline-offset-4 hover:underline"
-              href={href}
-              key={`l_${index}`}
+        <div className="flex flex-wrap items-center gap-4">
+          {config.social.github && (
+            <a
+              href={config.social.github}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
             >
-              <Button variant={"link"}>{title}</Button>
-            </Link>
-          );
-        })}
-      </nav>
+              GitHub
+            </a>
+          )}
+          {config.social.linkedin && (
+            <a
+              href={config.social.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
+            >
+              LinkedIn
+            </a>
+          )}
+          {config.social.leetcode && (
+            <a
+              href={config.social.leetcode}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
+            >
+              LeetCode
+            </a>
+          )}
+          <a
+            href={`mailto:${config.email}`}
+            className="hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors"
+          >
+            Email
+          </a>
+          <span className="text-[#8b7171]">© 2026</span>
+        </div>
+      </div>
     </footer>
   );
 }

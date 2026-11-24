@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="finixBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08140E" />
+      <stop offset="50%" stop-color="#0E1E17" />
+      <stop offset="100%" stop-color="#050B08" />
+    </linearGradient>
+    <linearGradient id="emeraldMint" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#7CF2C2" />
+    </linearGradient>
+    <linearGradient id="darkCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14281E" />
+      <stop offset="100%" stop-color="#0C1812" />
+    </linearGradient>
+    <linearGradient id="glowCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B382B" />
+      <stop offset="100%" stop-color="#10231A" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000000" flood-opacity="0.75" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="800" fill="url(#finixBg)" />
+
+  <!-- Ambient Light Orbs -->
+  <circle cx="180" cy="120" r="240" fill="#10b981" opacity="0.14" filter="blur(90px)" />
+  <circle cx="1020" cy="680" r="280" fill="#7CF2C2" opacity="0.12" filter="blur(100px)" />
+  <circle cx="950" cy="180" r="180" fill="#06b6d4" opacity="0.08" filter="blur(80px)" />
+
+  <!-- Header / Navigation Bar -->
+  <rect x="40" y="30" width="1120" height="72" rx="18" fill="#112219" stroke="#1F3C2C" stroke-width="1.2" filter="url(#shadow)" />
+  
+  <!-- Logo Icon -->
+  <rect x="65" y="48" width="36" height="36" rx="10" fill="#1E3329" stroke="#7CF2C2" stroke-width="1.5" />
+  <circle cx="83" cy="66" r="6" fill="#7CF2C2" />
+  
+  <text x="115" y="71" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="800" letter-spacing="0.5">FinixBooks <tspan fill="#7CF2C2" font-size="14" font-weight="600">ERP</tspan></text>
+  <text x="270" y="71" fill="#6B9681" font-family="monospace" font-size="12">| Enterprise Double-Entry Ledger</text>
+
+  <!-- Live Status Badges -->
+  <g transform="translate(680, 50)">
+    <rect x="0" y="0" width="190" height="32" rx="8" fill="#0C1812" stroke="#1F3C2C" stroke-width="1" />
+    <circle cx="14" cy="16" r="4" fill="#10B981" />
+    <text x="26" y="20" fill="#7CF2C2" font-family="monospace" font-size="11" font-weight="bold">Electron Tally Bridge: ACTIVE</text>
+  </g>
+
+  <g transform="translate(885, 50)">
+    <rect x="0" y="0" width="145" height="32" rx="8" fill="#0C1812" stroke="#1F3C2C" stroke-width="1" />
+    <text x="14" y="20" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="11">Multi-Tenant RBAC</text>
+  </g>
+
+  <rect x="1045" y="50" width="95" height="32" rx="8" fill="url(#emeraldMint)" />
+  <text x="1062" y="70" fill="#061F13" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">Live App</text>
+
+  <!-- Key Metrics Row (4 Metrics) -->
+  <g transform="translate(40, 122)" filter="url(#shadow)">
+    <!-- Metric 1: Balanced Ledger -->
+    <rect x="0" y="0" width="265" height="92" rx="14" fill="url(#glowCard)" stroke="#274A37" stroke-width="1" />
+    <text x="20" y="28" fill="#6B9681" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" letter-spacing="1">BALANCED LEDGER VALIDATION</text>
+    <text x="20" y="58" fill="#7CF2C2" font-family="monospace" font-size="22" font-weight="bold">&#8721; Debits = Credits</text>
+    <text x="20" y="78" fill="#10B981" font-family="system-ui, sans-serif" font-size="11">Integer-Paise Precision &#8226; Zero Drift</text>
+
+    <!-- Metric 2: Transaction Types -->
+    <rect x="285" y="0" width="265" height="92" rx="14" fill="url(#darkCard)" stroke="#1F3C2C" stroke-width="1" />
+    <text x="305" y="28" fill="#6B9681" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" letter-spacing="1">UNIFIED MONGO SCHEMA</text>
+    <text x="305" y="58" fill="#FFFFFF" font-family="monospace" font-size="22" font-weight="bold">8+ Voucher Types</text>
+    <text x="305" y="78" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="11">Sales, Purchase, Journal, Contra...</text>
+
+    <!-- Metric 3: Automated GST Engine -->
+    <rect x="570" y="0" width="265" height="92" rx="14" fill="url(#darkCard)" stroke="#1F3C2C" stroke-width="1" />
+    <text x="590" y="28" fill="#6B9681" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" letter-spacing="1">AUTOMATED GST SPLITS</text>
+    <text x="590" y="58" fill="#FFFFFF" font-family="monospace" font-size="22" font-weight="bold">CGST &#8226; SGST &#8226; IGST</text>
+    <text x="590" y="78" fill="#10B981" font-family="system-ui, sans-serif" font-size="11">Atomic voucher sequencing</text>
+
+    <!-- Metric 4: Tally Sync Bridge -->
+    <rect x="855" y="0" width="265" height="92" rx="14" fill="url(#darkCard)" stroke="#1F3C2C" stroke-width="1" />
+    <text x="875" y="28" fill="#6B9681" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" letter-spacing="1">TALLY SYNC BRIDGE</text>
+    <text x="875" y="58" fill="#7CF2C2" font-family="monospace" font-size="22" font-weight="bold">Bidirectional Sync</text>
+    <text x="875" y="78" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="11">Electron Bridge &#8226; 38+ Flutter screens</text>
+  </g>
+
+  <!-- Main Workstation Grid -->
+  <!-- Left Container: Transactional Voucher Posting Engine (720px) -->
+  <g transform="translate(40, 235)" filter="url(#shadow)">
+    <rect width="720" height="525" rx="18" fill="url(#darkCard)" stroke="#1F3C2C" stroke-width="1.2" />
+    
+    <!-- Panel Header -->
+    <rect x="0" y="0" width="720" height="54" rx="18" fill="#112219" />
+    <rect x="0" y="36" width="720" height="18" fill="#112219" />
+    <line x1="0" y1="54" x2="720" y2="54" stroke="#1F3C2C" stroke-width="1" />
+    
+    <text x="24" y="34" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Transactional Posting Engine &amp; General Ledger</text>
+    <rect x="520" y="14" width="176" height="26" rx="6" fill="#0C1812" stroke="#1F3C2C" stroke-width="1" />
+    <text x="532" y="31" fill="#7CF2C2" font-family="monospace" font-size="11">● Append-Only Audit Trail</text>
+
+    <!-- Table Header -->
+    <rect x="20" y="70" width="680" height="34" rx="8" fill="#0F1F17" />
+    <text x="35" y="92" fill="#6B9681" font-family="monospace" font-size="11" font-weight="bold">VOUCHER ID</text>
+    <text x="160" y="92" fill="#6B9681" font-family="monospace" font-size="11" font-weight="bold">TYPE</text>
+    <text x="260" y="92" fill="#6B9681" font-family="monospace" font-size="11" font-weight="bold">PARTY / LEDGER</text>
+    <text x="440" y="92" fill="#6B9681" font-family="monospace" font-size="11" font-weight="bold">AMOUNT (&#8377;)</text>
+    <text x="575" y="92" fill="#6B9681" font-family="monospace" font-size="11" font-weight="bold">STATUS</text>
+
+    <!-- Row 1 -->
+    <g transform="translate(20, 114)">
+      <rect width="680" height="66" rx="10" fill="#152B20" stroke="#244734" stroke-width="1" />
+      <text x="15" y="30" fill="#7CF2C2" font-family="monospace" font-size="13" font-weight="bold">VCH-2026-0842</text>
+      <text x="15" y="48" fill="#6B9681" font-family="system-ui, sans-serif" font-size="10">27 Oct 2026 &#8226; 17:15</text>
+
+      <rect x="140" y="20" width="75" height="26" rx="6" fill="#093824" />
+      <text x="152" y="37" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">SALES</text>
+
+      <text x="240" y="32" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Apex Tech Global Pvt Ltd</text>
+      <text x="240" y="48" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">GSTIN: 07AABCA1234F1Z5 &#8226; HSN: 998313</text>
+
+      <text x="420" y="32" fill="#FFFFFF" font-family="monospace" font-size="14" font-weight="bold">&#8377; 1,42,800.00</text>
+      <text x="420" y="48" fill="#10B981" font-family="monospace" font-size="10">+&#8377;25,704 GST Split</text>
+
+      <rect x="555" y="20" width="105" height="26" rx="6" fill="#093824" stroke="#10B981" stroke-width="1" />
+      <text x="568" y="37" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">&#10003; BALANCED</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(20, 190)">
+      <rect width="680" height="66" rx="10" fill="#0E1D16" stroke="#1F3C2C" stroke-width="1" />
+      <text x="15" y="30" fill="#7CF2C2" font-family="monospace" font-size="13" font-weight="bold">VCH-2026-0841</text>
+      <text x="15" y="48" fill="#6B9681" font-family="system-ui, sans-serif" font-size="10">27 Oct 2026 &#8226; 15:42</text>
+
+      <rect x="140" y="20" width="85" height="26" rx="6" fill="#28220A" />
+      <text x="150" y="37" fill="#FCD34D" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">PURCHASE</text>
+
+      <text x="240" y="32" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Intel Matrix Cloud Systems</text>
+      <text x="240" y="48" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">Cloud Infrastructure Invoicing &#8226; Serverless</text>
+
+      <text x="420" y="32" fill="#FFFFFF" font-family="monospace" font-size="14" font-weight="bold">&#8377; 88,500.00</text>
+      <text x="420" y="48" fill="#10B981" font-family="monospace" font-size="10">Input Tax Credit OK</text>
+
+      <rect x="555" y="20" width="105" height="26" rx="6" fill="#093824" stroke="#10B981" stroke-width="1" />
+      <text x="568" y="37" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">&#10003; BALANCED</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(20, 266)">
+      <rect width="680" height="66" rx="10" fill="#0E1D16" stroke="#1F3C2C" stroke-width="1" />
+      <text x="15" y="30" fill="#7CF2C2" font-family="monospace" font-size="13" font-weight="bold">VCH-2026-0840</text>
+      <text x="15" y="48" fill="#6B9681" font-family="system-ui, sans-serif" font-size="10">27 Oct 2026 &#8226; 14:10</text>
+
+      <rect x="140" y="20" width="75" height="26" rx="6" fill="#1C1833" />
+      <text x="153" y="37" fill="#C084FC" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">JOURNAL</text>
+
+      <text x="240" y="32" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Depreciation &amp; Asset Write-down</text>
+      <text x="240" y="48" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">Hardware Server Cluster amortisation</text>
+
+      <text x="420" y="32" fill="#FFFFFF" font-family="monospace" font-size="14" font-weight="bold">&#8377; 42,000.00</text>
+      <text x="420" y="48" fill="#A3C7B5" font-family="monospace" font-size="10">Balanced Adjustments</text>
+
+      <rect x="555" y="20" width="105" height="26" rx="6" fill="#093824" stroke="#10B981" stroke-width="1" />
+      <text x="568" y="37" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">&#10003; BALANCED</text>
+    </g>
+
+    <!-- Row 4 -->
+    <g transform="translate(20, 342)">
+      <rect width="680" height="66" rx="10" fill="#0E1D16" stroke="#1F3C2C" stroke-width="1" />
+      <text x="15" y="30" fill="#7CF2C2" font-family="monospace" font-size="13" font-weight="bold">VCH-2026-0839</text>
+      <text x="15" y="48" fill="#6B9681" font-family="system-ui, sans-serif" font-size="10">27 Oct 2026 &#8226; 11:20</text>
+
+      <rect x="140" y="20" width="75" height="26" rx="6" fill="#0E2833" />
+      <text x="152" y="37" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CONTRA</text>
+
+      <text x="240" y="32" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="600">HDFC Bank Current &#8594; ICICI Petty Cash</text>
+      <text x="240" y="48" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">Inter-bank liquid balance reconciliation</text>
+
+      <text x="420" y="32" fill="#FFFFFF" font-family="monospace" font-size="14" font-weight="bold">&#8377; 2,50,000.00</text>
+      <text x="420" y="48" fill="#38BDF8" font-family="monospace" font-size="10">Ref: NEFT8392019</text>
+
+      <rect x="555" y="20" width="105" height="26" rx="6" fill="#093824" stroke="#10B981" stroke-width="1" />
+      <text x="568" y="37" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">&#10003; BALANCED</text>
+    </g>
+
+    <!-- Footer Summary Bar -->
+    <g transform="translate(20, 430)">
+      <rect width="680" height="65" rx="12" fill="#14281E" stroke="#244734" stroke-width="1" />
+      <text x="20" y="28" fill="#6B9681" font-family="monospace" font-size="11">TOTAL POSTED VOUCHERS</text>
+      <text x="20" y="50" fill="#FFFFFF" font-family="monospace" font-size="18" font-weight="bold">8,429 Verified Entries</text>
+
+      <text x="260" y="28" fill="#6B9681" font-family="monospace" font-size="11">TOTAL DEBITS</text>
+      <text x="260" y="50" fill="#7CF2C2" font-family="monospace" font-size="18" font-weight="bold">&#8377; 4,82,50,000.00</text>
+
+      <text x="470" y="28" fill="#6B9681" font-family="monospace" font-size="11">TOTAL CREDITS</text>
+      <text x="470" y="50" fill="#7CF2C2" font-family="monospace" font-size="18" font-weight="bold">&#8377; 4,82,50,000.00</text>
+    </g>
+  </g>
+
+  <!-- Right Container: AR/AP Aging and Architecture Visualizer (380px) -->
+  <g transform="translate(780, 235)" filter="url(#shadow)">
+    <rect width="380" height="525" rx="18" fill="url(#darkCard)" stroke="#1F3C2C" stroke-width="1.2" />
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="380" height="54" rx="18" fill="#112219" />
+    <rect x="0" y="36" width="380" height="18" fill="#112219" />
+    <line x1="0" y1="54" x2="380" y2="54" stroke="#1F3C2C" stroke-width="1" />
+    <text x="20" y="34" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="15" font-weight="bold">Financial Reports &amp; AR/AP Aging</text>
+
+    <!-- AR Aging Breakdown Card -->
+    <g transform="translate(20, 70)">
+      <rect width="340" height="135" rx="12" fill="#0C1812" stroke="#1F3C2C" stroke-width="1" />
+      <text x="16" y="26" fill="#6B9681" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">ACCOUNTS RECEIVABLE (AR) AGING</text>
+      
+      <!-- Progress Bar 1: 0-30 Days -->
+      <text x="16" y="52" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="11">0 - 30 Days (Current)</text>
+      <text x="260" y="52" fill="#7CF2C2" font-family="monospace" font-size="11" font-weight="bold">68% &#8226; &#8377;32.8L</text>
+      <rect x="16" y="60" width="308" height="8" rx="4" fill="#1F3C2C" />
+      <rect x="16" y="60" width="210" height="8" rx="4" fill="#10B981" />
+
+      <!-- Progress Bar 2: 31-60 Days -->
+      <text x="16" y="86" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="11">31 - 60 Days</text>
+      <text x="260" y="86" fill="#FCD34D" font-family="monospace" font-size="11" font-weight="bold">22% &#8226; &#8377;10.6L</text>
+      <rect x="16" y="94" width="308" height="8" rx="4" fill="#1F3C2C" />
+      <rect x="16" y="94" width="68" height="8" rx="4" fill="#F59E0B" />
+
+      <!-- Progress Bar 3: 60+ Days -->
+      <text x="16" y="120" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="11">60+ Days (Overdue)</text>
+      <text x="260" y="120" fill="#F87171" font-family="monospace" font-size="11" font-weight="bold">10% &#8226; &#8377;4.8L</text>
+    </g>
+
+    <!-- Architecture and Features Box -->
+    <g transform="translate(20, 220)">
+      <rect width="340" height="155" rx="12" fill="#14281E" stroke="#274A37" stroke-width="1" />
+      <text x="16" y="26" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">&#9889; System Architecture Highlights</text>
+
+      <circle cx="24" cy="50" r="3" fill="#10B981" />
+      <text x="36" y="54" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Server-Authoritative ERP Engine</text>
+      <text x="36" y="68" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">Idempotency checks &amp; atomic sequences</text>
+
+      <circle cx="24" cy="88" r="3" fill="#10B981" />
+      <text x="36" y="92" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Multi-Tenant Data Isolation</text>
+      <text x="36" y="106" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">Role-based access control (RBAC)</text>
+
+      <circle cx="24" cy="126" r="3" fill="#10B981" />
+      <text x="36" y="130" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="11" font-weight="600">OCR-Assisted Invoice Processing</text>
+      <text x="36" y="144" fill="#A3C7B5" font-family="system-ui, sans-serif" font-size="10">Computer vision with server-side validation</text>
+    </g>
+
+    <!-- Flutter 38+ Screens and Tally Bridge Badge -->
+    <g transform="translate(20, 390)">
+      <rect width="340" height="105" rx="12" fill="#0C1812" stroke="#1F3C2C" stroke-width="1" />
+      <text x="16" y="26" fill="#6B9681" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CROSS-PLATFORM CLIENT SUITE</text>
+
+      <rect x="16" y="40" width="145" height="48" rx="8" fill="#112219" stroke="#1F3C2C" stroke-width="1" />
+      <text x="28" y="58" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Flutter Mobile</text>
+      <text x="28" y="74" fill="#FFFFFF" font-family="monospace" font-size="13" font-weight="bold">38+ Screens</text>
+
+      <rect x="175" y="40" width="150" height="48" rx="8" fill="#112219" stroke="#1F3C2C" stroke-width="1" />
+      <text x="187" y="58" fill="#7CF2C2" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Electron Bridge</text>
+      <text x="187" y="74" fill="#FFFFFF" font-family="monospace" font-size="13" font-weight="bold">Tally XML Sync</text>
+    </g>
+  </g>
+</svg>

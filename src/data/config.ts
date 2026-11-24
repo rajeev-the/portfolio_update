@@ -3,7 +3,7 @@ const config = {
   description: {
     long: "Software Developer with strong foundations in Data Structures, Algorithms, Object-Oriented Programming, and scalable software development. Experienced in building backend services using Java, Spring Boot, Node.js, and AWS, with hands-on experience in asynchronous systems, REST APIs, and cloud-based applications.",
     short:
-      "Software Developer specializing in Java, Spring Boot, Flutter, MERN stack, and scalable distributed systems.",
+      "Software Developer specializing in Java, Spring Boot, Node.js, Flutter, Electron, AWS, and scalable enterprise systems.",
   },
   keywords: [
     "Rajeev Ranjan",
@@ -11,9 +11,12 @@ const config = {
     "software developer",
     "backend developer",
     "Full Stack Developer",
+    "FinixBooks",
+    "ERP",
     "Java",
     "Spring Boot",
     "Flutter",
+    "Electron",
     "RabbitMQ",
     "Docker",
     "React",

@@ -25,8 +25,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
         display: ["var(--font-display)", "sans-serif"],
-        // `font-mono` renders Space Grotesk (same as body) — Space Mono dropped.
-        mono: ["var(--font-sans)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -35,6 +34,29 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         brand: "var(--brand)",
+        crimson: {
+          DEFAULT: "#8b1e2b",
+          dark: "#6b0217",
+          wine: "#721422",
+          bright: "#9e2a2b",
+          blush: "#f3e8e8",
+          tint: "#ffdada",
+          inset: "#2a0e13",
+        },
+        surface: {
+          DEFAULT: "#fbf8fe",
+          canvas: "#fbf8fe",
+          dim: "#dcd9de",
+          raised: "#ffffff",
+          low: "#f6f2f8",
+          container: "#f0edf2",
+          highest: "#e4e1e7",
+        },
+        ink: {
+          primary: "#1b1b1f",
+          muted: "#574141",
+          subtle: "#8b7171",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

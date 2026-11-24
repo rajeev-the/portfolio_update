@@ -14,7 +14,7 @@ import {
   Zap,
 } from "lucide-react";
 import { FaJava } from "react-icons/fa";
-import { SiSpringboot, SiFlutter, SiRabbitmq } from "react-icons/si";
+import { SiSpringboot, SiFlutter, SiRabbitmq, SiElectron } from "react-icons/si";
 
 interface CodeSnippet {
   id: string;
@@ -26,6 +26,25 @@ interface CodeSnippet {
 }
 
 const SNIPPETS: CodeSnippet[] = [
+  {
+    id: "finix",
+    filename: "VoucherPostingEngine.ts",
+    lang: "Node.js / MongoDB ERP",
+    icon: <SiElectron className="size-4 text-[#7CF2C2]" />,
+    lines: [
+      { text: "export async function postVoucher(v: Voucher) {", color: "text-violet-300" },
+      { text: "  assert(v.totalDebit === v.totalCredit, 'Unbalanced');", color: "text-emerald-400 font-semibold" },
+      { text: "  const session = await mongoose.startSession();", color: "text-cyan-300" },
+      { text: "  return session.withTransaction(async () => {", color: "text-amber-400" },
+      { text: "    const seq = await getAtomicSequence(v.tenantId);", color: "text-zinc-300" },
+      { text: "    await VoucherModel.create([{ ...v, seq }], { session });", color: "text-emerald-300" },
+      { text: "    await tallyBridge.dispatchSync(v);", color: "text-cyan-300" },
+      { text: "    log.info(\"✓ Balanced voucher committed & synced\");", color: "text-emerald-400 font-semibold" },
+      { text: "  });", color: "text-amber-400" },
+      { text: "}", color: "text-violet-300" },
+    ],
+    output: "⚡ FinixBooks ERP: Double-entry balanced • Electron Tally Bridge synced (6ms)",
+  },
   {
     id: "spring",
     filename: "FileConversionService.java",
@@ -112,7 +131,7 @@ export const HeroTerminal = () => {
           </div>
 
           {/* File Tabs */}
-          <div className="flex items-center gap-1 bg-zinc-950/80 p-0.5 sm:p-1 rounded-xl border border-zinc-800/80 max-w-[200px] sm:max-w-none overflow-hidden">
+          <div className="flex items-center gap-1 bg-zinc-950/80 p-0.5 sm:p-1 rounded-xl border border-zinc-800/80 max-w-[230px] sm:max-w-none overflow-x-auto">
             {SNIPPETS.map((tab, idx) => (
               <button
                 key={tab.id}

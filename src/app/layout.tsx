@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Unbounded } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { config } from "@/data/config";
 
@@ -9,18 +9,27 @@ import { Providers } from "@/components/providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { UMAMI_SRC } from "@/lib/umami";
 
-/* Body/base font — Space Grotesk, bound to --font-sans (applied as `font-sans`
- * on <html>). Everything that isn't a heading inherits this. */
-const spaceGroteskSans = Space_Grotesk({
+/* Display font — Plus Jakarta Sans for headlines and brand */
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-display",
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
-/* Heading font — Unbounded, bound to --font-display and applied to h1–h6. */
-const unbounded = Unbounded({
+/* Body font — Inter for technical prose and UI */
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-sans",
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+/* Monospace font — JetBrains Mono for code, metrics, and tags */
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -67,16 +76,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={[
-        spaceGroteskSans.variable,
-        unbounded.variable,
+        plusJakartaSans.variable,
+        inter.variable,
+        jetBrainsMono.variable,
         "font-sans",
       ].join(" ")}
       suppressHydrationWarning
     >
       <head>
-        {/* The Spline runtime lazy-loads its wasm from unpkg; warm the
-            connection early so the 3D scene starts faster. */}
-        <link rel="preconnect" href="https://unpkg.com" crossOrigin="anonymous" />
         {process.env.UMAMI_SITE_ID && (
           <Script
             defer

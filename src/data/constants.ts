@@ -25,6 +25,7 @@ export enum SkillNames {
   DART = "dart",
   FLUTTER = "flutter",
   GENAI = "genai",
+  ELECTRON = "electron",
 }
 export type Skill = {
   id: number;
@@ -241,6 +242,14 @@ using use = useUsing("use")`,
     color: "#8e75ff",
     icon: "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/OpenAI-Dark.svg",
   },
+  [SkillNames.ELECTRON]: {
+    id: 26,
+    name: "electron",
+    label: "Electron",
+    shortDescription: "cross-platform desktop apps with Node.js and web technologies! ⚡🖥️",
+    color: "#47848f",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/electron/electron-original.svg",
+  },
 };
 
 export type Experience = {
@@ -256,6 +265,24 @@ export type Experience = {
 export const EXPERIENCE: Experience[] = [
   {
     id: 1,
+    startDate: "Jul 2026",
+    endDate: "Oct 2026",
+    title: "Software Developer Intern",
+    company: "AventIQ",
+    description: [
+      "Developing and maintaining real-world, deployed applications using Node.js, Flutter, and Electron, contributing to production features, RESTful API integrations, debugging, and performance optimization.",
+      "Integrated AWS S3 and Lambda for scalable cloud storage and serverless processing, supporting reliable backend workflows and production deployments.",
+    ],
+    skills: [
+      SkillNames.NODEJS,
+      SkillNames.FLUTTER,
+      SkillNames.ELECTRON,
+      SkillNames.AWS,
+      SkillNames.GIT,
+    ],
+  },
+  {
+    id: 2,
     startDate: "Mar 2025",
     endDate: "Sep 2025",
     title: "Full Stack Developer",
@@ -273,24 +300,6 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.JS,
       SkillNames.TAILWIND,
       SkillNames.DOCKER,
-    ],
-  },
-  {
-    id: 2,
-    startDate: "Sep 2023",
-    endDate: "Nov 2023",
-    title: "UI/UX Designer Intern",
-    company: "The Jacobin",
-    description: [
-      "Designed, prototyped, and tested user-centric UI/UX solutions for mobile and web applications, improving usability, accessibility, and workflow efficiency.",
-      "Collaborated with cross-functional teams to deliver design assets and implement responsive interfaces, ensuring seamless user experiences across live projects.",
-    ],
-    skills: [
-      SkillNames.HTML,
-      SkillNames.CSS,
-      SkillNames.REACT,
-      SkillNames.FLUTTER,
-      SkillNames.GIT,
     ],
   },
 ];

@@ -1,41 +1,28 @@
 "use client";
 
 import React from "react";
-import Particles from "./Particles";
 
 const AnimatedBackground = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-      {/* Ambient Electric Violet & Cyan glowing nebulae */}
-      <div className="absolute -top-32 -left-32 w-[650px] h-[650px] bg-violet-600/20 rounded-full blur-[140px] animate-pulse" style={{ animationDuration: "8s" }} />
-      <div className="absolute top-1/3 -right-32 w-[650px] h-[650px] bg-cyan-500/20 rounded-full blur-[140px] animate-pulse" style={{ animationDuration: "10s" }} />
-      <div className="absolute -bottom-32 left-1/4 w-[700px] h-[700px] bg-indigo-600/20 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: "12s" }} />
+    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#fbf8fe] dark:bg-[#1b1b1f]">
+      {/* Subtle warm earthen ambient tint */}
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#8b1e2b]/[0.025] rounded-full blur-[160px]" />
+      <div className="absolute bottom-1/4 left-10 w-[500px] h-[500px] bg-[#a43a43]/[0.02] rounded-full blur-[140px]" />
 
-      {/* Cyber Tech Matrix Grid Pattern */}
+      {/* Subtle engineering precision grid */}
       <div
-        className="absolute inset-0 opacity-[0.08] dark:opacity-[0.12]"
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(139, 92, 246, 0.4) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(6, 182, 212, 0.4) 1px, transparent 1px)
+            linear-gradient(to right, rgba(139, 30, 43, 0.35) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(139, 30, 43, 0.35) 1px, transparent 1px)
           `,
-          backgroundSize: "40px 40px",
+          backgroundSize: "32px 32px",
         }}
-      />
-
-      {/* Radial fade mask over grid for high-end depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80" />
-
-      {/* Floating Canvas Particles */}
-      <Particles
-        className="absolute inset-0"
-        quantity={60}
-        ease={50}
-        staticity={35}
-        refresh={false}
       />
     </div>
   );
 };
 
 export default AnimatedBackground;
+

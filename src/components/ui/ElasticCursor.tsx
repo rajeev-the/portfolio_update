@@ -380,6 +380,7 @@ function ElasticCursor() {
           boxSizing: "border-box",
           zIndex: 100,
           backdropFilter: "invert(100%)",
+          opacity: cursorMoved ? 1 : 0,
         }}
       ></div>
       <div

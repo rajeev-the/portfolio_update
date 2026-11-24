@@ -20,8 +20,8 @@ type PreloaderContextType = {
   bypassLoading: () => void;
 };
 const INITIAL: PreloaderContextType = {
-  isLoading: true,
-  loadingPercent: 0,
+  isLoading: false,
+  loadingPercent: 100,
   bypassLoading: () => {},
 };
 export const preloaderContext = createContext<PreloaderContextType>(INITIAL);
@@ -38,20 +38,16 @@ export const usePreloader = () => {
   }
   return context;
 };
-const LOADING_TIME = 2.5;
-function Preloader({ children, disabled = false }: PreloaderProps) {
+const LOADING_TIME = 1.2;
+function Preloader({ children, disabled = true }: PreloaderProps) {
   const pathname = usePathname();
-  // Skip the loading splash for the résumé route (and anywhere it's disabled).
+  // Skip the loading splash (the Spline 3D scene was replaced with lightweight terminal & CSS)
   const skip = disabled || pathname?.startsWith("/resume");
 
   const [isLoading, setIsLoading] = useState(!skip);
   const [loadingPercent, setLoadingPercent] = useState(skip ? 100 : 0);
   const loadingTween = useRef<gsap.core.Tween>(null);
 
-  // The splash exists only to mask the Spline 3D scene loading. On low-end /
-  // reduced-motion devices that scene is never loaded, so its onLoad (which
-  // normally dismisses the splash) never fires — bypass immediately instead of
-  // leaving the page stuck behind the loader.
   const { disable3D, ready: perfReady } = usePerfProfile();
 
   const bypassLoading = () => {
@@ -70,7 +66,7 @@ function Preloader({ children, disabled = false }: PreloaderProps) {
     loadingTween.current = gsap.to(loadingPercentRef.current, {
       value: 100,
       duration: LOADING_TIME,
-      ease: "slow(0.7,0.7,false)",
+      ease: "power2.out",
       onUpdate: () => {
         setLoadingPercent(loadingPercentRef.current.value);
       },
@@ -78,8 +74,15 @@ function Preloader({ children, disabled = false }: PreloaderProps) {
         setIsLoading(false);
       },
     });
+
+    const fallback = setTimeout(() => {
+      setIsLoading(false);
+      setLoadingPercent(100);
+    }, 1500);
+
     return () => {
       loadingTween.current?.kill();
+      clearTimeout(fallback);
     };
   }, [skip]);
 

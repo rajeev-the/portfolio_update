@@ -1,110 +1,102 @@
 "use client";
+
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import styles from "./style.module.scss";
-import { opacity, background } from "./anim";
-import Nav from "./nav";
-import { cn } from "@/lib/utils";
-import FunnyThemeToggle from "../theme/funny-theme-toggle";
-import { Button } from "../ui/button";
 import { config } from "@/data/config";
-import OnlineUsers from "../realtime/online-users";
-import { GitHubStarsButton } from "../ui/shadcn-io/github-stars-button";
+import { cn } from "@/lib/utils";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import FunnyThemeToggle from "../theme/funny-theme-toggle";
 
-interface HeaderProps {
-  loader?: boolean;
-}
+const NAV_ITEMS = [
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Competitive Programming", href: "#competitive-programming" },
+  { label: "Certifications & Achievements", href: "#certifications" },
+];
 
-const Header = ({ loader }: HeaderProps) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const isHome = usePathname() === "/";
+const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <motion.header
-      className={cn(
-        styles.header,
-        "transition-colors delay-100 duration-500 ease-in z-[1000]"
-      )}
-      style={{
-        background: isActive ? "hsl(var(--background) / .8)" : "transparent",
-        // backgroundImage:
-        //   "linear-gradient(0deg, rgba(0, 0, 0, 0), rgb(0, 0, 0))",
-      }}
-      initial={{
-        y: -80,
-      }}
-      animate={{
-        y: 0,
-      }}
-      transition={{
-        delay: loader ? 3.5 : 0, // 3.5 for loading, .5 can be added for delay
-        duration: 0.8,
-      }}
-    >
-      {/* <div
-        className="absolute inset-0 "
-        style={{
-          mask: "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 12.5%)",
-        }}
-      >
-      </div> */}
-      <div className={cn(styles.bar, "flex items-center justify-between")}>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#fbf8fe]/90 dark:bg-[#1b1b1f]/90 backdrop-blur-md border-b border-black/[0.06] dark:border-white/[0.08] transition-colors">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        {/* Left: Brand Monogram & Name */}
         <Link
           href="/"
-          className="flex items-center justify-center font-semibold text-md text-foreground hover:underline transition-colors px-2 py-1"
+          className="flex items-center gap-2.5 group cursor-pointer"
         >
-          {config.author}
+          <span className="flex items-center justify-center w-7 h-7 rounded-[4px] bg-[#8b1e2b] text-white font-mono text-xs font-bold tracking-tight shadow-sm group-hover:bg-[#721422] transition-colors">
+            RR
+          </span>
+          <span className="font-display font-bold text-sm tracking-tight text-[#1b1b1f] dark:text-[#fbf8fe] group-hover:text-[#8b1e2b] transition-colors">
+            {config.author}
+          </span>
         </Link>
 
-        <FunnyThemeToggle className="w-6 h-6 mr-4 hidden md:flex" />
-        {isHome && process.env.NEXT_PUBLIC_WS_URL && <OnlineUsers />}
-        {config.githubUsername && config.githubRepo && (
-          <GitHubStarsButton
-            username={config.githubUsername}
-            repo={config.githubRepo}
-            className="mr-4"
-          />
-        )}
-        <Button
-          variant={"ghost"}
-          onClick={() => setIsActive(!isActive)}
-          aria-label={isActive ? "Close menu" : "Open menu"}
-          aria-expanded={isActive}
-          className={cn(
-            styles.el,
-            "m-0 p-0 h-6 bg-transparent flex items-center justify-center"
-          )}
-        >
-          <div className="relative hidden md:flex items-center">
-            <motion.p
-              variants={opacity}
-              animate={!isActive ? "open" : "closed"}
+        {/* Center: Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-7">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-xs font-medium text-[#574141] dark:text-zinc-400 hover:text-[#8b1e2b] dark:hover:text-[#ff9d9f] transition-colors tracking-tight"
             >
-              Menu
-            </motion.p>
-            <motion.p variants={opacity} animate={isActive ? "open" : "closed"}>
-              Close
-            </motion.p>
-          </div>
-          <div
-            className={`${styles.burger} ${isActive ? styles.burgerActive : ""
-              }`}
-          ></div>
-        </Button>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Right: Actions & Contact Button */}
+        <div className="flex items-center gap-3">
+          <FunnyThemeToggle className="w-5 h-5 hidden sm:flex text-[#574141] hover:text-[#8b1e2b] transition-colors" />
+
+          <Link href="#contact" className="hidden sm:inline-flex">
+            <button className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-[4px] border border-[#8b1e2b]/30 hover:border-[#8b1e2b] bg-transparent hover:bg-[#f3e8e8] dark:hover:bg-[#2a0e13] text-[#8b1e2b] dark:text-[#ff9d9f] text-xs font-mono font-semibold tracking-wide transition-all shadow-xs">
+              <span>CONTACT / CV</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
+          </Link>
+
+          {/* Mobile menu trigger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-[4px] text-[#1b1b1f] dark:text-white hover:bg-[#f0edf2] dark:hover:bg-zinc-800 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
-      <motion.div
-        variants={background}
-        initial="initial"
-        animate={isActive ? "open" : "closed"}
-        onClick={() => setIsActive(false)}
-        className={styles.background}
-      ></motion.div>
-      <AnimatePresence mode="wait">
-        {isActive && <Nav setIsActive={setIsActive} />}
-      </AnimatePresence>
-    </motion.header>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-[#fbf8fe] dark:bg-[#1b1b1f] border-b border-[#e4e1e7] dark:border-zinc-800 px-6 py-5 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-medium text-[#1b1b1f] dark:text-zinc-200 hover:text-[#8b1e2b] transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="pt-2 border-t border-[#e4e1e7] dark:border-zinc-800 flex items-center justify-between">
+            <Link
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xs font-mono font-semibold text-[#8b1e2b] dark:text-[#ff9d9f]"
+            >
+              CONTACT / CV →
+            </Link>
+            <FunnyThemeToggle className="w-5 h-5 text-[#574141]" />
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
 
 export default Header;
+

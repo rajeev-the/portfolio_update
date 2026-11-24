@@ -1,108 +1,77 @@
+"use client";
+
+import React from "react";
 import { EXPERIENCE, SkillNames, SKILLS } from "@/data/constants";
 import { SectionHeader } from "./section-header";
-import { Badge } from "../ui/badge";
-import { cn } from "@/lib/utils";
 import SectionWrapper from "../ui/section-wrapper";
-import { motion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ExperienceSection = () => {
   return (
-    <SectionWrapper
-      className="flex flex-col items-center justify-center min-h-[120vh] py-20"
-    >
-      <div className="w-full max-w-4xl px-4 md:px-8 mx-auto">
+    <SectionWrapper id="experience" className="w-full py-16 md:py-24">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <SectionHeader
           id="experience"
+          eyebrow="02 // TRACK RECORD"
           title="Experience"
-          desc="My professional journey."
-          className="mb-12 md:mb-20 mt-0"
+          desc="Professional software engineering roles, enterprise client engagements & systems development."
         />
 
-        <div className="flex flex-col gap-8 md:gap-12 relative">
-          {/* Connector Line - simplified to a subtle border */}
-          <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-px bg-border hidden md:block -translate-x-1/2" />
+        <div className="space-y-6">
+          {EXPERIENCE.map((exp) => (
+            <div
+              key={exp.id}
+              className="p-6 md:p-7 rounded-lg bg-[#ffffff] dark:bg-[#232328] border border-black/[0.08] dark:border-white/[0.08] hover:border-[#8b1e2b]/30 dark:hover:border-[#8b1e2b]/50 transition-all shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.06)]"
+            >
+              {/* Header: Title, Company, and Dates */}
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-4 mb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h3 className="font-display text-lg sm:text-xl font-bold tracking-tight text-[#1b1b1f] dark:text-[#fbf8fe]">
+                    {exp.title}
+                  </h3>
+                  <span className="font-mono text-sm font-semibold text-[#8b1e2b] dark:text-[#ff9d9f]">
+                    @{exp.company}
+                  </span>
+                </div>
+                <span className="font-mono text-xs text-[#574141] dark:text-zinc-400 shrink-0">
+                  {exp.startDate} — {exp.endDate}
+                </span>
+              </div>
 
-          {EXPERIENCE.map((exp, index) => (
-            <div key={exp.id} className="relative">
-              <ExperienceCard experience={exp} index={index} />
+              {/* Bullet Descriptions */}
+              <ul className="space-y-2.5 text-sm sm:text-[15px] text-[#574141] dark:text-zinc-300 leading-relaxed mb-5">
+                {exp.description.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="text-[#8b1e2b] dark:text-[#ff9d9f] font-mono text-xs mt-1 shrink-0">
+                      •
+                    </span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Monospace Tech Chips */}
+              <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04]">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#8b7171] mr-1">
+                  TECH //
+                </span>
+                {exp.skills.map((skillName) => {
+                  const skill = SKILLS[skillName as SkillNames];
+                  const label = skill?.label || skillName;
+                  return (
+                    <span
+                      key={skillName}
+                      className="font-mono text-[11px] font-medium px-2 py-0.5 rounded-[3px] bg-[#f0edf2] dark:bg-[#1b1b1f] text-[#574141] dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]"
+                    >
+                      {label}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           ))}
         </div>
       </div>
     </SectionWrapper>
-  );
-};
-
-const ExperienceCard = ({
-  experience,
-  index,
-}: {
-  experience: (typeof EXPERIENCE)[0];
-  index: number;
-}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.4,
-        delay: index * 0.1,
-        ease: "easeOut",
-      }}
-      viewport={{ once: true, margin: "-50px" }}
-    >
-      <Card
-        className={cn(
-          "bg-card text-card-foreground border-border",
-          "hover:border-primary/20 transition-colors duration-300",
-          "shadow-sm hover:shadow-md"
-        )}
-      >
-        <CardHeader className="pb-3">
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-            <div className="space-y-1">
-              <CardTitle className="text-xl font-bold tracking-tight">
-                {experience.title}
-              </CardTitle>
-              <div className="text-base font-medium text-muted-foreground">
-                {experience.company}
-              </div>
-            </div>
-            <Badge variant="secondary" className="w-fit font-mono text-xs font-normal">
-              {experience.startDate} - {experience.endDate}
-            </Badge>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <ul className="list-disc list-outside ml-4 space-y-2 text-base text-muted-foreground leading-relaxed">
-            {experience.description.map((point, i) => (
-              <li key={i}>{point}</li>
-            ))}
-          </ul>
-
-          <div className="flex flex-wrap gap-2">
-            {experience.skills.map((skillName) => {
-              const skill = SKILLS[skillName as SkillNames];
-              return (
-                <Badge
-                  key={skillName}
-                  variant="outline"
-                  className="gap-2 text-xs font-normal bg-secondary/30 hover:bg-secondary/50 transition-colors border-transparent"
-                >
-                  <img
-                    src={skill.icon}
-                    alt={skill.label}
-                    className="w-3.5 h-3.5 object-contain opacity-80"
-                  />
-                  {skill.label}
-                </Badge>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
   );
 };
 

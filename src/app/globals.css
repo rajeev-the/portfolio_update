@@ -12,67 +12,57 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --background: 280 20% 98%; /* #fbf8fe Atelier Crimson Canvas */
+    --foreground: 240 7% 11%;  /* #1b1b1f Slate Charcoal Ink */
+    --card: 0 0% 100%;         /* #ffffff Surface Raised */
+    --card-foreground: 240 7% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    /* space accent — Cyber Electric Violet & Cyan */
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 189 94% 43%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 262 83% 58%;
-    --radius: 0.75rem;
-    --chart-1: 262 83% 58%;
-    --chart-2: 189 94% 43%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    /* accent helpers — Cyber Electric Violet & Cyan */
-    --brand: #8b5cf6;
-    --accent-solid: #06b6d4;
-    --accent-glow: rgba(139, 92, 246, 0.35);
+    --popover-foreground: 240 7% 11%;
+    --primary: 348 96% 21%;    /* #6b0217 Dark Crimson */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 355 48% 44%;  /* #a43a43 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 270 12% 94%;      /* #f0edf2 Surface Container */
+    --muted-foreground: 0 14% 30%; /* #574141 Ink Muted */
+    --accent: 352 64% 33%;     /* #8b1e2b Primary Accent */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 75% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 270 10% 90%;     /* #e4e1e7 */
+    --input: 270 10% 90%;
+    --ring: 352 64% 33%;
+    --radius: 0.5rem;
+    
+    /* Atelier Crimson Custom Tokens */
+    --brand: #8b1e2b;
+    --accent-solid: #8b1e2b;
+    --accent-glow: rgba(139, 30, 43, 0.15);
   }
 
   .dark {
-    --background: 240 10% 4%;
-    --foreground: 210 40% 98%;
-    --card: 240 10% 6%;
-    --card-foreground: 210 40% 98%;
-    --popover: 240 10% 6%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 263 85% 65%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 6% 12%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 240 6% 14%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 189 94% 43%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 240 6% 16%;
-    --input: 240 6% 16%;
-    --ring: 263 85% 65%;
-    --chart-1: 263 85% 65%;
-    --chart-2: 189 94% 43%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    /* accent helpers — Cyber Electric Violet & Cyan */
-    --brand: #a855f7;
-    --accent-solid: #22d3ee;
-    --accent-glow: rgba(168, 85, 247, 0.45);
+    /* Subtle rich dark variant for dark-mode toggle consistency */
+    --background: 240 7% 11%;  /* #1b1b1f */
+    --foreground: 280 20% 98%; /* #fbf8fe */
+    --card: 240 6% 14%;
+    --card-foreground: 280 20% 98%;
+    --popover: 240 6% 14%;
+    --popover-foreground: 280 20% 98%;
+    --primary: 355 70% 60%;
+    --primary-foreground: 240 7% 11%;
+    --secondary: 240 6% 18%;
+    --secondary-foreground: 280 20% 98%;
+    --muted: 240 6% 18%;
+    --muted-foreground: 270 10% 70%;
+    --accent: 352 64% 45%;
+    --accent-foreground: 280 20% 98%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 280 20% 98%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 352 64% 45%;
+    --brand: #e06d79;
+    --accent-solid: #e06d79;
+    --accent-glow: rgba(224, 109, 121, 0.25);
   }
 }
 
@@ -81,27 +71,31 @@ body {
     @apply border-border;
   }
 
-  /* Medium (500) is the site-wide default weight. Un-weighted text (body,
-     labels, nav) follows this; elements with an explicit font-bold/semibold
-     utility keep their own weight. */
   html {
-    font-weight: 500;
+    font-weight: 400;
+    font-family: var(--font-sans), Inter, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans), Inter, sans-serif;
   }
 
-  /* Headings use the display font (--font-display, Unbounded). Body and
-     everything else inherits Space Grotesk via `font-sans` on <html>. Elements
-     can still opt in explicitly with the `font-display` Tailwind class. */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-display), sans-serif;
+    font-family: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  }
+
+  code,
+  pre,
+  kbd {
+    font-family: var(--font-mono), "JetBrains Mono", monospace;
   }
 }
 

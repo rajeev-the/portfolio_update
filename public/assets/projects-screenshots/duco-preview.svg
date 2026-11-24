@@ -106,7 +106,7 @@
   <text x="560" y="690" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13">🔍 Zoom</text>
   <text x="635" y="690" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13">✨ Reset</text>
 
-  <!-- Right Sidebar (Order & Analytics Panel) -->
+  <!-- Right Sidebar (Order and Analytics Panel) -->
   <rect x="900" y="120" width="260" height="640" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1" filter="url(#cardShadow)" />
   
   <text x="925" y="160" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Product Details</text>
