@@ -17,22 +17,22 @@ const PROJECT_META: Record<string, { tag: string; brief: string }> = {
   finixbooks: {
     tag: "ERP // v1.0",
     brief:
-      "Enterprise double-entry ledger ERP with integer-paise precision, append-only financial records, balanced ledger validation (Debits = Credits), and bidirectional Electron Tally sync.",
+      "Enterprise double-entry ledger ERP with integer-paise precision, append-only vouchers, balanced validation, and bidirectional Electron Tally sync.",
   },
   duco: {
     tag: "ECOMMERCE // v1.2",
     brief:
-      "Multi-user custom merchandise and apparel design platform with interactive 3D tools, real-time order analytics, payment gateway, and comprehensive admin dashboard.",
+      "Custom merchandise platform with interactive product customizer, real-time analytics, payment gateway, and admin dashboard.",
   },
   "rental-app": {
     tag: "MOBILE // v1.0",
     brief:
-      "Full-stack cross-platform rental marketplace built with Flutter and Node.js, featuring AWS S3 cloud media storage, Redis background queue workers, and Gmail OTP verification.",
+      "Cross-platform rental marketplace built with Flutter and Node.js, featuring AWS S3 cloud media, Redis queue workers, and OTP verification.",
   },
   "event-driven-file-conversion": {
     tag: "DISTRIBUTED // v1.0",
     brief:
-      "Event-driven file and media conversion pipeline powered by Java, Spring Boot, RabbitMQ, and Docker, decoupling producers from worker services for fault-tolerant media processing.",
+      "Event-driven media conversion pipeline powered by Java, Spring Boot, RabbitMQ, and Docker for fault-tolerant worker processing.",
   },
 };
 
@@ -44,7 +44,7 @@ const ProjectsSection = () => {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <SectionHeader
           id="projects"
-          eyebrow="03 // SELECTED WORK"
+          eyebrow="01 // SELECTED WORK"
           title="Projects"
           desc="Production-grade financial ledger engines, e-commerce platforms, mobile applications & distributed microservices."
         />
@@ -136,11 +136,11 @@ const ProjectCard = ({
   ).slice(0, 5);
 
   return (
-    <div className="group rounded-lg bg-[#232328] border border-white/[0.08] hover:border-[#8b1e2b]/60 transition-all p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.15)]">
+    <div className="group rounded-2xl bg-[#232328] border border-white/[0.08] hover:border-[#8b1e2b]/60 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.15)]">
       <div>
         {/* Top Rail: Monospace Tag & Direct Visit Arrow */}
         <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-white/[0.06]">
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
+          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-400">
             {meta.tag}
           </span>
           <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ const ProjectCard = ({
                 target="_blank"
                 rel="noreferrer"
                 title="Live Demo"
-                className="text-[#ff9d9f] hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform"
+                className="text-[#ff9d9f] hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
               >
                 <ArrowUpRight className="w-4 h-4" />
               </a>
@@ -159,22 +159,22 @@ const ProjectCard = ({
         </div>
 
         {/* Title */}
-        <h3 className="font-display text-lg sm:text-xl font-bold tracking-tight text-[#fbf8fe] group-hover:text-[#ff9d9f] transition-colors mb-3">
+        <h3 className="font-display text-lg sm:text-xl font-bold tracking-tight text-[#fbf8fe] group-hover:text-[#ff9d9f] transition-colors duration-300 mb-3 text-balance">
           {project.title}
         </h3>
 
         {/* Architecture Brief */}
-        <p className="font-sans text-sm text-zinc-300 leading-relaxed mb-6">
+        <p className="font-sans text-sm text-zinc-300 leading-normal mb-6 text-pretty">
           {meta.brief}
         </p>
 
         {/* Screenshot Preview */}
         {project.src && (
-          <div className="relative w-full h-44 sm:h-52 rounded-[6px] overflow-hidden border border-white/[0.08] bg-[#1b1b1f] mb-6 shadow-inner">
+          <div className="relative w-full h-44 sm:h-52 rounded-lg overflow-hidden border border-white/[0.08] bg-[#1b1b1f] mb-6 shadow-inner">
             <img
               src={project.src}
               alt={project.title}
-              className="w-full h-full object-cover object-top opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-300"
+              className="w-full h-full object-cover object-top opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
             />
           </div>
         )}
@@ -186,7 +186,7 @@ const ProjectCard = ({
           {skillsList.map((skill) => (
             <span
               key={`${project.id}-${skill.title}`}
-              className="font-mono text-[11px] font-medium px-2 py-0.5 rounded-[3px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25"
+              className="font-mono text-xs font-medium px-2 py-0.5 rounded-md bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25"
             >
               {skill.title}
             </span>
@@ -201,9 +201,9 @@ const ProjectCard = ({
                 href={project.live}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#ff9d9f] hover:underline"
+                className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#ff9d9f] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8b1e2b] rounded-sm"
               >
-                <span>Live Site</span>
+                <span>{"Live Site"}</span>
                 <ArrowUpRight className="w-3 h-3" />
               </a>
             )}
@@ -212,10 +212,10 @@ const ProjectCard = ({
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8b1e2b] rounded-sm"
               >
                 <Code2 className="w-3 h-3" />
-                <span>Code</span>
+                <span>{"Code"}</span>
               </a>
             )}
           </div>
@@ -223,7 +223,7 @@ const ProjectCard = ({
           <button
             type="button"
             onClick={onOpenDetails}
-            className="text-xs font-mono text-zinc-400 hover:text-[#ff9d9f] transition-colors underline-offset-4 hover:underline"
+            className="text-xs font-mono text-zinc-400 hover:text-[#ff9d9f] transition-colors duration-300 underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8b1e2b] rounded-sm"
           >
             {"Details →"}
           </button>

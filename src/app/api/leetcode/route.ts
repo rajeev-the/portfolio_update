@@ -56,9 +56,12 @@ export async function GET(request: Request) {
     searchParams.get("username") || config.leetcodeUsername || "rajeevranjan_8860";
 
   try {
-    // Strategy 1: Direct official LeetCode GraphQL (instant, zero cold start delays)
+    // Strategy 1: Direct official LeetCode GraphQL with fast 3.5s timeout
+    const gqlController = new AbortController();
+    const gqlTimeout = setTimeout(() => gqlController.abort(), 3500);
     const gqlRes = await fetch("https://leetcode.com/graphql", {
       method: "POST",
+      signal: gqlController.signal,
       headers: {
         "content-type": "application/json",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
@@ -97,6 +100,7 @@ export async function GET(request: Request) {
       }),
       next: { revalidate: 3600 },
     });
+    clearTimeout(gqlTimeout);
 
     if (gqlRes.ok) {
       const gqlData = await gqlRes.json();
@@ -163,10 +167,10 @@ export async function GET(request: Request) {
     // If GraphQL fails or is throttled, fall back to Alfa-LeetCode proxy
   }
 
-  // Strategy 2: Alfa-LeetCode Proxy fallback with extended 10s timeout
+  // Strategy 2: Alfa-LeetCode Proxy fallback with fast 3.5s timeout
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
 
     const profileRes = await fetch(
       `https://alfa-leetcode-api.onrender.com/userProfile/${encodeURIComponent(username)}`,

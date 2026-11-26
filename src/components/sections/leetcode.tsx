@@ -94,11 +94,11 @@ export const LeetcodeSection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* Left Card: Live Metrics Summary */}
-            <div className="lg:col-span-5 p-6 rounded-lg bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex flex-col justify-between">
+            <div className="lg:col-span-5 p-6 rounded-2xl bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex flex-col justify-between transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-[#8b1e2b]/50">
               <div>
                 <div className="flex items-center justify-between pb-3 mb-5 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-[3px] bg-[#2a0e13] flex items-center justify-center text-[#ff9e98]">
+                    <span className="w-6 h-6 rounded-md bg-[#2a0e13] flex items-center justify-center text-[#ff9e98]">
                       <SiLeetcode className="w-3.5 h-3.5" />
                     </span>
                     <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
@@ -110,7 +110,7 @@ export const LeetcodeSection = () => {
                     onClick={fetchStats}
                     disabled={loading}
                     title="Refresh data"
-                    className="text-zinc-400 hover:text-[#ff9d9f] transition-colors p-1"
+                    className="text-zinc-400 hover:text-[#ff9d9f] transition-colors duration-300 p-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8b1e2b]"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
                   </button>
@@ -132,7 +132,7 @@ export const LeetcodeSection = () => {
                       <span className="text-zinc-300">Easy</span>
                       <span className="font-semibold text-white">
                         <span>{stats.easySolved}</span>
-                        <span className="text-zinc-500 text-[10px] ml-1">{`/${stats.totalEasy || 978}`}</span>
+                        <span className="text-zinc-500 text-xs ml-1">{`/${stats.totalEasy || 978}`}</span>
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -148,7 +148,7 @@ export const LeetcodeSection = () => {
                       <span className="text-zinc-300">Medium</span>
                       <span className="font-semibold text-white">
                         <span>{stats.mediumSolved}</span>
-                        <span className="text-zinc-500 text-[10px] ml-1">{`/${stats.totalMedium || 2152}`}</span>
+                        <span className="text-zinc-500 text-xs ml-1">{`/${stats.totalMedium || 2152}`}</span>
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -164,7 +164,7 @@ export const LeetcodeSection = () => {
                       <span className="text-zinc-300">Hard</span>
                       <span className="font-semibold text-white">
                         <span>{stats.hardSolved}</span>
-                        <span className="text-zinc-500 text-[10px] ml-1">{`/${stats.totalHard || 993}`}</span>
+                        <span className="text-zinc-500 text-xs ml-1">{`/${stats.totalHard || 993}`}</span>
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -186,7 +186,7 @@ export const LeetcodeSection = () => {
                     href={config.social.leetcode}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-[#ff9d9f] hover:underline"
+                    className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-[#ff9d9f] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8b1e2b] rounded-sm"
                   >
                     <span>Profile</span>
                     <ArrowUpRight className="w-3 h-3" />
@@ -196,7 +196,7 @@ export const LeetcodeSection = () => {
             </div>
 
             {/* Right Card: Topic Distribution */}
-            <div className="lg:col-span-7 p-6 rounded-lg bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex flex-col justify-between">
+            <div className="lg:col-span-7 p-6 rounded-2xl bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex flex-col justify-between transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-[#8b1e2b]/50">
               <div>
                 <div className="flex items-center justify-between pb-3 mb-5 border-b border-white/[0.06]">
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
@@ -209,12 +209,12 @@ export const LeetcodeSection = () => {
                   {topics.map((topic) => (
                     <div
                       key={topic.name}
-                      className="p-3 rounded-[6px] bg-[#1b1b1f] border border-white/[0.06] flex items-center justify-between"
+                      className="p-3 rounded-md bg-[#1b1b1f] border border-white/[0.06] flex items-center justify-between"
                     >
                       <span className="font-sans text-xs font-medium text-zinc-200">
                         {topic.name}
                       </span>
-                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-[3px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25" suppressHydrationWarning>
+                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-sm bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25" suppressHydrationWarning>
                         {`${topic.solved}+`}
                       </span>
                     </div>
@@ -242,80 +242,80 @@ export const LeetcodeSection = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Card 1: AWS Certification */}
-            <div className="p-6 rounded-lg bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all">
-              <div className="w-10 h-10 rounded-[6px] bg-[#2e1d0c] border border-[#ff9900]/30 flex items-center justify-center shrink-0 text-[#ff9900]">
+            <div className="p-6 rounded-2xl bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              <div className="w-10 h-10 rounded-md bg-[#2e1d0c] border border-[#ff9900]/30 flex items-center justify-center shrink-0 text-[#ff9900]">
                 <FaAws className="w-6 h-6" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="font-display text-base font-bold text-white truncate">
+                  <h3 className="font-display text-base font-bold text-white truncate text-balance">
                     AWS Certified Cloud Practitioner
                   </h3>
                   <span className="font-mono text-xs text-zinc-400 shrink-0">2026</span>
                 </div>
-                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed mb-2">
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-normal mb-2 text-pretty">
                   Amazon Web Services — Cloud infrastructure, serverless compute, S3 scalable storage, IAM security policies, and high-availability architecture.
                 </p>
-                <span className="font-mono text-[11px] font-semibold text-[#ff9e98]">
+                <span className="font-mono text-xs font-semibold text-[#ff9e98]">
                   Verified Credential
                 </span>
               </div>
             </div>
 
             {/* Card 2: 500+ Solved */}
-            <div className="p-6 rounded-lg bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all">
-              <div className="w-10 h-10 rounded-[6px] bg-[#2a0e13] border border-[#8b1e2b]/30 flex items-center justify-center shrink-0 text-[#ff9e98]">
+            <div className="p-6 rounded-2xl bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              <div className="w-10 h-10 rounded-md bg-[#2a0e13] border border-[#8b1e2b]/30 flex items-center justify-center shrink-0 text-[#ff9e98]">
                 <Trophy className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="font-display text-base font-bold text-white truncate">
+                  <h3 className="font-display text-base font-bold text-white truncate text-balance">
                     500+ Algorithmic Problems Solved
                   </h3>
                   <span className="font-mono text-xs text-zinc-400 shrink-0">{"LeetCode & GFG"}</span>
                 </div>
-                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed mb-2">
-                  Demonstrated mastery across Data Structures, Algorithms, Dynamic Programming, Graphs, and Greedy heuristics on LeetCode &amp; GeeksforGeeks.
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-normal mb-2 text-pretty">
+                  Demonstrated mastery across Data Structures, Algorithms, Dynamic Programming, Graphs, and Greedy heuristics on LeetCode and GeeksforGeeks.
                 </p>
-                <span className="font-mono text-[11px] font-semibold text-[#ff9e98]">
+                <span className="font-mono text-xs font-semibold text-[#ff9e98]">
                   Top Percentile Consistency
                 </span>
               </div>
             </div>
 
             {/* Card 3: Academic Degree */}
-            <div className="p-6 rounded-lg bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all">
-              <div className="w-10 h-10 rounded-[6px] bg-[#1b1b1f] border border-white/[0.1] flex items-center justify-center shrink-0 text-white">
+            <div className="p-6 rounded-2xl bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              <div className="w-10 h-10 rounded-md bg-[#1b1b1f] border border-white/[0.1] flex items-center justify-center shrink-0 text-white">
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="font-display text-base font-bold text-white truncate">
+                  <h3 className="font-display text-base font-bold text-white truncate text-balance">
                     {"Sharda University — B.Tech CSE"}
                   </h3>
-                  <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
+                  <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-sm bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
                     CGPA: 8.0
                   </span>
                 </div>
-                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                  {"B.Tech in Computer Science & Engineering. Core curriculum in Operating Systems, Database Management Systems, Computer Networks, and Object-Oriented Analysis."}
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-normal text-pretty">
+                  {"B.Tech in Computer Science and Engineering. Core curriculum in Operating Systems, Database Management Systems, Computer Networks, and Object Oriented Analysis."}
                 </p>
               </div>
             </div>
 
             {/* Card 4: Open Source & Production Software */}
-            <div className="p-6 rounded-lg bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all">
-              <div className="w-10 h-10 rounded-[6px] bg-[#2a0e13] border border-[#8b1e2b]/30 flex items-center justify-center shrink-0 text-[#ff9e98]">
+            <div className="p-6 rounded-2xl bg-[#232328] border border-white/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.2)] flex items-start gap-4 hover:border-[#8b1e2b]/50 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              <div className="w-10 h-10 rounded-md bg-[#2a0e13] border border-[#8b1e2b]/30 flex items-center justify-center shrink-0 text-[#ff9e98]">
                 <Code2 className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="font-display text-base font-bold text-white truncate">
-                    {"Full-Stack & Enterprise Production Software"}
+                  <h3 className="font-display text-base font-bold text-white truncate text-balance">
+                    {"Multiplatform & Enterprise Production Software"}
                   </h3>
-                  <span className="font-mono text-xs text-zinc-400 shrink-0">{"2025–2026"}</span>
+                  <span className="font-mono text-xs text-zinc-400 shrink-0">{"2025 to 2026"}</span>
                 </div>
-                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                <p className="font-sans text-xs sm:text-zinc-300 text-zinc-300 leading-normal text-pretty">
                   Architected production-ready platforms including FinixBooks, DucoArt, LandSathi, and high-throughput RabbitMQ file conversion pipelines.
                 </p>
               </div>

@@ -23,12 +23,12 @@ export const SectionHeader = ({
         </div>
       )}
       <Link href={`#${id}`}>
-        <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#fbf8fe] hover:text-[#ff9d9f] transition-colors inline-block">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#fbf8fe] hover:text-[#ff9d9f] transition-colors inline-block text-balance">
           {title}
         </h2>
       </Link>
       {desc && (
-        <p className="font-sans text-sm sm:text-base text-zinc-400 mt-1 max-w-2xl leading-relaxed">
+        <p className="font-sans text-sm sm:text-base text-zinc-400 mt-2 max-w-[680px] leading-normal text-pretty">
           {desc}
         </p>
       )}

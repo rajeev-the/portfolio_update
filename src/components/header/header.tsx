@@ -3,44 +3,46 @@
 import { useState } from "react";
 import Link from "next/link";
 import { config } from "@/data/config";
-import { cn } from "@/lib/utils";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-import FunnyThemeToggle from "../theme/funny-theme-toggle";
 
 const NAV_ITEMS = [
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Competitive Programming", href: "#competitive-programming" },
-  { label: "Certifications & Achievements", href: "#certifications" },
+  { label: "[01] Skills", href: "#skills" },
+  { label: "[02] Project", href: "#project" },
+  { label: "[03] Experience", href: "#experience" },
+  { label: "[04] DSA", href: "#dsa" },
+  { label: "[Resume]", href: "/rajeev_sdd.pdf", external: true },
 ];
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#1b1b1f]/90 backdrop-blur-md border-b border-white/[0.08]">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-300">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
         {/* Left: Brand Monogram & Name */}
         <Link
           href="/"
           className="flex items-center gap-2.5 group cursor-pointer"
         >
-          <span className="flex items-center justify-center w-7 h-7 rounded-[4px] bg-[#8b1e2b] text-white font-mono text-xs font-bold tracking-tight shadow-sm group-hover:bg-[#721422] transition-colors">
-            RR
+          <span className="flex items-center justify-center w-7 h-7 rounded-[3px] bg-black text-white font-mono text-xs font-black tracking-tight group-hover:bg-neutral-800 transition-colors">
+            {"RR"}
           </span>
-          <span className="font-display font-bold text-sm tracking-tight text-[#fbf8fe] group-hover:text-[#ff9d9f] transition-colors">
+          <span className="font-display font-black text-sm tracking-tight text-black uppercase">
             {config.author}
+          </span>
+          <span className="hidden sm:inline-block font-mono text-[11px] text-neutral-400 uppercase tracking-wider">
+            {"// PORTFOLIO"}
           </span>
         </Link>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-xs font-medium text-zinc-400 hover:text-[#ff9d9f] transition-colors tracking-tight"
+              target={item.external ? "_blank" : undefined}
+              className="text-xs font-mono font-semibold text-neutral-600 hover:text-black uppercase tracking-wider hover:underline transition-colors"
             >
               {item.label}
             </Link>
@@ -49,20 +51,19 @@ const Header = () => {
 
         {/* Right: Actions & Contact Button */}
         <div className="flex items-center gap-3">
-          <FunnyThemeToggle className="w-5 h-5 hidden sm:flex text-zinc-400 hover:text-[#ff9d9f] transition-colors" />
-
-          <Link
-            href="#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[4px] border border-[#8b1e2b]/30 hover:border-[#8b1e2b] bg-transparent hover:bg-[#2a0e13] text-[#ff9d9f] text-xs font-mono font-semibold tracking-wide transition-all shadow-xs"
+          <a
+            href={`mailto:${config.email}`}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-black hover:bg-neutral-800 text-white text-xs font-mono font-semibold uppercase tracking-wider transition-all active:translate-y-[1px]"
           >
-            <span>CONTACT / CV</span>
+            <span>{"CONTACT"}</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
+          </a>
 
           {/* Mobile menu trigger */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-[4px] text-white hover:bg-zinc-800 transition-colors"
+            className="md:hidden p-2 rounded-[3px] text-black hover:bg-neutral-100 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -72,26 +73,25 @@ const Header = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#1b1b1f] border-b border-zinc-800 px-6 py-5 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2">
+        <div className="md:hidden bg-white border-b border-neutral-300 px-6 py-4 flex flex-col gap-3 shadow-xs animate-in fade-in slide-in-from-top-1">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
+              target={item.external ? "_blank" : undefined}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-zinc-200 hover:text-[#ff9d9f] transition-colors"
+              className="text-xs font-mono font-semibold text-neutral-800 hover:text-black uppercase tracking-wider py-1"
             >
               {item.label}
             </Link>
           ))}
-          <div className="pt-2 border-t border-zinc-800 flex items-center justify-between">
-            <Link
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xs font-mono font-semibold text-[#ff9d9f]"
+          <div className="pt-2 border-t border-neutral-200 flex items-center justify-between">
+            <a
+              href={`mailto:${config.email}`}
+              className="text-xs font-mono font-semibold text-black uppercase"
             >
-              CONTACT / CV →
-            </Link>
-            <FunnyThemeToggle className="w-5 h-5 text-zinc-400" />
+              {config.email}
+            </a>
           </div>
         </div>
       )}

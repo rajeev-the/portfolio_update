@@ -62,6 +62,17 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon-192.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -78,11 +89,10 @@ export default function RootLayout({
         inter.variable,
         jetBrainsMono.variable,
         "font-sans",
-        "dark",
       ].join(" ")}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning className="bg-[#1b1b1f] text-[#fbf8fe]">
+      <body suppressHydrationWarning className="bg-[#030305] text-white antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
         {process.env.UMAMI_SITE_ID && (
           <Script
             defer

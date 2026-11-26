@@ -57,7 +57,7 @@ export const SkillsSection = () => {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <SectionHeader
           id="skills"
-          eyebrow="01 // TECHNICAL COMPETENCIES"
+          eyebrow="03 // TECHNICAL COMPETENCIES"
           title="Skills"
           desc="Core languages, backend microservices, mobile systems, databases & cloud infrastructure."
         />
@@ -67,7 +67,7 @@ export const SkillsSection = () => {
           {SKILL_CATEGORIES.map((category) => (
             <div
               key={category.title}
-              className="p-5 rounded-lg bg-[#232328] border border-white/[0.08] hover:border-[#8b1e2b]/50 transition-all shadow-[0_1px_3px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.15)] flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-[#232328] border border-white/[0.08] hover:border-[#8b1e2b]/50 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] shadow-[0_1px_3px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-6px_rgba(139,30,43,0.15)] flex flex-col justify-between"
             >
               <div>
                 <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-400 mb-4 pb-2 border-b border-white/[0.06]">
@@ -77,7 +77,7 @@ export const SkillsSection = () => {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="font-mono text-[11px] font-medium px-2.5 py-1 rounded-[4px] bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25 hover:border-[#8b1e2b]/50 hover:bg-[#3d151c] transition-colors"
+                      className="font-mono text-xs font-medium px-2.5 py-1 rounded-md bg-[#2a0e13] text-[#ff9e98] border border-[#8b1e2b]/25 hover:border-[#8b1e2b]/50 hover:bg-[#3d151c] transition-colors"
                     >
                       {skill}
                     </span>
