@@ -7,7 +7,7 @@ export const CardExperience = () => {
     <div className="flex flex-col justify-between h-full p-4 sm:p-5 rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] hover:border-white/30 transition-all shadow-2xl">
       <div>
         {/* Header */}
-        <div className="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-white/[0.08]">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-3 border-b border-white/[0.08]">
           <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
             {"EXPERIENCE"}
           </span>

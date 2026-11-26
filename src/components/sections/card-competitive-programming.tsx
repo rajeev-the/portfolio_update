@@ -145,15 +145,15 @@ export const CardCompetitiveProgramming = () => {
     <div className="flex flex-col justify-between h-full p-4 sm:p-5 rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] hover:border-white/30 transition-all shadow-2xl">
       <div>
         {/* Header */}
-        <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-white/[0.08]">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2.5 border-b border-white/[0.08]">
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
               {"COMPETITIVE PROGRAMMING"}
             </span>
-            <span className="text-zinc-600 font-mono text-xs">{"•"}</span>
-            <span className="font-mono text-xs text-zinc-400">{"ALGORITHMS"}</span>
+            <span className="text-zinc-600 font-mono text-xs hidden sm:inline">{"•"}</span>
+            <span className="font-mono text-xs text-zinc-400 hidden sm:inline">{"ALGORITHMS"}</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 shrink-0">
             <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-white/[0.08] text-zinc-300 border border-white/[0.12]">
               {"LIVE LEETCODE API"}
             </span>
@@ -162,16 +162,16 @@ export const CardCompetitiveProgramming = () => {
               onClick={() => fetchStats(true)}
               disabled={loading}
               title="Refresh LeetCode stats"
-              className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+              className="p-1.5 sm:p-1 rounded text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors"
             >
-              <RefreshCw className={`w-3 h-3 ${loading ? "animate-spin" : ""}`} />
+              <RefreshCw className={`w-3.5 h-3.5 sm:w-3 sm:h-3 ${loading ? "animate-spin" : ""}`} />
             </button>
           </div>
         </div>
 
         {/* Big Metric Display */}
         <div className="mb-3" suppressHydrationWarning>
-          <div className="flex items-baseline justify-between mb-0.5">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-0.5">
             <h3 className="font-display text-2xl font-bold tracking-tight text-white" suppressHydrationWarning>
               {`${stats.totalSolved} Solved`}
             </h3>

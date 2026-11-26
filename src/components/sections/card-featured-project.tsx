@@ -7,8 +7,8 @@ export const CardFeaturedProject = () => {
   return (
     <div className="w-full p-4 sm:p-5 rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] hover:border-white/30 transition-all shadow-2xl">
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 mb-2.5 border-b border-white/[0.08]">
+        <div className="flex flex-wrap items-center gap-2 min-w-0">
           <span className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-400">
             {"FEATURED PROJECT"}
           </span>
@@ -17,12 +17,12 @@ export const CardFeaturedProject = () => {
             {"FinixBooks"}
           </span>
         </div>
-        <div className="flex items-center gap-2 font-mono text-xs">
+        <div className="flex flex-wrap items-center gap-2 font-mono text-xs shrink-0">
           <a
             href="https://finixbooks.vercel.app/"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white hover:bg-zinc-200 text-black font-semibold transition-all text-xs shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-2.5 sm:py-1 rounded bg-white hover:bg-zinc-200 text-black font-semibold transition-all text-xs shadow-sm"
           >
             <span>{"Live App"}</span>
             <ArrowUpRight className="w-3 h-3" />
@@ -31,7 +31,7 @@ export const CardFeaturedProject = () => {
             href="https://github.com/rajeev-the"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1 px-2 py-1 rounded border border-white/20 hover:border-white/40 text-zinc-200 hover:text-white bg-white/[0.06] transition-colors text-xs font-medium"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-2.5 sm:py-1 rounded border border-white/20 hover:border-white/40 text-zinc-200 hover:text-white bg-white/[0.06] transition-colors text-xs font-medium"
           >
             <Code2 className="w-3 h-3" />
             <span>{"Code"}</span>

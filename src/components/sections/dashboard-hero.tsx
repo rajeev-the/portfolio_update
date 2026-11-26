@@ -6,9 +6,9 @@ import { config } from "@/data/config";
 export const DashboardHero = () => {
   return (
     <header className="w-full px-4 py-3 rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] hover:border-white/25 transition-all shadow-2xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
         {/* Left: Name // Title */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <h1 className="font-display font-bold text-base sm:text-lg tracking-tight text-white uppercase">
             {"Rajeev Ranjan"}
           </h1>
@@ -19,7 +19,7 @@ export const DashboardHero = () => {
         </div>
 
         {/* Right: Gmail, GitHub, LinkedIn, X */}
-        <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs text-zinc-400">
           <a
             href={`mailto:${config.email}`}
             className="hover:text-white hover:underline transition-colors capitalize font-medium"

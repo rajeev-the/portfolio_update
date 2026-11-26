@@ -53,25 +53,16 @@ const OTHER_PROJECTS: ProjectItem[] = [
 
 export const CardOtherProjects = () => {
   return (
-    <div className="w-full flex flex-col gap-2">
-      {/* Section Header */}
-      <div className="flex items-center justify-between px-1">
-        <div className="flex items-center gap-2">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
-            {"OTHER NOTABLE PROJECTS"}
-          </span>
-          <span className="text-zinc-600 font-mono text-xs">{"•"}</span>
-          <span className="font-mono text-xs text-zinc-400">
-            {"SYSTEMS DIRECTORY"}
-          </span>
-        </div>
-        <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider">
-          {"3 REPOSITORIES"}
+    <div className="w-full rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] hover:border-white/30 transition-all overflow-hidden shadow-2xl">
+      {/* Top Header Inside Card */}
+      <div className="px-4 py-2.5 sm:px-5 sm:py-3 border-b border-white/[0.08] flex items-center justify-between">
+        <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
+          {"OTHER NOTABLE PROJECTS"}
         </span>
       </div>
 
       {/* Directory Format: Full-Width Frosted Glass List */}
-      <div className="rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] divide-y divide-white/[0.08] overflow-hidden shadow-2xl">
+      <div className="divide-y divide-white/[0.08]">
         {OTHER_PROJECTS.map((proj) => (
           <div
             key={proj.id}
@@ -89,13 +80,13 @@ export const CardOtherProjects = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-1.5 font-mono text-[11px] shrink-0">
+              <div className="flex flex-wrap items-center gap-2 font-mono text-xs shrink-0">
                 {proj.live && (
                   <a
                     href={proj.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white hover:bg-zinc-200 text-black font-semibold transition-all text-xs shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-2.5 sm:py-1 rounded bg-white hover:bg-zinc-200 text-black font-semibold transition-all text-xs shadow-sm"
                   >
                     <span>{"Live App"}</span>
                     <ArrowUpRight className="w-3 h-3" />
@@ -105,7 +96,7 @@ export const CardOtherProjects = () => {
                   href={proj.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded border border-white/20 hover:border-white/40 text-zinc-200 hover:text-white bg-white/[0.06] transition-colors text-xs font-medium"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-2.5 sm:py-1 rounded border border-white/20 hover:border-white/40 text-zinc-200 hover:text-white bg-white/[0.06] transition-colors text-xs font-medium"
                 >
                   <Code2 className="w-3 h-3" />
                   <span>{"Code"}</span>

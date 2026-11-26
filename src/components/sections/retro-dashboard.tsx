@@ -48,35 +48,39 @@ export const RetroDashboard = () => {
     if (activeId) {
       if (activeId === id) {
         stateClass = focused
-          ? `${base} opacity-100 scale-[1.01] ring-1 ring-white/30 relative z-20`
-          : `${base} opacity-100 relative z-10`;
+          ? `${base} opacity-100 scale-[1.015] ring-1 ring-white/35 shadow-[0_0_30px_rgba(255,255,255,0.08)] relative z-20`
+          : `${base} opacity-100 scale-[1.012] ring-1 ring-white/25 shadow-[0_0_24px_rgba(255,255,255,0.06)] relative z-10`;
       } else {
         stateClass = focused
-          ? `${base} opacity-35 blur-[3px] scale-[0.99]`
-          : `${base} opacity-70 blur-[1.5px]`;
+          ? `${base} opacity-45 scale-[0.99]`
+          : `${base} opacity-65 scale-[0.995]`;
       }
     }
 
     return {
       className: stateClass,
       onClick: (e: React.MouseEvent<HTMLDivElement>) => handleSectionClick(id, e),
-      onMouseEnter: () => setHovered(id),
-      onMouseLeave: () => setHovered((prev) => (prev === id ? null : prev)),
+      onPointerEnter: (e: React.PointerEvent<HTMLDivElement>) => {
+        if (e.pointerType !== "touch") setHovered(id);
+      },
+      onPointerLeave: (e: React.PointerEvent<HTMLDivElement>) => {
+        if (e.pointerType !== "touch") setHovered((prev) => (prev === id ? null : prev));
+      },
     };
   };
 
   return (
     <div
       onClick={() => focused && setFocused(null)}
-      className="w-full flex flex-col max-w-[1360px] mx-auto px-4 sm:px-6 py-4 sm:py-6 gap-3.5 sm:gap-4"
+      className="w-full flex flex-col max-w-[1360px] mx-auto px-3 sm:px-6 py-3 sm:py-6 gap-3 sm:gap-4 overflow-x-hidden"
     >
       {/* 1. Header */}
       <div
         className={
           focused
-            ? "opacity-40 blur-[2px] transition-all duration-200"
+            ? "opacity-50 transition-all duration-200"
             : hovered
-              ? "opacity-75 blur-[1px] transition-all duration-200"
+              ? "opacity-75 transition-all duration-200"
               : "transition-all duration-200"
         }
       >
@@ -122,7 +126,7 @@ export const RetroDashboard = () => {
       {/* 6. Apple Frosted Glass Bottom Footer */}
       <footer
         className={`w-full px-4 py-3 rounded-xl bg-black/30 backdrop-blur-md border border-white/[0.14] hover:border-white/30 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono text-zinc-400 uppercase tracking-wider transition-all duration-200 ${
-          focused ? "opacity-35 blur-[2px]" : hovered ? "opacity-75 blur-[1px]" : ""
+          focused ? "opacity-45" : hovered ? "opacity-70" : ""
         }`}
       >
         <div className="flex items-center gap-2">

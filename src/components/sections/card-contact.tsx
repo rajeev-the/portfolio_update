@@ -89,10 +89,10 @@ export const CardContact = () => {
       </div>
 
       {/* Footer Quick Action Buttons */}
-      <div className="pt-2 border-t border-white/[0.08] mt-2 flex items-center justify-between font-mono text-xs">
+      <div className="pt-2.5 border-t border-white/[0.08] mt-2 flex flex-wrap items-center justify-between gap-2.5 font-mono text-xs">
         <a
           href={`mailto:${config.email}`}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-white hover:bg-zinc-200 text-black font-semibold transition-all text-xs shadow-sm"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-3 sm:py-1 rounded bg-white hover:bg-zinc-200 text-black font-semibold transition-all text-xs shadow-sm"
         >
           <Mail className="w-3 h-3" />
           <span>{"Send Direct Email"}</span>
